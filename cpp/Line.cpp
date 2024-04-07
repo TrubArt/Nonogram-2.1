@@ -1,4 +1,4 @@
-#include "Line.h"
+#include "../headers/Line.h"
 #include <algorithm>
 
 Line::Line(int size)
@@ -68,6 +68,11 @@ void Line::setCellType(int i, CellType Ctype)
 CellType Line::getCellType(int i) const
 {
 	return data.at(i)->get();
+}
+
+size_t Line::getSize() const
+{
+	return data.size();
 }
 
 int Line::getCountTypeCell(CellType Ctype) const

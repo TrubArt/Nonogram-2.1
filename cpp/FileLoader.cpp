@@ -1,4 +1,4 @@
-#include "FileLoader.h"
+#include "../headers/FileLoader.h"
 
 FileLoader::FileLoader(const std::string& fileName)
 {
@@ -31,12 +31,12 @@ int FileLoader::getNumber(const std::string& str, int& i)
 std::vector<int> FileLoader::getNumbersSequence()
 {
 	std::string str;
-	do										// пропуск пустых строчек
+	do								// пропуск пустых строчек
 	{
 		std::getline(file, str);
 	} while (str.empty() && !isEmpty());
 
-	std::vector<int> tmpvec;				// вектор с ответом
+	std::vector<int> tmpvec;		// вектор с ответом
 
 	for (int i = 0; i < str.length(); i++)
 		if (str[i] != ' ')

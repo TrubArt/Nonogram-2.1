@@ -19,8 +19,10 @@ public:
 	Line& operator=(const Line& x);
 	bool operator==(const Line& x) const;
 	bool operator!=(const Line& x) const;
+
 	void setCellType(int i, CellType Ctype);
 	CellType getCellType(int i) const;
+	size_t getSize() const;
 
 	/// <param name="Ctype:"> тип искомых клеток</param>
 	/// <returns>Число клеток типа Ctype в линии</returns>

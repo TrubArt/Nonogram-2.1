@@ -1,6 +1,6 @@
 #include <iostream>
 #include <Windows.h>
-#include "Picture.h"
+#include "headers/Solution.h"
 
 int main()
 {
