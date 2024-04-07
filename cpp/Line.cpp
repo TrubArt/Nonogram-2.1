@@ -13,7 +13,7 @@ Line::Line(const Line& x)
 	data.resize(x.data.size());
 
 	for (int i = 0; i < data.size(); i++)
-		data.at(i) = new Cell(x.data.at(i)->get());
+		data[i] = new Cell(x.data[i]->get());
 }
 
 Line::~Line()
@@ -33,7 +33,7 @@ Line& Line::operator=(const Line& x)
 		data.resize(x.data.size());
 
 		for (int i = 0; i < data.size(); i++)
-			data.at(i) = new Cell(x.data.at(i)->get());
+			data[i] = new Cell(x.data[i]->get());
 	}
 
 	return *this;
@@ -49,7 +49,7 @@ bool Line::operator==(const Line& x) const
 	else
 	{
 		for (int i = 0; i < data.size(); i++)
-			if (data.at(i)->get() != x.data.at(i)->get())
+			if (data[i]->get() != x.data[i]->get())
 				return false;
 		return true;
 	}
@@ -62,12 +62,12 @@ bool Line::operator!=(const Line& x) const
 
 void Line::setCellType(int i, CellType Ctype)
 {
-	data.at(i)->set(Ctype);
+	data[i]->set(Ctype);
 }
 
 CellType Line::getCellType(int i) const
 {
-	return data.at(i)->get();
+	return data[i]->get();
 }
 
 size_t Line::getSize() const
@@ -84,7 +84,7 @@ std::string Line::toString() const
 {
 	std::string answer;
 	for (const auto& i : data)
-		if (i == data.at(0))
+		if (&i == data.data())
 			answer.append(i->toString());
 		else
 			answer.append(" " + i->toString());

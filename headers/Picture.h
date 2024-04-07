@@ -1,12 +1,14 @@
 #pragma once
 #include "Line.h"
+#include <iostream>
 #include <vector>
 #include <string>
 
+// класс, хранящий изображение
 class Picture
 {
-	std::vector<Line*> rows;
-	std::vector<Line*> columns;
+	std::vector<Line*> rows;	// вектор строк
+	std::vector<Line*> columns;	// вектор столбцов
 
 public:
 	Picture(int N, int M);
@@ -15,8 +17,6 @@ public:
 	Picture& operator=(const Picture& x);
 
 	void colorSet(int i, int j, CellType type);
-
 	std::string toString() const;
-
 	friend std::ostream& operator<<(std::ostream& out, const Picture& pict); // печать изображения
 };

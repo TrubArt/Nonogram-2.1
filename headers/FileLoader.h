@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -10,18 +9,18 @@ class FileLoader
 	std::ifstream file;	// поток с файлом
 
 public:
-	FileLoader() = default;
 	FileLoader(const std::string& fileName);
 	~FileLoader();
 
 	/// <returns>¬озвращает пуст ли файл</returns>
 	bool isEmpty() const;
 
+	/// <returns>vector c последовательностью чисел из строки</returns>
+	std::vector<int> getNumbersSequence();
+
+private:
 	/// <param name="str">строка дл€ поиска</param>
 	/// <param name="i">индекс начала поиска(измен€етс€ функцией)</param>
 	/// <returns>одно число из строки</returns>
 	int getNumber(const std::string& str, int& i);
-
-	/// <returns>vector c последовательностью чисел из строки</returns>
-	std::vector<int> getNumbersSequence();
 };

@@ -1,32 +1,32 @@
 #pragma once
 #include "Line.h"
+#include "NumberAndBorder.h"
+#include <string>
 #include <vector>
 
+// класс, хранящий в себе указатель на строку и содержащий характеристики этой строки
 class Condition
 {
-	struct NumberAndBorders
-	{
-		int number;			// число
-		int startDia;		// Dia - диапазон, в котором может теоретически находиться число
-		int endDia;			// 
-		int startRealDia;	// RealDia - диапазон, в котором находится только это число
-		int endRealDia;		// 
-	};
-
 	// неизменяемые в процессе решения величины
 
-	int CNField;			// conditionNecessaryField - '1'
-	int CUField;			// conditionUnnecessaryField - '0'
+	int allCountWhiteCell;			// общее количество белых клеток - '0'
+	int allCountBlackCell;			// общее количество чёрных клеток - '1'
 
 	// изменяемые в процессе решения величины
 
-	const Line* Data;						// константный указатель на соответствующий Line
+	const Line* data;						// константный указатель на соответствующий Line
 	int start;								// индекс первой '*'
 	int end;								// индекс последней '*'
-	Line* StatPict;							// запоминает состояние строки для сравнения с Data
+	Line* statLine;							// запоминает состояние строки для сравнения с data
 	bool isFull;							// индикатор того заполнена ли строка полностью
-	std::vector<NumberAndBorders> numInfo;	// вектор, хранящий все числа в Data
+	std::vector<NumberAndBorders> numInfo;	// вектор, хранящий все числа из data
 
 public:
-	Condition(const std::vector<int>& info);
+	Condition(int lineSize, const std::vector<int>& info);
+	Condition(const Condition&) = delete;
+	~Condition();
+
+	Condition& operator=(const Condition&) = delete;
+
+	std::string toString() const;
 };

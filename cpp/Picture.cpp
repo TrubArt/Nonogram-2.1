@@ -7,7 +7,7 @@ namespace
 	{
 		for (int i = 0; i < rows.size(); i++)
 			for (int j = 0; j < columns.size(); j++)
-				if (rows.at(i)->getCellType(j) != columns.at(j)->getCellType(i))
+				if (rows[i]->getCellType(j) != columns[j]->getCellType(i))
 					return false;
 
 		return true;
@@ -31,9 +31,9 @@ Picture::Picture(const Picture& x)
 	columns.resize(x.columns.size());
 
 	for (int i = 0; i < rows.size(); i++)
-		rows.at(i) = new Line(*x.rows.at(i));
+		rows[i] = new Line(*x.rows[i]);
 	for (int i = 0; i < columns.size(); i++)
-		columns.at(i) = new Line(*x.columns.at(i));
+		columns[i] = new Line(*x.columns[i]);
 }
 
 Picture::~Picture()
@@ -60,9 +60,9 @@ Picture& Picture::operator=(const Picture& x)
 		columns.resize(x.columns.size());
 
 		for (int i = 0; i < rows.size(); i++)
-			rows.at(i) = new Line(*x.rows.at(i));
+			rows[i] = new Line(*x.rows[i]);
 		for (int i = 0; i < columns.size(); i++)
-			columns.at(i) = new Line(*x.columns.at(i));
+			columns[i] = new Line(*x.columns[i]);
 	}
 
 	return *this;
@@ -72,8 +72,8 @@ void Picture::colorSet(int i, int j, CellType type)
 {
 	// необходимо 2 вызова, чтобы была однозначная картинка
 	// и с точки зрения строк и с точки зрения столбцов
-	rows.at(i)->setCellType(j, type);
-	columns.at(j)->setCellType(i, type);
+	rows[i]->setCellType(j, type);
+	columns[j]->setCellType(i, type);
 }
 
 std::string Picture::toString() const
