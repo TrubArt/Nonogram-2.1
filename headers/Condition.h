@@ -17,16 +17,16 @@ class Condition
 	const Line* data;						// константный указатель на соответствующий Line
 	int start;								// индекс первой '*'
 	int end;								// индекс последней '*'
-	Line* statLine;							// запоминает состояние строки для сравнения с data
+	Line statLine;							// запоминает состояние строки для сравнения с data
 	bool isFull;							// индикатор того заполнена ли строка полностью
 	std::vector<NumberAndBorders> numInfo;	// вектор, хранящий все числа из data
 
 public:
-	Condition(int lineSize, const std::vector<int>& info);
+	Condition(int lineSize, const Line* ptr, const std::vector<int>& info);
 	Condition(const Condition&) = delete;
 	~Condition();
-
 	Condition& operator=(const Condition&) = delete;
 
+	bool getisFullFlag() const;
 	std::string toString() const;
 };

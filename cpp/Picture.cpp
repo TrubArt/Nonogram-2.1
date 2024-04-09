@@ -68,8 +68,35 @@ Picture& Picture::operator=(const Picture& x)
 	return *this;
 }
 
+bool Picture::operator==(const Picture& x) const
+{
+	for (int i = 0; i < rows.size(); i++)
+		if (*rows[i] != *x.rows[i])
+			return false;
+
+	return true;
+}
+
+bool Picture::operator!=(const Picture& x) const
+{
+	return !(*this == x);
+}
+
+const Line* Picture::getPtr(std::pair<int, int> x) const
+{
+	if (x.first == 0)
+		return rows[x.second];
+	else return columns[x.second];
+}
+
 void Picture::colorSet(int i, int j, CellType type)
 {
+	if (!checkSynchronization(rows, columns))
+	{
+		std::cerr << "Нарушена синхронизация таблицы!!!\n";
+		std::exit(1);
+	}
+
 	// необходимо 2 вызова, чтобы была однозначная картинка
 	// и с точки зрения строк и с точки зрения столбцов
 	rows[i]->setCellType(j, type);
@@ -86,12 +113,6 @@ std::string Picture::toString() const
 
 std::ostream& operator<<(std::ostream& out, const Picture& pict)
 {
-	if (!checkSynchronization(pict.rows, pict.columns))
-	{
-		std::cerr << "Нарушена синхронизация таблицы!!!\n";
-		std::exit(1);
-	}
-
 	out << pict.toString();
 	return out;
 }

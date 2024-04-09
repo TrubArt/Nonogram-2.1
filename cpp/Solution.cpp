@@ -9,18 +9,18 @@ Solution::Solution(const std::string& fileCondition, const std::string& fileAddi
 
 	// получение данных о размере изображения
 	tmp = cond.getNumbersSequence();
-	int N = tmp[0];
-	int M = tmp[1];
+	int sizeN = tmp[0];
+	int sizeM = tmp[1];
 
-	pict = new Picture(N, M);
-	conditions[0].resize(N);
-	conditions[1].resize(M);
+	pict = new Picture(sizeN, sizeM);
+	conditions[row].resize(sizeN);
+	conditions[col].resize(sizeM);
 
 	// получение данных о строках и столбцах
-	for (auto& i : conditions[0])
-		i = new Condition(M, cond.getNumbersSequence());
-	for (auto& i : conditions[1])
-		i = new Condition(N, cond.getNumbersSequence());
+	for (int i = 0; i < sizeN; i++)
+		conditions[row][i] = new Condition(sizeM, pict->getPtr(std::make_pair(row, i)), cond.getNumbersSequence());
+	for (int i = 0; i < sizeM; i++)
+		conditions[col][i] = new Condition(sizeN, pict->getPtr(std::make_pair(col, i)), cond.getNumbersSequence());
 
 	// добавление доп. цветов
 	FileLoader f2(fileAdditCondit);
@@ -39,6 +39,20 @@ Solution::~Solution()
 	for (auto& i : conditions)
 		for (auto& j : i)
 			delete j;
+}
+
+Picture Solution::getPicture() const
+{
+	return *pict;
+}
+
+bool Solution::isEndOfWork() const
+{
+	for (int i = 0; i < conditions.size(); i++)
+		for (int j = 0; j < conditions[0].size(); j++)
+			if (!conditions[i][j]->getisFullFlag())
+				return false;
+	return true;
 }
 
 std::string Solution::pictToString() const

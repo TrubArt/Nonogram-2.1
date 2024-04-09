@@ -7,6 +7,9 @@
 
 class Solution
 {
+	// enum для обращения к строкам/столбцам в conditions
+	enum lineclassifier { row, col };
+
 	Picture* pict;
 	std::array<std::vector<Condition*>, 2> conditions;
 
@@ -19,6 +22,9 @@ public:
 	~Solution();
 
 	Solution& operator=(const Solution&) = delete;
+
+	Picture getPicture() const;
+	bool isEndOfWork() const;
 
 	std::string pictToString() const;
 	std::string conditionsToString() const;

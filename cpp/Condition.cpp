@@ -1,12 +1,14 @@
 #include "../headers/Condition.h"
 
-Condition::Condition(int lineSize, const std::vector<int>& info)
+Condition::Condition(int lineSize, const Line* ptr, const std::vector<int>& info)
 {
-	data = nullptr;
+	data = ptr;
 	start = 0;
 	end = lineSize - 1;
-	statLine = nullptr;
+	statLine = *data;
 	isFull = false;
+
+	allCountBlackCell = 0;
 
 	for (int i = 0; i < info.size(); i++)
 		numInfo.push_back(NumberAndBorders(info[i]));
@@ -20,7 +22,11 @@ Condition::Condition(int lineSize, const std::vector<int>& info)
 Condition::~Condition()
 {
 	// delete data не делается, тк за освобождение этого указателя отвечает класс Picture 
-	delete statLine;
+}
+
+bool Condition::getisFullFlag() const
+{
+	return isFull;
 }
 
 std::string Condition::toString() const
