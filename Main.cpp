@@ -17,11 +17,10 @@ int main()
 	{
 		Picture pictureToCompare{ maintask1.getPicture() };
 
-
 		// работа методов
+		maintask1.callingMethods();
 
-
-		// если после работы всех методов нет изменений
+		// если после работы методов нет изменений
 		if (pictureToCompare == maintask1.getPicture())
 			endFlag = true;
 
@@ -30,6 +29,6 @@ int main()
 
 	// обработка причины прекращения цикла
 	if (endFlag)
-		std::cout << "Изображение не закончено, после отработки всех методов:(\n";
+		std::cout << "Изображение не закончено после отработки всех методов:(\n";
 	std::cout << maintask1.pictToString();
 }

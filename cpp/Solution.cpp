@@ -1,5 +1,6 @@
 #include "../headers/Solution.h"
 #include "../headers/FileLoader.h"
+#include "../Constants.h"
 
 Solution::Solution(const std::string& fileCondition, const std::string& fileAdditCondit)
 {
@@ -49,10 +50,20 @@ Picture Solution::getPicture() const
 bool Solution::isEndOfWork() const
 {
 	for (int i = 0; i < conditions.size(); i++)
-		for (int j = 0; j < conditions[0].size(); j++)
+		for (int j = 0; j < conditions[i].size(); j++)
 			if (!conditions[i][j]->getisFullFlag())
 				return false;
 	return true;
+}
+
+void Solution::callingMethods()
+{
+	for (int methodNum = 0; methodNum < numberOfMethods; methodNum++)
+	{
+		for (int rowOrCol = row; rowOrCol < conditions.size(); rowOrCol++)
+			for (int positionInRowOrCol = 0; positionInRowOrCol < conditions[rowOrCol].size(); positionInRowOrCol++)
+				this->switchFunction(methodNum, rowOrCol, positionInRowOrCol);
+	}
 }
 
 std::string Solution::pictToString() const
@@ -72,4 +83,30 @@ std::string Solution::conditionsToString() const
 		}
 
 	return answer;
+}
+
+void Solution::switchFunction(int funNum, int rowOrCol, int positionInRowOrCol)
+{
+	switch (funNum)
+	{
+	case 0:
+		this->method1(rowOrCol, positionInRowOrCol);
+		break;
+	case 1:
+		this->method2(rowOrCol, positionInRowOrCol);
+		break;
+	default:
+		std::cout << "Ошибка Solution::switchFunction. Существует меньше методов, чем указано в Constants.h/numberOfMethods\n";
+		break;
+	}
+}
+
+void Solution::method1(int rowOrCol, int positionInRowOrCol)
+{
+	std::cout << "Вызов method1\n";
+}
+
+void Solution::method2(int rowOrCol, int positionInRowOrCol)
+{
+	std::cout << "Вызов method2\n";
 }
