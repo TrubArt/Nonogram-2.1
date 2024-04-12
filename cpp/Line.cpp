@@ -60,14 +60,14 @@ bool Line::operator!=(const Line& x) const
 	return !(*this == x);
 }
 
-void Line::setCellType(int i, CellType Ctype)
+void Line::setCellType(int index, CellType Ctype)
 {
-	data[i]->set(Ctype);
+	data[index]->set(Ctype);
 }
 
-CellType Line::getCellType(int i) const
+CellType Line::getCellType(int index) const
 {
-	return data[i]->get();
+	return data[index]->get();
 }
 
 size_t Line::getSize() const

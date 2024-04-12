@@ -4,17 +4,24 @@
 #include <string>
 #include <vector>
 
+enum class updCondReturnParam 
+{
+	NothingToUpdate = -1,
+	SetWhite,
+	SetBlack
+};
+
 // класс, хранящий в себе указатель на строку и содержащий характеристики этой строки
 class Condition
 {
 	// неизменяемые в процессе решения величины
 
-	int allCountWhiteCell;			// общее количество белых клеток - '0'
-	int allCountBlackCell;			// общее количество чёрных клеток - '1'
+	int allCountWhiteCell;				// общее количество белых клеток - '0'
+	int allCountBlackCell;				// общее количество чёрных клеток - '1'
+	const Line* const data;				// константный указатель на соответствующий Line
 
 	// изменяемые в процессе решения величины
 
-	const Line* data;						// константный указатель на соответствующий Line
 	int start;								// индекс первой '*'
 	int end;								// индекс последней '*'
 	Line statLine;							// запоминает состояние строки для сравнения с data
@@ -28,5 +35,6 @@ public:
 	Condition& operator=(const Condition&) = delete;
 
 	bool getisFullFlag() const;
+	updCondReturnParam updateCondition();
 	std::string toString() const;
 };

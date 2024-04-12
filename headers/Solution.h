@@ -33,6 +33,9 @@ public:
 
 private:
 	void switchFunction(int funNum, int rowOrCol, int positionInRowOrCol);
+	// метод, который закрашивает все CellType::undefined в цвет param
+	void methodLastSet(int rowOrCol, int positionInRowOrCol, updCondReturnParam param);
 	void method1(int rowOrCol, int positionInRowOrCol);
 	void method2(int rowOrCol, int positionInRowOrCol);
+	
 };

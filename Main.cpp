@@ -3,6 +3,28 @@
 #include "headers/Solution.h"
 #include "headers/Picture.h"
 
+bool nonogramSolution(Solution& maintask)
+{
+	int step = 1;
+	bool endFlag = false;
+
+	while (!endFlag && !maintask.isEndOfWork())
+	{
+		Picture pictureToCompare{ maintask.getPicture() };
+
+		// работа методов
+		maintask.callingMethods();
+
+		// если после работы методов нет изменений
+		if (pictureToCompare == maintask.getPicture())
+			endFlag = true;
+
+		step++;
+	}
+
+	return endFlag;
+}
+
 int main()
 {
 	SetConsoleCP(1251);
@@ -10,22 +32,7 @@ int main()
 
 	Solution maintask1("Condition", "Additional color condition");
 
-	int step = 1;
-	bool endFlag = false;
-
-	while (!endFlag && !maintask1.isEndOfWork())
-	{
-		Picture pictureToCompare{ maintask1.getPicture() };
-
-		// работа методов
-		maintask1.callingMethods();
-
-		// если после работы методов нет изменений
-		if (pictureToCompare == maintask1.getPicture())
-			endFlag = true;
-
-		step++;
-	}
+	bool endFlag = nonogramSolution(maintask1);
 
 	// обработка причины прекращения цикла
 	if (endFlag)

@@ -1,8 +1,7 @@
 #include "../headers/Condition.h"
 
-Condition::Condition(int lineSize, const Line* ptr, const std::vector<int>& info)
+Condition::Condition(int lineSize, const Line* ptr, const std::vector<int>& info) : data{ ptr }
 {
-	data = ptr;
 	start = 0;
 	end = lineSize - 1;
 	statLine = *data;
@@ -27,6 +26,34 @@ Condition::~Condition()
 bool Condition::getisFullFlag() const
 {
 	return isFull;
+}
+
+updCondReturnParam Condition::updateCondition()
+{
+	if (*data != statLine)
+	{
+		statLine = *data; // обновляем состояние строки до актуального
+
+		// обновление start и end
+
+		// обновление диапазонов
+		for (auto& i : numInfo)
+			i.updateNumberAndBorders();
+
+		// проверка на то, что строку можно однозначно определить
+		if (data->getCountTypeCell(CellType::white) == allCountWhiteCell)
+		{
+			isFull = true;
+			return updCondReturnParam::SetWhite;
+		}
+		if (data->getCountTypeCell(CellType::black) == allCountBlackCell)
+		{
+			isFull = true;
+			return updCondReturnParam::SetBlack;
+		}
+	}
+
+	return updCondReturnParam::NothingToUpdate;
 }
 
 std::string Condition::toString() const

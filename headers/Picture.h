@@ -20,7 +20,8 @@ public:
 	bool operator!=(const Picture& x) const;
 
 	const Line* getPtr(std::pair<int, int> x) const;
-	void colorSet(int i, int j, CellType type);
+	void setColor(int rowNumber, int index, CellType type);
+	CellType getColor(int rowNumber, int index);
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Picture& pict); // печать изображения
 };

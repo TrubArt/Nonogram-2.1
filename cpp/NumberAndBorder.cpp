@@ -14,6 +14,11 @@ int NumberAndBorders::getNumber() const
 	return number;
 }
 
+void NumberAndBorders::updateNumberAndBorders()
+{
+
+}
+
 std::string NumberAndBorders::toString() const
 {
 	std::string answer;

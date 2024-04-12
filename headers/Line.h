@@ -20,8 +20,8 @@ public:
 	bool operator==(const Line& x) const;
 	bool operator!=(const Line& x) const;
 
-	void setCellType(int i, CellType Ctype);
-	CellType getCellType(int i) const;
+	void setCellType(int index, CellType Ctype);
+	CellType getCellType(int index) const;
 	size_t getSize() const;
 
 	/// <param name="Ctype:"> тип искомых клеток</param>

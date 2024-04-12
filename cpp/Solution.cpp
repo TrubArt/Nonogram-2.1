@@ -29,7 +29,7 @@ Solution::Solution(const std::string& fileCondition, const std::string& fileAddi
 	{
 		tmp = f2.getNumbersSequence();
 		if (!tmp.empty())
-			pict->colorSet(tmp[0], tmp[1], static_cast<CellType>(tmp[2]));
+			pict->setColor(tmp[0], tmp[1], static_cast<CellType>(tmp[2]));
 	}
 }
 
@@ -62,7 +62,14 @@ void Solution::callingMethods()
 	{
 		for (int rowOrCol = row; rowOrCol < conditions.size(); rowOrCol++)
 			for (int positionInRowOrCol = 0; positionInRowOrCol < conditions[rowOrCol].size(); positionInRowOrCol++)
-				this->switchFunction(methodNum, rowOrCol, positionInRowOrCol);
+				if (!conditions[rowOrCol][positionInRowOrCol]->getisFullFlag())		// если строка ещё не завершена
+				{
+					this->switchFunction(methodNum, rowOrCol, positionInRowOrCol);
+
+					// метод по определению числа с края строки
+
+
+				}
 	}
 }
 
@@ -99,6 +106,11 @@ void Solution::switchFunction(int funNum, int rowOrCol, int positionInRowOrCol)
 		std::cout << "Ошибка Solution::switchFunction. Существует меньше методов, чем указано в Constants.h/numberOfMethods\n";
 		break;
 	}
+}
+
+void Solution::methodLastSet(int rowOrCol, int positionInRowOrCol, updCondReturnParam param)
+{
+
 }
 
 void Solution::method1(int rowOrCol, int positionInRowOrCol)

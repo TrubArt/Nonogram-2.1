@@ -16,5 +16,6 @@ public:
 
 	NumberAndBorders(int i);
 	int getNumber() const;
+	void updateNumberAndBorders();
 	std::string toString() const;
 };
