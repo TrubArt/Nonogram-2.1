@@ -89,7 +89,7 @@ const Line* Picture::getPtr(std::pair<int, int> x) const
 	else return columns[x.second];
 }
 
-void Picture::setColor(int rowNumber, int index, CellType type)
+void Picture::setColor(int rowNumber, int index, CellType Ctype)
 {
 	if (!checkSynchronization(rows, columns))
 	{
@@ -99,13 +99,8 @@ void Picture::setColor(int rowNumber, int index, CellType type)
 
 	// необходимо 2 вызова, чтобы была однозначная картинка
 	// и с точки зрения строк и с точки зрения столбцов
-	rows[rowNumber]->setCellType(index, type);
-	columns[index]->setCellType(rowNumber, type);
-}
-
-CellType Picture::getColor(int rowNumber, int index)
-{
-	return rows[rowNumber]->getCellType(index);
+	rows[rowNumber]->setCellType(index, Ctype);
+	columns[index]->setCellType(rowNumber, Ctype);
 }
 
 std::string Picture::toString() const

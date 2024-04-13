@@ -1,10 +1,9 @@
 #include "../headers/Condition.h"
 
-Condition::Condition(int lineSize, const Line* ptr, const std::vector<int>& info) : data{ ptr }
+Condition::Condition(int lineSize, const Line* ptr, const std::vector<int>& info) : data{ ptr }, statLine(lineSize + 1) // делаем *data != statLine
 {
 	start = 0;
 	end = lineSize - 1;
-	statLine = *data;
 	isFull = false;
 
 	allCountBlackCell = 0;
@@ -23,9 +22,29 @@ Condition::~Condition()
 	// delete data не делается, тк за освобождение этого указателя отвечает класс Picture 
 }
 
-bool Condition::getisFullFlag() const
+bool Condition::getIsFullFlag() const
 {
 	return isFull;
+}
+
+const Line* Condition::getLinePtr() const
+{
+	return data;
+}
+
+int Condition::getStart() const
+{
+	return start;
+}
+
+int Condition::getEnd() const
+{
+	return end;
+}
+
+const std::list<NumberAndBorders>& Condition::getNumInfo() const
+{
+	return numInfo;
 }
 
 updCondReturnParam Condition::updateCondition()
@@ -34,9 +53,13 @@ updCondReturnParam Condition::updateCondition()
 	{
 		statLine = *data; // обновляем состояние строки до актуального
 
-		// обновление start и end
+		// обновление start
+		this->updateStart();
 
-		// обновление диапазонов
+		// обновление start
+		this->updateEnd();
+
+		// обновление диапазонов в numInfo
 		for (auto& i : numInfo)
 			i.updateNumberAndBorders();
 
@@ -44,16 +67,16 @@ updCondReturnParam Condition::updateCondition()
 		if (data->getCountTypeCell(CellType::white) == allCountWhiteCell)
 		{
 			isFull = true;
-			return updCondReturnParam::SetWhite;
+			return updCondReturnParam::SetBlack;
 		}
 		if (data->getCountTypeCell(CellType::black) == allCountBlackCell)
 		{
 			isFull = true;
-			return updCondReturnParam::SetBlack;
+			return updCondReturnParam::SetWhite;
 		}
 	}
 
-	return updCondReturnParam::NothingToUpdate;
+	return updCondReturnParam::LineNotCompleted;
 }
 
 std::string Condition::toString() const
@@ -70,5 +93,49 @@ std::string Condition::toString() const
 			answer.append(" " + i.toString());
 
 		return answer.append("\n");
+	}
+}
+
+void Condition::updateStart()
+{
+	if (start > end)
+		return;
+
+	while (data->getCellType(start) != CellType::undefined)
+	{
+		if (data->getCellType(start) == CellType::white) start++;
+		else
+		{
+			// данный случай обрабатывается методом methodStartEndNum. Он закрашивает необходимые клетки.
+			// здесь же остаётся только обновить данные о начале
+			int number = numInfo.front().getNumber();
+			numInfo.pop_front();
+			start += number + 1;
+		}
+
+		if (start > end)
+			return;
+	}
+}
+
+void Condition::updateEnd()
+{
+	if (start > end)
+		return;
+
+	while (data->getCellType(end) != CellType::undefined)
+	{
+		if (data->getCellType(end) == CellType::white) end--;
+		else
+		{
+			// данный случай обрабатывается методом methodStartEndNum. Он закрашивает необходимые клетки.
+			// здесь же остаётся только обновить данные о конце
+			int number = numInfo.back().getNumber();
+			numInfo.pop_back();
+			end -= number + 1;
+		}
+
+		if (start > end)
+			return;
 	}
 }

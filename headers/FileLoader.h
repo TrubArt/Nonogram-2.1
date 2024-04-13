@@ -9,6 +9,7 @@ class FileLoader
 	std::ifstream file;	// поток с файлом
 
 public:
+	// constructors, destructor, operators
 	FileLoader(const std::string& fileName);
 	~FileLoader();
 
@@ -20,7 +21,7 @@ public:
 
 private:
 	/// <param name="str">строка для поиска</param>
-	/// <param name="i">индекс начала поиска(изменяется функцией)</param>
+	/// <param name="index">индекс начала поиска(изменяется функцией)</param>
 	/// <returns>одно число из строки</returns>
-	int getNumber(const std::string& str, int& i);
+	int getNumber(const std::string& str, int& index);
 };

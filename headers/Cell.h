@@ -16,11 +16,15 @@ class Cell
 	CellType cellType; //тип клетки
 
 public:
+	// constructors, destructor, operators
 	Cell();
 	Cell(CellType Ctype);
+
+	// getters & setters
 	void set(CellType Ctype);
 	CellType get() const;
 
+	// functions
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Cell& cell);
 };

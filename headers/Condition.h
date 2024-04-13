@@ -2,11 +2,12 @@
 #include "Line.h"
 #include "NumberAndBorder.h"
 #include <string>
-#include <vector>
+#include <list>
 
+// enum для типа возращаемого значения функции updateCondition()
 enum class updCondReturnParam 
 {
-	NothingToUpdate = -1,
+	LineNotCompleted = -1,
 	SetWhite,
 	SetBlack
 };
@@ -22,19 +23,30 @@ class Condition
 
 	// изменяемые в процессе решения величины
 
+	bool isFull;							// индикатор того заполнена ли строка полностью
 	int start;								// индекс первой '*'
 	int end;								// индекс последней '*'
 	Line statLine;							// запоминает состояние строки для сравнения с data
-	bool isFull;							// индикатор того заполнена ли строка полностью
-	std::vector<NumberAndBorders> numInfo;	// вектор, хранящий все числа из data
+	std::list<NumberAndBorders> numInfo;	// список, хранящий все числа из data
 
 public:
+	// constructors, destructor, operators
 	Condition(int lineSize, const Line* ptr, const std::vector<int>& info);
 	Condition(const Condition&) = delete;
 	~Condition();
 	Condition& operator=(const Condition&) = delete;
 
-	bool getisFullFlag() const;
+	// getters & setters
+	bool getIsFullFlag() const;
+	const Line* getLinePtr() const;
+	int getStart() const;
+	int getEnd() const;
+	const std::list<NumberAndBorders>& getNumInfo() const;
+
+	// functions
 	updCondReturnParam updateCondition();
 	std::string toString() const;
+private:
+	void updateStart();
+	void updateEnd();
 };

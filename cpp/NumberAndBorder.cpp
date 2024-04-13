@@ -1,8 +1,8 @@
 #include "../headers/NumberAndBorder.h"
 
-NumberAndBorders::NumberAndBorders(int i)
+NumberAndBorders::NumberAndBorders(int number)
 {
-	number = i;
+	this->number = number;
 	startDia = -1;
 	endDia = -1;
 	startRealDia = -1;

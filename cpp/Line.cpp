@@ -41,11 +41,8 @@ Line& Line::operator=(const Line& x)
 
 bool Line::operator==(const Line& x) const
 {
-	if (data.size() != x.data.size()) // никогда не должен зайти в это условие при правильных входных данных
-	{
-		std::cout << "–азные размеры строк!\n";
+	if (data.size() != x.data.size())
 		return false;
-	}
 	else
 	{
 		for (int i = 0; i < data.size(); i++)

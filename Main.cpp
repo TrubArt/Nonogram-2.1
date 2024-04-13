@@ -6,9 +6,9 @@
 bool nonogramSolution(Solution& maintask)
 {
 	int step = 1;
-	bool endFlag = false;
+	bool noChangesAfterCycle = false;
 
-	while (!endFlag && !maintask.isEndOfWork())
+	while (!noChangesAfterCycle && !maintask.isEndOfWork())
 	{
 		Picture pictureToCompare{ maintask.getPicture() };
 
@@ -17,12 +17,12 @@ bool nonogramSolution(Solution& maintask)
 
 		// если после работы методов нет изменений
 		if (pictureToCompare == maintask.getPicture())
-			endFlag = true;
+			noChangesAfterCycle = true;
 
 		step++;
 	}
 
-	return endFlag;
+	return noChangesAfterCycle;
 }
 
 int main()
@@ -32,10 +32,15 @@ int main()
 
 	Solution maintask1("Condition", "Additional color condition");
 
-	bool endFlag = nonogramSolution(maintask1);
+	std::cout << "»зображение до решени€:\n";
+	std::cout << maintask1.getPicture();
+
+	bool earlyCycleOut = nonogramSolution(maintask1);
 
 	// обработка причины прекращени€ цикла
-	if (endFlag)
-		std::cout << "»зображение не закончено после отработки всех методов:(\n";
-	std::cout << maintask1.pictToString();
+	if (earlyCycleOut)
+		std::cout << "\n»зображение не закончено после отработки всех методов:(\n";
+
+	std::cout << "»зображение после окончани€ решени€:\n";
+	std::cout << maintask1.getPicture();
 }

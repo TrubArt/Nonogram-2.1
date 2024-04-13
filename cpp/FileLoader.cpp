@@ -21,11 +21,11 @@ bool FileLoader::isEmpty() const
 	return file.eof();
 }
 
-int FileLoader::getNumber(const std::string& str, int& i)
+int FileLoader::getNumber(const std::string& str, int& index)
 {
 	std::string tmp;
-	while (str[i] != ' ' && i < str.length())
-		tmp.push_back(str[i++]);
+	while (str[index] != ' ' && index < str.length())
+		tmp.push_back(str[index++]);
 	return std::stoi(tmp);
 }
 

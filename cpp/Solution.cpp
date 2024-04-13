@@ -49,26 +49,33 @@ Picture Solution::getPicture() const
 
 bool Solution::isEndOfWork() const
 {
-	for (int i = 0; i < conditions.size(); i++)
-		for (int j = 0; j < conditions[i].size(); j++)
-			if (!conditions[i][j]->getisFullFlag())
+	for (int i = 0; i < static_cast<int>(conditions.size()); i++)
+		for (int j = 0; j < static_cast<int>(conditions[i].size()); j++)
+			if (!conditions[i][j]->getIsFullFlag())
 				return false;
 	return true;
 }
 
 void Solution::callingMethods()
 {
+	// цикл с прогоном всех методов
 	for (int methodNum = 0; methodNum < numberOfMethods; methodNum++)
 	{
-		for (int rowOrCol = row; rowOrCol < conditions.size(); rowOrCol++)
-			for (int positionInRowOrCol = 0; positionInRowOrCol < conditions[rowOrCol].size(); positionInRowOrCol++)
-				if (!conditions[rowOrCol][positionInRowOrCol]->getisFullFlag())		// если строка ещё не завершена
+		// двойной цикл для прохода по всем строкам/столбцам
+		for (int rowOrCol = 0; rowOrCol < static_cast<int>(conditions.size()); rowOrCol++)
+			for (int positionInRowOrCol = 0; positionInRowOrCol < static_cast<int>(conditions[rowOrCol].size()); positionInRowOrCol++)
+				if (!conditions[rowOrCol][positionInRowOrCol]->getIsFullFlag())		// если строка ещё не завершена
 				{
+					// вызов определённого метода
 					this->switchFunction(methodNum, rowOrCol, positionInRowOrCol);
 
 					// метод по определению числа с края строки
+					this->methodStartEndNum(rowOrCol, positionInRowOrCol);
 
-
+					// изменение данных о строке после цикла
+					updCondReturnParam updPar = conditions[rowOrCol][positionInRowOrCol]->updateCondition();
+					if (updPar != updCondReturnParam::LineNotCompleted)	// если строка закончена, то однозначно закрашиваем оставшиеся поля
+						this->methodLastSet(rowOrCol, positionInRowOrCol, updPar);
 				}
 	}
 }
@@ -82,8 +89,8 @@ std::string Solution::conditionsToString() const
 {
 	std::string answer;
 
-	for (int i = 0; i < conditions.size(); i++)
-		for (int j = 0; j < conditions[i].size(); j++)
+	for (int i = 0; i < static_cast<int>(conditions.size()); i++)
+		for (int j = 0; j < static_cast<int>(conditions[i].size()); j++)
 		{
 			answer.append(std::to_string(i) + " " + std::to_string(j) + ": ");
 			answer.append(conditions[i][j]->toString());
@@ -110,7 +117,64 @@ void Solution::switchFunction(int funNum, int rowOrCol, int positionInRowOrCol)
 
 void Solution::methodLastSet(int rowOrCol, int positionInRowOrCol, updCondReturnParam param)
 {
+	if (param != updCondReturnParam::LineNotCompleted)
+	{
+		const Line* analyzedLine = conditions[rowOrCol][positionInRowOrCol]->getLinePtr();
+		for (int i = conditions[rowOrCol][positionInRowOrCol]->getStart(); i <= conditions[rowOrCol][positionInRowOrCol]->getEnd(); i++)
+			if (analyzedLine->getCellType(i) == CellType::undefined)
+				this->setColorWithInformation(rowOrCol, positionInRowOrCol, i, static_cast<CellType>(param));
+	}
+}
 
+void Solution::methodStartEndNum(int rowOrCol, int positionInRowOrCol)
+{
+	const Line* analyzedLine = conditions[rowOrCol][positionInRowOrCol]->getLinePtr();
+	int start = conditions[rowOrCol][positionInRowOrCol]->getStart();
+	int end = conditions[rowOrCol][positionInRowOrCol]->getEnd();
+
+	std::list<NumberAndBorders>::const_iterator startIter = conditions[rowOrCol][positionInRowOrCol]->getNumInfo().cbegin();
+	while (analyzedLine->getCellType(start) != CellType::undefined)
+	{
+		if (analyzedLine->getCellType(start) == CellType::white) start++;
+		else
+		{
+			start++;		// тк первая клетка числа уже закрашена
+			for (int count = 0; count <= (*startIter).getNumber() - 1; count++)
+			{
+				if (start > end)	// условие эквивалентное тому, что строка полностью закрашена
+					return;
+				else if (count < (*startIter).getNumber() - 1)
+				{
+					this->setColorWithInformation(rowOrCol, positionInRowOrCol, start++, CellType::black);	// закрашиваем Number-1 клетку
+				}
+				else		// если count == (*startIter).getNumber() - 1
+					this->setColorWithInformation(rowOrCol, positionInRowOrCol, start++, CellType::white);	// и добавляем в конце 0
+			}
+			startIter++;	// переходим к следующему числу
+		}
+	}
+
+	std::list<NumberAndBorders>::const_reverse_iterator endIter = conditions[rowOrCol][positionInRowOrCol]->getNumInfo().crbegin();
+	while (analyzedLine->getCellType(end) != CellType::undefined)
+	{
+		if (analyzedLine->getCellType(end) == CellType::white) end--;
+		else
+		{
+			end--;		// тк первая клетка числа уже закрашена
+			for (int count = 0; count <= (*endIter).getNumber() - 1; count++)
+			{
+				if (start > end)	// условие эквивалентное тому, что строка полностью закрашена
+					return;
+				else if (count < (*endIter).getNumber() - 1)
+				{
+					this->setColorWithInformation(rowOrCol, positionInRowOrCol, end--, CellType::black);	// закрашиваем Number-1 клетку
+				}
+				else		// если count == (*startIter).getNumber() - 1
+					this->setColorWithInformation(rowOrCol, positionInRowOrCol, end--, CellType::white);	// и добавляем в конце 0
+			}
+			endIter++;	// переходим к следующему числу
+		}
+	}
 }
 
 void Solution::method1(int rowOrCol, int positionInRowOrCol)
@@ -121,4 +185,12 @@ void Solution::method1(int rowOrCol, int positionInRowOrCol)
 void Solution::method2(int rowOrCol, int positionInRowOrCol)
 {
 	std::cout << "Вызов method2\n";
+}
+
+void Solution::setColorWithInformation(int rowOrCol, int positionInRowOrCol, int index, CellType Ctype)
+{
+	if (rowOrCol == row)
+		pict->setColor(positionInRowOrCol, index, Ctype);
+	else
+		pict->setColor(index, positionInRowOrCol, Ctype);
 }

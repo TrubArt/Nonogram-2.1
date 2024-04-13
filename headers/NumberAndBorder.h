@@ -13,9 +13,13 @@ class NumberAndBorders
 	int endRealDia;		// конец RealDia
 
 public:
+	// constructors, destructor, operators
+	NumberAndBorders(int number);
 
-	NumberAndBorders(int i);
+	// getters & setters
 	int getNumber() const;
+
+	// functions
 	void updateNumberAndBorders();
 	std::string toString() const;
 };
