@@ -39,7 +39,7 @@ std::vector<int> FileLoader::getNumbersSequence()
 
 	std::vector<int> tmpvec;		// вектор с ответом
 
-	for (int i = 0; i < str.length(); i++)
+	for (int i = 0; i < str.length(); ++i)
 		if (str[i] != ' ')
 			tmpvec.push_back(getNumber(str, i));
 

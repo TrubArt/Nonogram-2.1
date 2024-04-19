@@ -3,12 +3,12 @@
 Condition::Condition(int lineSize, const Line* ptr, const std::vector<int>& info) : data{ ptr }, statLine(lineSize + 1) // делаем *data != statLine
 {
 	start = 0;
-	end = lineSize - 1;
+	end = lineSize;
 	isFull = false;
 
 	allCountBlackCell = 0;
 
-	for (int i = 0; i < info.size(); i++)
+	for (int i = 0; i < info.size(); ++i)
 		numInfo.push_back(NumberAndBorders(info[i]));
 
 	for (const auto& i : numInfo)
@@ -98,12 +98,12 @@ std::string Condition::toString() const
 
 void Condition::updateStart()
 {
-	if (start > end)
+	if (start >= end)
 		return;
 
 	while (data->getCellType(start) != CellType::undefined)
 	{
-		if (data->getCellType(start) == CellType::white) start++;
+		if (data->getCellType(start) == CellType::white) ++start;
 		else
 		{
 			// данный случай обрабатываетс€ методом methodStartEndNum. ќн закрашивает необходимые клетки.
@@ -113,19 +113,19 @@ void Condition::updateStart()
 			start += number + 1;
 		}
 
-		if (start > end)
+		if (start >= end)
 			return;
 	}
 }
 
 void Condition::updateEnd()
 {
-	if (start > end)
+	if (start >= end)
 		return;
 
-	while (data->getCellType(end) != CellType::undefined)
+	while (data->getCellType(end - 1) != CellType::undefined)
 	{
-		if (data->getCellType(end) == CellType::white) end--;
+		if (data->getCellType(end - 1) == CellType::white) --end;
 		else
 		{
 			// данный случай обрабатываетс€ методом methodStartEndNum. ќн закрашивает необходимые клетки.
@@ -135,7 +135,7 @@ void Condition::updateEnd()
 			end -= number + 1;
 		}
 
-		if (start > end)
+		if (start >= end)
 			return;
 	}
 }

@@ -12,7 +12,7 @@ Line::Line(const Line& x)
 {
 	data.resize(x.data.size());
 
-	for (int i = 0; i < data.size(); i++)
+	for (int i = 0; i < data.size(); ++i)
 		data[i] = new Cell(x.data[i]->get());
 }
 
@@ -32,7 +32,7 @@ Line& Line::operator=(const Line& x)
 
 		data.resize(x.data.size());
 
-		for (int i = 0; i < data.size(); i++)
+		for (int i = 0; i < data.size(); ++i)
 			data[i] = new Cell(x.data[i]->get());
 	}
 
@@ -45,7 +45,7 @@ bool Line::operator==(const Line& x) const
 		return false;
 	else
 	{
-		for (int i = 0; i < data.size(); i++)
+		for (int i = 0; i < data.size(); ++i)
 			if (data[i]->get() != x.data[i]->get())
 				return false;
 		return true;

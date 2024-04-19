@@ -5,8 +5,8 @@ namespace
 	// функция нужна для проверки синхронизации строк и столбцов
 	bool checkSynchronization(const std::vector<Line*>& rows, const std::vector<Line*>& columns)
 	{
-		for (int i = 0; i < rows.size(); i++)
-			for (int j = 0; j < columns.size(); j++)
+		for (int i = 0; i < static_cast<int>(rows.size()); ++i)
+			for (int j = 0; j < static_cast<int>(columns.size()); ++j)
 				if (rows[i]->getCellType(j) != columns[j]->getCellType(i))
 					return false;
 
@@ -30,9 +30,9 @@ Picture::Picture(const Picture& x)
 	rows.resize(x.rows.size());
 	columns.resize(x.columns.size());
 
-	for (int i = 0; i < rows.size(); i++)
+	for (int i = 0; i < static_cast<int>(rows.size()); ++i)
 		rows[i] = new Line(*x.rows[i]);
-	for (int i = 0; i < columns.size(); i++)
+	for (int i = 0; i < static_cast<int>(columns.size()); ++i)
 		columns[i] = new Line(*x.columns[i]);
 }
 
@@ -59,9 +59,9 @@ Picture& Picture::operator=(const Picture& x)
 		rows.resize(x.rows.size());
 		columns.resize(x.columns.size());
 
-		for (int i = 0; i < rows.size(); i++)
+		for (int i = 0; i < static_cast<int>(rows.size()); ++i)
 			rows[i] = new Line(*x.rows[i]);
-		for (int i = 0; i < columns.size(); i++)
+		for (int i = 0; i < static_cast<int>(columns.size()); ++i)
 			columns[i] = new Line(*x.columns[i]);
 	}
 
@@ -70,7 +70,7 @@ Picture& Picture::operator=(const Picture& x)
 
 bool Picture::operator==(const Picture& x) const
 {
-	for (int i = 0; i < rows.size(); i++)
+	for (int i = 0; i < static_cast<int>(rows.size()); ++i)
 		if (*rows[i] != *x.rows[i])
 			return false;
 

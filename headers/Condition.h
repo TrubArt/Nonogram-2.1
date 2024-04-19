@@ -25,7 +25,7 @@ class Condition
 
 	bool isFull;							// индикатор того заполнена ли строка полностью
 	int start;								// индекс первой '*'
-	int end;								// индекс последней '*'
+	int end;								// индекс после последней '*'
 	Line statLine;							// запоминает состояние строки для сравнения с data
 	std::list<NumberAndBorders> numInfo;	// список, хранящий все числа из data
 
