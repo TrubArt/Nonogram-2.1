@@ -1,25 +1,44 @@
 #pragma once
+#ifndef NUMBER_NONOGRAM
+#define NUMBER_NONOGRAM
 #include <string>
+#include "Line.h"
 
 // класс, хранящий число и его характеристики
-// Dia - диапазон, в котором может теоретически находиться число
-// RealDia - диапазон, в котором находится только это число
 class NumberAndBorders
 {
-	int number;			// число
-	int startDia;		// начало Dia
-	int endDia;			// конец Dia
-	int startRealDia;	// начало RealDia
-	int endRealDia;		// конец RealDia
+	typedef std::pair<int, int> myP;
+
+	int number;		// число
+	myP dia;		// (D) диапазон, в котором может теоретически находиться число
+	bool isExistRD;	// флаг, показывающий, существует ли реальный диапазон
+	myP realDia;	// (RD) диапазон, в котором находится только это число
 
 public:
 	// constructors, destructor, operators
-	NumberAndBorders(int number);
+
+	NumberAndBorders(int number, const myP& dia, const myP& realdia);
 
 	// getters & setters
-	int getNumber() const;
+
+	int getNum() const;
+	const myP& getD() const;
+	const myP& getRD() const;
+	bool getFlagExistRd() const;
+	void setD(const myP& x);
+	void setFlagExistRd(bool flag);
+	void setRD(const myP& x);
 
 	// functions
-	void updateNumberAndBorders();
+
+	void updateNumberAndBorders(const Line* const data);
 	std::string toString() const;
+
+private:
+	// приближает RD до границ D, тк RD не может выходить за пределы D
+	void updateRDviaD();
+
+	// улучшает D, если в RD есть хоть одна black клетка
+	void updateDviaRD(const Line* const data);
 };
+#endif // !NUMBER_NONOGRAM

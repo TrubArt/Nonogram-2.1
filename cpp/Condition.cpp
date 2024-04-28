@@ -1,6 +1,6 @@
 #include "../headers/Condition.h"
 
-Condition::Condition(int lineSize, const Line* ptr, const std::vector<int>& info) : data{ ptr }, statLine(lineSize + 1) // делаем *data != statLine
+Condition::Condition(int lineSize, const Line* const ptr, const std::vector<int>& info) : data{ ptr }, statLine(lineSize + 1) // делаем *data != statLine
 {
 	start = 0;
 	end = lineSize;
@@ -8,11 +8,16 @@ Condition::Condition(int lineSize, const Line* ptr, const std::vector<int>& info
 
 	allCountBlackCell = 0;
 
-	for (int i = 0; i < info.size(); ++i)
-		numInfo.push_back(NumberAndBorders(info[i]));
+	for (int i = 0; i < static_cast<int>(info.size()); ++i)
+	{
+		numInfo.push_back(NumberAndBorders(info[i], std::make_pair(start, end), std::make_pair(start, end)));
+	}
+	this->updateBorders();
 
 	for (const auto& i : numInfo)
-		allCountBlackCell += i.getNumber();
+	{
+		allCountBlackCell += i.getNum();
+	}
 
 	allCountWhiteCell = lineSize - allCountBlackCell;
 }
@@ -27,7 +32,7 @@ bool Condition::getIsFullFlag() const
 	return isFull;
 }
 
-const Line* Condition::getLinePtr() const
+const Line* const Condition::getLinePtr() const
 {
 	return data;
 }
@@ -60,8 +65,7 @@ updCondReturnParam Condition::updateCondition()
 		this->updateEnd();
 
 		// обновление диапазонов в numInfo
-		for (auto& i : numInfo)
-			i.updateNumberAndBorders();
+		this->updateBorders();
 
 		// проверка на то, что строку можно однозначно определить
 		if (data->getCountTypeCell(CellType::white) == allCountWhiteCell)
@@ -90,7 +94,9 @@ std::string Condition::toString() const
 		answer.append("\t—писок:");
 
 		for (const auto& i : numInfo)
+		{
 			answer.append(" " + i.toString());
+		}
 
 		return answer.append("\n");
 	}
@@ -103,12 +109,13 @@ void Condition::updateStart()
 
 	while (data->getCellType(start) != CellType::undefined)
 	{
-		if (data->getCellType(start) == CellType::white) ++start;
+		if (data->getCellType(start) == CellType::white) 
+			++start;
 		else
 		{
 			// данный случай обрабатываетс€ методом methodStartEndNum. ќн закрашивает необходимые клетки.
 			// здесь же остаЄтс€ только обновить данные о начале
-			int number = numInfo.front().getNumber();
+			int number = numInfo.front().getNum();
 			numInfo.pop_front();
 			start += number + 1;
 		}
@@ -125,17 +132,81 @@ void Condition::updateEnd()
 
 	while (data->getCellType(end - 1) != CellType::undefined)
 	{
-		if (data->getCellType(end - 1) == CellType::white) --end;
+		if (data->getCellType(end - 1) == CellType::white) 
+			--end;
 		else
 		{
 			// данный случай обрабатываетс€ методом methodStartEndNum. ќн закрашивает необходимые клетки.
 			// здесь же остаЄтс€ только обновить данные о конце
-			int number = numInfo.back().getNumber();
+			int number = numInfo.back().getNum();
 			numInfo.pop_back();
 			end -= number + 1;
 		}
 
 		if (start >= end)
 			return;
+	}
+}
+
+void Condition::updateBorders()
+{
+	this->updateDia();
+	this->updateRealDia();
+	for (auto& i : numInfo)
+		i.updateNumberAndBorders(data);
+}
+
+void Condition::updateDia()
+{
+	enum helpEnum {space = 1};	// enum обозначающий пробел(одна CellType::whiteCell)
+
+	int leftNums = start;		// количество зан€тых клеток слева от текущего числа
+	int rightNums = end;		// количество зан€тых клеток справа от текущего числа
+	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)	// задаЄм посчитанные начальные параметры
+	{
+		rightNums -= it->getNum() + space;
+	}
+
+	// считаем дл€ каждого числа его диапазон
+
+	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)
+	{
+		rightNums += it->getNum() + space;	// добавление текущего числа слева
+
+		if (leftNums > it->getD().first)	// улучшениe startDia
+			it->setD(std::make_pair(leftNums, it->getD().second));
+		if (rightNums < it->getD().second)	// улучшениe endDia
+			it->setD(std::make_pair(it->getD().first, rightNums));
+
+		leftNums += it->getNum() + space;	// добавление текущего числа справа
+	}
+}
+
+void Condition::updateRealDia()
+{
+	int leftBorder = start;
+	int rightBorder = -1;
+
+	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)
+	{
+		auto ittmp = it;
+		// определение rightBorder
+		if (it == --numInfo.end())
+			rightBorder = end;
+		else
+			rightBorder = (++ittmp)->getD().first;
+
+		if (leftBorder < rightBorder)	// проверка что в таком диапазоне есть хот€ бы 1 клетка
+		{
+			it->setFlagExistRd(true);	// найден реальный диапазон
+
+			if (leftBorder > it->getRD().first)		// улучшениe startRDia
+				it->setRD(std::make_pair(leftBorder, it->getRD().second));
+			if (rightBorder < it->getRD().second)	// улучшениe endRDia
+				it->setRD(std::make_pair(it->getRD().first, rightBorder));
+		}
+
+		// определение next leftBorder
+		leftBorder = it->getD().second;
 	}
 }

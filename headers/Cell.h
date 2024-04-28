@@ -1,4 +1,6 @@
 #pragma once
+#ifndef CELL_NONOGRAM
+#define CELL_NONOGRAM
 #include <iostream>
 #include <string>
 
@@ -17,14 +19,18 @@ class Cell
 
 public:
 	// constructors, destructor, operators
+
 	Cell();
 	Cell(CellType Ctype);
 
 	// getters & setters
+
 	void set(CellType Ctype);
 	CellType get() const;
 
 	// functions
+
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Cell& cell);
 };
+#endif // !CELL_NONOGRAM

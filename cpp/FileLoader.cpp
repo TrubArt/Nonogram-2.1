@@ -24,8 +24,10 @@ bool FileLoader::isEmpty() const
 int FileLoader::getNumber(const std::string& str, int& index)
 {
 	std::string tmp;
-	while (str[index] != ' ' && index < str.length())
+	while (str[index] != ' ' && index < static_cast<int>(str.length()))
+	{
 		tmp.push_back(str[index++]);
+	}
 	return std::stoi(tmp);
 }
 
@@ -39,9 +41,11 @@ std::vector<int> FileLoader::getNumbersSequence()
 
 	std::vector<int> tmpvec;		// вектор с ответом
 
-	for (int i = 0; i < str.length(); ++i)
+	for (int i = 0; i < static_cast<int>(str.length()); ++i)
+	{
 		if (str[i] != ' ')
 			tmpvec.push_back(getNumber(str, i));
+	}
 
 	return tmpvec;
 }

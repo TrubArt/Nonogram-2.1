@@ -1,4 +1,6 @@
 #pragma once
+#ifndef FILELOADER_NONOGRAM
+#define FILELOADER_NONOGRAM
 #include <fstream>
 #include <string>
 #include <vector>
@@ -10,6 +12,8 @@ class FileLoader
 
 public:
 	// constructors, destructor, operators
+
+	FileLoader() = delete;
 	FileLoader(const std::string& fileName);
 	~FileLoader();
 
@@ -25,3 +29,4 @@ private:
 	/// <returns>одно число из строки</returns>
 	int getNumber(const std::string& str, int& index);
 };
+#endif // !FILELOADER_NONOGRAM

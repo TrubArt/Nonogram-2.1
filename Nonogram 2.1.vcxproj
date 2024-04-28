@@ -157,6 +157,7 @@
     <ClInclude Include="headers\NumberAndBorder.h" />
     <ClInclude Include="headers\Picture.h" />
     <ClInclude Include="headers\Solution.h" />
+    <ClInclude Include="methods\Imethod.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef LINE_NONOGRAM
+#define LINE_NONOGRAM
 #include "Cell.h"
 #include <iostream>
 #include <string>
@@ -12,6 +14,7 @@ class Line
 
 public:
 	// constructors, destructor, operators
+
 	Line() = default;
 	Line(int size);
 	Line(const Line& x);
@@ -21,15 +24,26 @@ public:
 	bool operator!=(const Line& x) const;
 
 	// getters & setters
+
 	void setCellType(int index, CellType Ctype);
 	CellType getCellType(int index) const;
 	size_t getSize() const;
 
 	// functions
 
-	/// <param name="Ctype:"> тип искомых клеток</param>
-	/// <returns>число клеток типа Ctype в линии</returns>
+	// возвращает количество клеток типа Ctype в Line
 	int getCountTypeCell(CellType Ctype) const;
+
+	// возвращает количество клеток типа Ctype в диапазоне[startIndex, endIndex) в Line
+	int getCountTypeCell(int startIndex, int endIndex, CellType Ctype) const;
+
+	// возвращает первый индекс слева типа Ctype в диапазоне[startIndex, endIndex) в Line
+	int getLeftIndexTypeCell(int startIndex, int endIndex, CellType Ctype) const;
+
+	// возвращает первый индекс справа типа Ctype в диапазоне[startIndex, endIndex) в Line
+	int getRightIndexTypeCell(int startIndex, int endIndex, CellType Ctype) const;
+
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Line& line);
 };
+#endif // !LINE_NONOGRAM

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef PICTURE_NONOGRAM
+#define PICTURE_NONOGRAM
 #include "Line.h"
 #include <iostream>
 #include <vector>
@@ -12,6 +14,7 @@ class Picture
 
 public:
 	// constructors, destructor, operators
+
 	Picture(int N, int M);
 	Picture(const Picture& x);
 	~Picture();
@@ -20,10 +23,13 @@ public:
 	bool operator!=(const Picture& x) const;
 
 	// getters & setters
-	const Line* getPtr(std::pair<int, int> x) const;
+
+	const Line* const getPtr(std::pair<int, int> x) const;
 	void setColor(int rowNumber, int index, CellType Ctype);
 
 	// functions
+
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Picture& pict); // печать изображения
 };
+#endif // !PICTURE_NONOGRAM
