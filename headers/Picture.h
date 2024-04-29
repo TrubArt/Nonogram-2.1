@@ -24,7 +24,7 @@ public:
 
 	// getters & setters
 
-	const Line* const getPtr(std::pair<int, int> x) const;
+	const Line* const getPtr(const std::pair<int, int>& x) const;
 	void setColor(int rowNumber, int index, CellType Ctype);
 
 	// functions

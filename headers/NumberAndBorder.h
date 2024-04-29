@@ -1,8 +1,8 @@
 #pragma once
 #ifndef NUMBER_NONOGRAM
 #define NUMBER_NONOGRAM
-#include <string>
 #include "Line.h"
+#include <string>
 
 // класс, хранящий число и его характеристики
 class NumberAndBorders

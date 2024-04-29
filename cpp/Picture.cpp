@@ -108,7 +108,7 @@ bool Picture::operator!=(const Picture& x) const
 	return !(*this == x);
 }
 
-const Line* const Picture::getPtr(std::pair<int, int> x) const
+const Line* const Picture::getPtr(const std::pair<int, int>& x) const
 {
 	if (x.first == 0)
 		return rows[x.second];
