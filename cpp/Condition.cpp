@@ -1,6 +1,6 @@
-#include "../headers/Condition.h"
+п»ї#include "../headers/Condition.h"
 
-Condition::Condition(int lineSize, const Line* const ptr, const std::vector<int>& info) : data{ ptr }, statLine(lineSize + 1) // делаем *data != statLine
+Condition::Condition(int lineSize, const Line* const ptr, const std::vector<int>& info) : data{ ptr }, statLine(lineSize + 1) // РґРµР»Р°РµРј *data != statLine
 {
 	start = 0;
 	end = lineSize;
@@ -24,7 +24,7 @@ Condition::Condition(int lineSize, const Line* const ptr, const std::vector<int>
 
 Condition::~Condition()
 {
-	// delete data не делается, тк за освобождение этого указателя отвечает класс Picture 
+	// delete data РЅРµ РґРµР»Р°РµС‚СЃСЏ, С‚Рє Р·Р° РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµ СЌС‚РѕРіРѕ СѓРєР°Р·Р°С‚РµР»СЏ РѕС‚РІРµС‡Р°РµС‚ РєР»Р°СЃСЃ Picture 
 }
 
 bool Condition::getIsFullFlag() const
@@ -56,18 +56,18 @@ updCondReturnParam Condition::updateCondition()
 {
 	if (*data != statLine)
 	{
-		statLine = *data; // обновляем состояние строки до актуального
+		statLine = *data; // РѕР±РЅРѕРІР»СЏРµРј СЃРѕСЃС‚РѕСЏРЅРёРµ СЃС‚СЂРѕРєРё РґРѕ Р°РєС‚СѓР°Р»СЊРЅРѕРіРѕ
 
-		// обновление start
+		// РѕР±РЅРѕРІР»РµРЅРёРµ start
 		this->updateStart();
 
-		// обновление start
+		// РѕР±РЅРѕРІР»РµРЅРёРµ start
 		this->updateEnd();
 
-		// обновление диапазонов в numInfo
+		// РѕР±РЅРѕРІР»РµРЅРёРµ РґРёР°РїР°Р·РѕРЅРѕРІ РІ numInfo
 		this->updateBorders();
 
-		// проверка на то, что строку можно однозначно определить
+		// РїСЂРѕРІРµСЂРєР° РЅР° С‚Рѕ, С‡С‚Рѕ СЃС‚СЂРѕРєСѓ РјРѕР¶РЅРѕ РѕРґРЅРѕР·РЅР°С‡РЅРѕ РѕРїСЂРµРґРµР»РёС‚СЊ
 		if (data->getCountTypeCell(CellType::white) == allCountWhiteCell)
 		{
 			isFull = true;
@@ -90,8 +90,8 @@ std::string Condition::toString() const
 	else
 	{
 		std::string answer;
-		answer.append("\tНачало: " + std::to_string(start) + ", " + "Конец: " + std::to_string(end) + "\n");
-		answer.append("\tСписок:");
+		answer.append("\tРќР°С‡Р°Р»Рѕ: " + std::to_string(start) + ", " + "РљРѕРЅРµС†: " + std::to_string(end) + "\n");
+		answer.append("\tРЎРїРёСЃРѕРє:");
 
 		for (const auto& i : numInfo)
 		{
@@ -113,8 +113,8 @@ void Condition::updateStart()
 			++start;
 		else
 		{
-			// данный случай обрабатывается методом methodStartEndNum. Он закрашивает необходимые клетки.
-			// здесь же остаётся только обновить данные о начале
+			// РґР°РЅРЅС‹Р№ СЃР»СѓС‡Р°Р№ РѕР±СЂР°Р±Р°С‚С‹РІР°РµС‚СЃСЏ РјРµС‚РѕРґРѕРј methodStartEndNum. РћРЅ Р·Р°РєСЂР°С€РёРІР°РµС‚ РЅРµРѕР±С…РѕРґРёРјС‹Рµ РєР»РµС‚РєРё.
+			// Р·РґРµСЃСЊ Р¶Рµ РѕСЃС‚Р°С‘С‚СЃСЏ С‚РѕР»СЊРєРѕ РѕР±РЅРѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ Рѕ РЅР°С‡Р°Р»Рµ
 			int number = numInfo.front().getNum();
 			numInfo.pop_front();
 			start += number + 1;
@@ -136,8 +136,8 @@ void Condition::updateEnd()
 			--end;
 		else
 		{
-			// данный случай обрабатывается методом methodStartEndNum. Он закрашивает необходимые клетки.
-			// здесь же остаётся только обновить данные о конце
+			// РґР°РЅРЅС‹Р№ СЃР»СѓС‡Р°Р№ РѕР±СЂР°Р±Р°С‚С‹РІР°РµС‚СЃСЏ РјРµС‚РѕРґРѕРј methodStartEndNum. РћРЅ Р·Р°РєСЂР°С€РёРІР°РµС‚ РЅРµРѕР±С…РѕРґРёРјС‹Рµ РєР»РµС‚РєРё.
+			// Р·РґРµСЃСЊ Р¶Рµ РѕСЃС‚Р°С‘С‚СЃСЏ С‚РѕР»СЊРєРѕ РѕР±РЅРѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ Рѕ РєРѕРЅС†Рµ
 			int number = numInfo.back().getNum();
 			numInfo.pop_back();
 			end -= number + 1;
@@ -158,27 +158,27 @@ void Condition::updateBorders()
 
 void Condition::updateDia()
 {
-	enum helpEnum {space = 1};	// enum обозначающий пробел(одна CellType::whiteCell)
+	enum helpEnum {space = 1};	// enum РѕР±РѕР·РЅР°С‡Р°СЋС‰РёР№ РїСЂРѕР±РµР»(РѕРґРЅР° CellType::whiteCell)
 
-	int leftNums = start;		// количество занятых клеток слева от текущего числа
-	int rightNums = end;		// количество занятых клеток справа от текущего числа
-	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)	// задаём посчитанные начальные параметры
+	int leftNums = start;		// РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РЅСЏС‚С‹С… РєР»РµС‚РѕРє СЃР»РµРІР° РѕС‚ С‚РµРєСѓС‰РµРіРѕ С‡РёСЃР»Р°
+	int rightNums = end;		// РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РЅСЏС‚С‹С… РєР»РµС‚РѕРє СЃРїСЂР°РІР° РѕС‚ С‚РµРєСѓС‰РµРіРѕ С‡РёСЃР»Р°
+	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)	// Р·Р°РґР°С‘Рј РїРѕСЃС‡РёС‚Р°РЅРЅС‹Рµ РЅР°С‡Р°Р»СЊРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹
 	{
 		rightNums -= it->getNum() + space;
 	}
 
-	// считаем для каждого числа его диапазон
+	// СЃС‡РёС‚Р°РµРј РґР»СЏ РєР°Р¶РґРѕРіРѕ С‡РёСЃР»Р° РµРіРѕ РґРёР°РїР°Р·РѕРЅ
 
 	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)
 	{
-		rightNums += it->getNum() + space;	// добавление текущего числа слева
+		rightNums += it->getNum() + space;	// РґРѕР±Р°РІР»РµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ С‡РёСЃР»Р° СЃР»РµРІР°
 
-		if (leftNums > it->getD().first)	// улучшениe startDia
+		if (leftNums > it->getD().first)	// СѓР»СѓС‡С€РµРЅРёe startDia
 			it->setD(std::make_pair(leftNums, it->getD().second));
-		if (rightNums < it->getD().second)	// улучшениe endDia
+		if (rightNums < it->getD().second)	// СѓР»СѓС‡С€РµРЅРёe endDia
 			it->setD(std::make_pair(it->getD().first, rightNums));
 
-		leftNums += it->getNum() + space;	// добавление текущего числа справа
+		leftNums += it->getNum() + space;	// РґРѕР±Р°РІР»РµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ С‡РёСЃР»Р° СЃРїСЂР°РІР°
 	}
 }
 
@@ -190,23 +190,23 @@ void Condition::updateRealDia()
 	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)
 	{
 		auto ittmp = it;
-		// определение rightBorder
+		// РѕРїСЂРµРґРµР»РµРЅРёРµ rightBorder
 		if (it == --numInfo.end())
 			rightBorder = end;
 		else
 			rightBorder = (++ittmp)->getD().first;
 
-		if (leftBorder < rightBorder)	// проверка что в таком диапазоне есть хотя бы 1 клетка
+		if (leftBorder < rightBorder)	// РїСЂРѕРІРµСЂРєР° С‡С‚Рѕ РІ С‚Р°РєРѕРј РґРёР°РїР°Р·РѕРЅРµ РµСЃС‚СЊ С…РѕС‚СЏ Р±С‹ 1 РєР»РµС‚РєР°
 		{
-			it->setFlagExistRd(true);	// найден реальный диапазон
+			it->setFlagExistRd(true);	// РЅР°Р№РґРµРЅ СЂРµР°Р»СЊРЅС‹Р№ РґРёР°РїР°Р·РѕРЅ
 
-			if (leftBorder > it->getRD().first)		// улучшениe startRDia
+			if (leftBorder > it->getRD().first)		// СѓР»СѓС‡С€РµРЅРёe startRDia
 				it->setRD(std::make_pair(leftBorder, it->getRD().second));
-			if (rightBorder < it->getRD().second)	// улучшениe endRDia
+			if (rightBorder < it->getRD().second)	// СѓР»СѓС‡С€РµРЅРёe endRDia
 				it->setRD(std::make_pair(it->getRD().first, rightBorder));
 		}
 
-		// определение next leftBorder
+		// РѕРїСЂРµРґРµР»РµРЅРёРµ next leftBorder
 		leftBorder = it->getD().second;
 	}
 }

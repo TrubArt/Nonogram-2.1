@@ -1,4 +1,4 @@
-#include "../headers/Line.h"
+п»ї#include "../headers/Line.h"
 #include <algorithm>
 
 Line::Line(int size)
@@ -32,7 +32,7 @@ Line& Line::operator=(const Line& x)
 {
 	if (&x != this)
 	{
-		for (const auto& i : data) // предварительно освобождается память
+		for (const auto& i : data) // РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕ РѕСЃРІРѕР±РѕР¶РґР°РµС‚СЃСЏ РїР°РјСЏС‚СЊ
 		{
 			if (i)
 				delete i;
@@ -95,7 +95,7 @@ int Line::getCountTypeCell(int startIndex, int endIndex, CellType Ctype) const
 	int answer = 0;
 	if (startIndex < 0 || endIndex > static_cast<int>(data.size()))
 	{
-		std::cout << "Выход за границы Line\n";
+		std::cout << "Р’С‹С…РѕРґ Р·Р° РіСЂР°РЅРёС†С‹ Line\n";
 		return answer;
 	}
 
@@ -113,7 +113,7 @@ int Line::getLeftIndexTypeCell(int startIndex, int endIndex, CellType Ctype) con
 	int answer = -1;
 	if (startIndex < 0 || endIndex > static_cast<int>(data.size()))
 	{
-		std::cout << "Выход за границы Line\n";
+		std::cout << "Р’С‹С…РѕРґ Р·Р° РіСЂР°РЅРёС†С‹ Line\n";
 		return answer;
 	}
 
@@ -131,7 +131,7 @@ int Line::getRightIndexTypeCell(int startIndex, int endIndex, CellType Ctype) co
 	int answer = -1;
 	if (startIndex < 0 || endIndex > static_cast<int>(data.size()))
 	{
-		std::cout << "Выход за границы Line\n";
+		std::cout << "Р’С‹С…РѕРґ Р·Р° РіСЂР°РЅРёС†С‹ Line\n";
 		return answer;
 	}
 

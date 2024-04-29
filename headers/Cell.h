@@ -1,10 +1,10 @@
-#pragma once
+п»ї#pragma once
 #ifndef CELL_NONOGRAM
 #define CELL_NONOGRAM
 #include <iostream>
 #include <string>
 
-// перечислитель для вида клетки поля
+// РїРµСЂРµС‡РёСЃР»РёС‚РµР»СЊ РґР»СЏ РІРёРґР° РєР»РµС‚РєРё РїРѕР»СЏ
 enum class CellType
 {
 	undefined = -1,
@@ -12,10 +12,10 @@ enum class CellType
 	black
 };
 
-// класс клетки поля
+// РєР»Р°СЃСЃ РєР»РµС‚РєРё РїРѕР»СЏ
 class Cell
 {
-	CellType cellType; //тип клетки
+	CellType cellType; //С‚РёРї РєР»РµС‚РєРё
 
 public:
 	// constructors, destructor, operators

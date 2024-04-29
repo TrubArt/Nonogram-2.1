@@ -1,14 +1,14 @@
-#pragma once
+п»ї#pragma once
 #ifndef FILELOADER_NONOGRAM
 #define FILELOADER_NONOGRAM
 #include <fstream>
 #include <string>
 #include <vector>
 
-// класс, необходимый для загрузки условия нонограммы из файла в Picture
+// РєР»Р°СЃСЃ, РЅРµРѕР±С…РѕРґРёРјС‹Р№ РґР»СЏ Р·Р°РіСЂСѓР·РєРё СѓСЃР»РѕРІРёСЏ РЅРѕРЅРѕРіСЂР°РјРјС‹ РёР· С„Р°Р№Р»Р° РІ Picture
 class FileLoader
 {
-	std::ifstream file;	// поток с файлом
+	std::ifstream file;	// РїРѕС‚РѕРє СЃ С„Р°Р№Р»РѕРј
 
 public:
 	// constructors, destructor, operators
@@ -17,16 +17,16 @@ public:
 	FileLoader(const std::string& fileName);
 	~FileLoader();
 
-	/// <returns>Возвращает пуст ли файл</returns>
+	/// <returns>Р’РѕР·РІСЂР°С‰Р°РµС‚ РїСѓСЃС‚ Р»Рё С„Р°Р№Р»</returns>
 	bool isEmpty() const;
 
-	/// <returns>vector c последовательностью чисел из строки</returns>
+	/// <returns>vector c РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊСЋ С‡РёСЃРµР» РёР· СЃС‚СЂРѕРєРё</returns>
 	std::vector<int> getNumbersSequence();
 
 private:
-	/// <param name="str">строка для поиска</param>
-	/// <param name="index">индекс начала поиска(изменяется функцией)</param>
-	/// <returns>одно число из строки</returns>
+	/// <param name="str">СЃС‚СЂРѕРєР° РґР»СЏ РїРѕРёСЃРєР°</param>
+	/// <param name="index">РёРЅРґРµРєСЃ РЅР°С‡Р°Р»Р° РїРѕРёСЃРєР°(РёР·РјРµРЅСЏРµС‚СЃСЏ С„СѓРЅРєС†РёРµР№)</param>
+	/// <returns>РѕРґРЅРѕ С‡РёСЃР»Рѕ РёР· СЃС‚СЂРѕРєРё</returns>
 	int getNumber(const std::string& str, int& index);
 };
 #endif // !FILELOADER_NONOGRAM

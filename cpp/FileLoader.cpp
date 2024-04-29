@@ -1,4 +1,4 @@
-#include "../headers/FileLoader.h"
+п»ї#include "../headers/FileLoader.h"
 #include <iostream>
 
 FileLoader::FileLoader(const std::string& fileName)
@@ -6,7 +6,7 @@ FileLoader::FileLoader(const std::string& fileName)
 	file.open(fileName + ".txt");
 	if (!file.is_open())
 	{
-		std::cerr << "Файл с данными не открыт!\n";
+		std::cerr << "Р¤Р°Р№Р» СЃ РґР°РЅРЅС‹РјРё РЅРµ РѕС‚РєСЂС‹С‚!\n";
 		std::exit(1);
 	}
 }
@@ -34,12 +34,12 @@ int FileLoader::getNumber(const std::string& str, int& index)
 std::vector<int> FileLoader::getNumbersSequence()
 {
 	std::string str;
-	do								// пропуск пустых строчек
+	do								// РїСЂРѕРїСѓСЃРє РїСѓСЃС‚С‹С… СЃС‚СЂРѕС‡РµРє
 	{
 		std::getline(file, str);
 	} while (str.empty() && !isEmpty());
 
-	std::vector<int> tmpvec;		// вектор с ответом
+	std::vector<int> tmpvec;		// РІРµРєС‚РѕСЂ СЃ РѕС‚РІРµС‚РѕРј
 
 	for (int i = 0; i < static_cast<int>(str.length()); ++i)
 	{

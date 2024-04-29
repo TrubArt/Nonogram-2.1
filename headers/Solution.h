@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #ifndef SOLUTION_NONOGRAM
 #define SOLUTION_NONOGRAM
 #include "Picture.h"
@@ -7,22 +7,22 @@
 #include <vector>
 #include <string>
 
-// основной класс, реализующий методы по решению нонограммы
+// РѕСЃРЅРѕРІРЅРѕР№ РєР»Р°СЃСЃ, СЂРµР°Р»РёР·СѓСЋС‰РёР№ РјРµС‚РѕРґС‹ РїРѕ СЂРµС€РµРЅРёСЋ РЅРѕРЅРѕРіСЂР°РјРјС‹
 class Solution
 {
-	// enum для обращения к строкам/столбцам в conditions
+	// enum РґР»СЏ РѕР±СЂР°С‰РµРЅРёСЏ Рє СЃС‚СЂРѕРєР°Рј/СЃС‚РѕР»Р±С†Р°Рј РІ conditions
 	enum lineClassifier { row, col };
 
-	Picture* pict;										// изображение в котором закрашиваются клетки
-	std::array<std::vector<Condition*>, 2> conditions;	// массив с условиями для строк и столбцов
+	Picture* pict;										// РёР·РѕР±СЂР°Р¶РµРЅРёРµ РІ РєРѕС‚РѕСЂРѕРј Р·Р°РєСЂР°С€РёРІР°СЋС‚СЃСЏ РєР»РµС‚РєРё
+	std::array<std::vector<Condition*>, 2> conditions;	// РјР°СЃСЃРёРІ СЃ СѓСЃР»РѕРІРёСЏРјРё РґР»СЏ СЃС‚СЂРѕРє Рё СЃС‚РѕР»Р±С†РѕРІ
 
 public:
 	// constructors, destructor, operators
 	
 	Solution() = delete;
 
-	/// <param name="fileCondition:">файл с условиями строк</param>
-	/// <param name="fileAdditCondit:">файл с доп условиями цвета</param>
+	/// <param name="fileCondition:">С„Р°Р№Р» СЃ СѓСЃР»РѕРІРёСЏРјРё СЃС‚СЂРѕРє</param>
+	/// <param name="fileAdditCondit:">С„Р°Р№Р» СЃ РґРѕРї СѓСЃР»РѕРІРёСЏРјРё С†РІРµС‚Р°</param>
 	Solution(const std::string& fileCondition, const std::string& fileAdditCondit);
 
 	Solution(const Solution&) = delete;
@@ -36,7 +36,7 @@ public:
 
 	// functions
 
-	// метод, представляющий из себя шаблон для прогонки каждого метода
+	// РјРµС‚РѕРґ, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ РёР· СЃРµР±СЏ С€Р°Р±Р»РѕРЅ РґР»СЏ РїСЂРѕРіРѕРЅРєРё РєР°Р¶РґРѕРіРѕ РјРµС‚РѕРґР°
 	void callingMethods();
 	std::string pictToString() const;
 	std::string conditionsToString() const;
@@ -44,16 +44,16 @@ public:
 private:
 	void switchFunction(int funNum, int rowOrCol, int positionInRowOrCol);
 
-	// метод, который закрашивает все CellType::undefined в цвет param
+	// РјРµС‚РѕРґ, РєРѕС‚РѕСЂС‹Р№ Р·Р°РєСЂР°С€РёРІР°РµС‚ РІСЃРµ CellType::undefined РІ С†РІРµС‚ param
 	void methodLastSet(int rowOrCol, int positionInRowOrCol, updCondReturnParam param);
 
-	// если start || end == 1, то однозначно закрашивает клетки принадлежащие первому/последнему числу
+	// РµСЃР»Рё start || end == 1, С‚Рѕ РѕРґРЅРѕР·РЅР°С‡РЅРѕ Р·Р°РєСЂР°С€РёРІР°РµС‚ РєР»РµС‚РєРё РїСЂРёРЅР°РґР»РµР¶Р°С‰РёРµ РїРµСЂРІРѕРјСѓ/РїРѕСЃР»РµРґРЅРµРјСѓ С‡РёСЃР»Сѓ
 	void methodStartEndNum(int rowOrCol, int positionInRowOrCol);
 
 	void method1(int rowOrCol, int positionInRowOrCol);
 	void method2(int rowOrCol, int positionInRowOrCol);
 
-	// закраска strOrCol под номером positionInRowOrCol позиции index цветом Ctype
+	// Р·Р°РєСЂР°СЃРєР° strOrCol РїРѕРґ РЅРѕРјРµСЂРѕРј positionInRowOrCol РїРѕР·РёС†РёРё index С†РІРµС‚РѕРј Ctype
 	void setColorWithInformation(int rowOrCol, int positionInRowOrCol, int index, CellType Ctype);
 };
 #endif // !SOLUTION_NONOGRAM

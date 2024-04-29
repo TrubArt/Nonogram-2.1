@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #ifndef LINE_NONOGRAM
 #define LINE_NONOGRAM
 #include "Cell.h"
@@ -6,11 +6,11 @@
 #include <string>
 #include <vector>
 
-// класс линии, содержащей вектор клеток
+// РєР»Р°СЃСЃ Р»РёРЅРёРё, СЃРѕРґРµСЂР¶Р°С‰РµР№ РІРµРєС‚РѕСЂ РєР»РµС‚РѕРє
 class Line
 {
-	std::vector<Cell*> data;	// вектор клеток
-	// переход на умные указатели
+	std::vector<Cell*> data;	// РІРµРєС‚РѕСЂ РєР»РµС‚РѕРє
+	// РїРµСЂРµС…РѕРґ РЅР° СѓРјРЅС‹Рµ СѓРєР°Р·Р°С‚РµР»Рё
 
 public:
 	// constructors, destructor, operators
@@ -31,16 +31,16 @@ public:
 
 	// functions
 
-	// возвращает количество клеток типа Ctype в Line
+	// РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РєР»РµС‚РѕРє С‚РёРїР° Ctype РІ Line
 	int getCountTypeCell(CellType Ctype) const;
 
-	// возвращает количество клеток типа Ctype в диапазоне[startIndex, endIndex) в Line
+	// РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РєР»РµС‚РѕРє С‚РёРїР° Ctype РІ РґРёР°РїР°Р·РѕРЅРµ[startIndex, endIndex) РІ Line
 	int getCountTypeCell(int startIndex, int endIndex, CellType Ctype) const;
 
-	// возвращает первый индекс слева типа Ctype в диапазоне[startIndex, endIndex) в Line
+	// РІРѕР·РІСЂР°С‰Р°РµС‚ РїРµСЂРІС‹Р№ РёРЅРґРµРєСЃ СЃР»РµРІР° С‚РёРїР° Ctype РІ РґРёР°РїР°Р·РѕРЅРµ[startIndex, endIndex) РІ Line
 	int getLeftIndexTypeCell(int startIndex, int endIndex, CellType Ctype) const;
 
-	// возвращает первый индекс справа типа Ctype в диапазоне[startIndex, endIndex) в Line
+	// РІРѕР·РІСЂР°С‰Р°РµС‚ РїРµСЂРІС‹Р№ РёРЅРґРµРєСЃ СЃРїСЂР°РІР° С‚РёРїР° Ctype РІ РґРёР°РїР°Р·РѕРЅРµ[startIndex, endIndex) РІ Line
 	int getRightIndexTypeCell(int startIndex, int endIndex, CellType Ctype) const;
 
 	std::string toString() const;

@@ -1,8 +1,8 @@
-#include "../headers/Picture.h"
+п»ї#include "../headers/Picture.h"
 
 namespace
 {
-	// функция нужна для проверки синхронизации строк и столбцов
+	// С„СѓРЅРєС†РёСЏ РЅСѓР¶РЅР° РґР»СЏ РїСЂРѕРІРµСЂРєРё СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёРё СЃС‚СЂРѕРє Рё СЃС‚РѕР»Р±С†РѕРІ
 	bool checkSynchronization(const std::vector<Line*>& rows, const std::vector<Line*>& columns)
 	{
 		for (int i = 0; i < static_cast<int>(rows.size()); ++i)
@@ -15,7 +15,7 @@ namespace
 		}
 
 		return true;
-	} // на релизе убрать
+	} // РЅР° СЂРµР»РёР·Рµ СѓР±СЂР°С‚СЊ
 }
 
 Picture::Picture(int N, int M)
@@ -64,7 +64,7 @@ Picture& Picture::operator=(const Picture& x)
 {
 	if (&x != this)
 	{
-		// предварительная очистка памяти
+		// РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅР°СЏ РѕС‡РёСЃС‚РєР° РїР°РјСЏС‚Рё
 		for (auto& i : rows)
 		{
 			if (i)
@@ -119,12 +119,12 @@ void Picture::setColor(int rowNumber, int index, CellType Ctype)
 {
 	if (!checkSynchronization(rows, columns))
 	{
-		std::cerr << "Нарушена синхронизация таблицы!!!\n";
+		std::cerr << "РќР°СЂСѓС€РµРЅР° СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ С‚Р°Р±Р»РёС†С‹!!!\n";
 		std::exit(1);
 	}
 
-	// необходимо 2 вызова, чтобы была однозначная картинка
-	// и с точки зрения строк и с точки зрения столбцов
+	// РЅРµРѕР±С…РѕРґРёРјРѕ 2 РІС‹Р·РѕРІР°, С‡С‚РѕР±С‹ Р±С‹Р»Р° РѕРґРЅРѕР·РЅР°С‡РЅР°СЏ РєР°СЂС‚РёРЅРєР°
+	// Рё СЃ С‚РѕС‡РєРё Р·СЂРµРЅРёСЏ СЃС‚СЂРѕРє Рё СЃ С‚РѕС‡РєРё Р·СЂРµРЅРёСЏ СЃС‚РѕР»Р±С†РѕРІ
 	rows[rowNumber]->setCellType(index, Ctype);
 	columns[index]->setCellType(rowNumber, Ctype);
 }

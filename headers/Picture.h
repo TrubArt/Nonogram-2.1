@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #ifndef PICTURE_NONOGRAM
 #define PICTURE_NONOGRAM
 #include "Line.h"
@@ -6,11 +6,11 @@
 #include <vector>
 #include <string>
 
-// класс, хранящий изображение
+// РєР»Р°СЃСЃ, С…СЂР°РЅСЏС‰РёР№ РёР·РѕР±СЂР°Р¶РµРЅРёРµ
 class Picture
 {
-	std::vector<Line*> rows;	// вектор строк
-	std::vector<Line*> columns;	// вектор столбцов
+	std::vector<Line*> rows;	// РІРµРєС‚РѕСЂ СЃС‚СЂРѕРє
+	std::vector<Line*> columns;	// РІРµРєС‚РѕСЂ СЃС‚РѕР»Р±С†РѕРІ
 
 public:
 	// constructors, destructor, operators
@@ -30,6 +30,6 @@ public:
 	// functions
 
 	std::string toString() const;
-	friend std::ostream& operator<<(std::ostream& out, const Picture& pict); // печать изображения
+	friend std::ostream& operator<<(std::ostream& out, const Picture& pict); // РїРµС‡Р°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 };
 #endif // !PICTURE_NONOGRAM
