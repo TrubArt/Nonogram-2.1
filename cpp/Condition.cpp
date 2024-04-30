@@ -113,7 +113,7 @@ void Condition::updateStart()
 			++start;
 		else
 		{
-			// данный случай обрабатывается методом methodStartEndNum. Он закрашивает необходимые клетки.
+			// данный случай обрабатывается методом StartEndNum. Он закрашивает необходимые клетки.
 			// здесь же остаётся только обновить данные о начале
 			int number = numInfo.front().getNum();
 			numInfo.pop_front();
@@ -136,7 +136,7 @@ void Condition::updateEnd()
 			--end;
 		else
 		{
-			// данный случай обрабатывается методом methodStartEndNum. Он закрашивает необходимые клетки.
+			// данный случай обрабатывается методом StartEndNum. Он закрашивает необходимые клетки.
 			// здесь же остаётся только обновить данные о конце
 			int number = numInfo.back().getNum();
 			numInfo.pop_back();

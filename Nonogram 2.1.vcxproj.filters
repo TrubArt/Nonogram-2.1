@@ -39,6 +39,21 @@
     <ClCompile Include="cpp\Solution.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="methods\cpp\MetStartEndNum.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="methods\Imethod.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="methods\cpp\MetUnambiguousBlack.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="methods\cpp\MetLastColorSet.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp\MethodsVectorShell.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Cell.h">
@@ -62,10 +77,19 @@
     <ClInclude Include="headers\Solution.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Constants.h">
+    <ClInclude Include="methods\Imethod.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="methods\Imethod.h">
+    <ClInclude Include="methods\headers\MetStartEndNum.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="methods\headers\MetUnambiguousBlack.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="methods\headers\MetLastColorSet.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\MethodsVectorShell.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
