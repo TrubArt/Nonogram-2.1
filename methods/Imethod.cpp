@@ -1,4 +1,4 @@
-#include "Imethod.h"
+﻿#include "Imethod.h"
 #include "../headers/Picture.h"
 
 void Imethod::setColorWithInformation(Picture* pict, const std::pair<int, int>& posit, int index, CellType Ctype) const

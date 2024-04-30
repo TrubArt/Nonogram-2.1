@@ -1,9 +1,9 @@
-#pragma once
+п»ї#pragma once
 #ifndef METHOD_UNAMBIGUOUSBLACK_NONOGRAM
 #define METHOD_UNAMBIGUOUSBLACK_NONOGRAM
 #include "../Imethod.h"
 
-// определяет 100% CellType::black в центре диапазона каждого числа
+// РѕРїСЂРµРґРµР»СЏРµС‚ 100% CellType::black РІ С†РµРЅС‚СЂРµ РґРёР°РїР°Р·РѕРЅР° РєР°Р¶РґРѕРіРѕ С‡РёСЃР»Р°
 class UnambiguousBlack : public Imethod
 {
 public:

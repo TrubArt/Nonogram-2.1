@@ -1,9 +1,9 @@
-#pragma once
+п»ї#pragma once
 #ifndef METHOD_STARTENDNUM_NONOGRAM
 #define METHOD_STARTENDNUM_NONOGRAM
 #include "../Imethod.h"
 
-// если start || end == CellType::black, то однозначно закрашивает клетки принадлежащие первому/последнему числу
+// РµСЃР»Рё start || end == CellType::black, С‚Рѕ РѕРґРЅРѕР·РЅР°С‡РЅРѕ Р·Р°РєСЂР°С€РёРІР°РµС‚ РєР»РµС‚РєРё РїСЂРёРЅР°РґР»РµР¶Р°С‰РёРµ РїРµСЂРІРѕРјСѓ/РїРѕСЃР»РµРґРЅРµРјСѓ С‡РёСЃР»Сѓ
 class StartEndNum : public Imethod
 {
 public:

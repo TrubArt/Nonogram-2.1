@@ -1,4 +1,4 @@
-#include "../headers/MethodsVectorShell.h"
+﻿#include "../headers/MethodsVectorShell.h"
 
 #include "../methods/headers/MetUnambiguousBlack.h"
 

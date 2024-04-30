@@ -1,4 +1,4 @@
-#include "../headers/MetStartEndNum.h"
+п»ї#include "../headers/MetStartEndNum.h"
 #include "../../headers/Solution.h"
 
 void StartEndNum::realization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit) const
@@ -13,23 +13,23 @@ void StartEndNum::realization(const Condition* const cond, Picture* pict, const 
 		if (analyzedLine->getCellType(start) == CellType::white) ++start;
 		else
 		{
-			++start;		// тк первая клетка числа уже закрашена
-			for (int count = 0; count <= (*startIter).getNum() - 1; ++count)		// закрашиваем количество клеток, равное числу
+			++start;		// С‚Рє РїРµСЂРІР°СЏ РєР»РµС‚РєР° С‡РёСЃР»Р° СѓР¶Рµ Р·Р°РєСЂР°С€РµРЅР°
+			for (int count = 0; count <= (*startIter).getNum() - 1; ++count)		// Р·Р°РєСЂР°С€РёРІР°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РєР»РµС‚РѕРє, СЂР°РІРЅРѕРµ С‡РёСЃР»Сѓ
 			{
 				if (count < (*startIter).getNum() - 1)
 				{
-					this->setColorWithInformation(pict, posit, start++, CellType::black);	// закрашиваем Number-1 клетку
+					this->setColorWithInformation(pict, posit, start++, CellType::black);	// Р·Р°РєСЂР°С€РёРІР°РµРј Number-1 РєР»РµС‚РєСѓ
 				}
-				else		// если count == (*startIter).getNum() - 1
+				else		// РµСЃР»Рё count == (*startIter).getNum() - 1
 				{
-					if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
+					if (start >= end)	// СѓСЃР»РѕРІРёРµ СЌРєРІРёРІР°Р»РµРЅС‚РЅРѕРµ С‚РѕРјСѓ, С‡С‚Рѕ СЃС‚СЂРѕРєР° РїРѕР»РЅРѕСЃС‚СЊСЋ Р·Р°РєСЂР°С€РµРЅР°
 						return;
-					this->setColorWithInformation(pict, posit, start++, CellType::white);	// и добавляем в конце 0
+					this->setColorWithInformation(pict, posit, start++, CellType::white);	// Рё РґРѕР±Р°РІР»СЏРµРј РІ РєРѕРЅС†Рµ 0
 				}
 			}
-			++startIter;	// переходим к следующему числу
+			++startIter;	// РїРµСЂРµС…РѕРґРёРј Рє СЃР»РµРґСѓСЋС‰РµРјСѓ С‡РёСЃР»Сѓ
 		}
-		if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
+		if (start >= end)	// СѓСЃР»РѕРІРёРµ СЌРєРІРёРІР°Р»РµРЅС‚РЅРѕРµ С‚РѕРјСѓ, С‡С‚Рѕ СЃС‚СЂРѕРєР° РїРѕР»РЅРѕСЃС‚СЊСЋ Р·Р°РєСЂР°С€РµРЅР°
 			return;
 	}
 
@@ -39,23 +39,23 @@ void StartEndNum::realization(const Condition* const cond, Picture* pict, const 
 		if (analyzedLine->getCellType(end - 1) == CellType::white) --end;
 		else
 		{
-			--end;		// тк первая клетка числа уже закрашена
+			--end;		// С‚Рє РїРµСЂРІР°СЏ РєР»РµС‚РєР° С‡РёСЃР»Р° СѓР¶Рµ Р·Р°РєСЂР°С€РµРЅР°
 			for (int count = 0; count <= (*endIter).getNum() - 1; ++count)
 			{
 				if (count < (*endIter).getNum() - 1)
 				{
-					this->setColorWithInformation(pict, posit, --end, CellType::black);	// закрашиваем Number-1 клетку
+					this->setColorWithInformation(pict, posit, --end, CellType::black);	// Р·Р°РєСЂР°С€РёРІР°РµРј Number-1 РєР»РµС‚РєСѓ
 				}
-				else		// если count == (*startIter).getNum() - 1
+				else		// РµСЃР»Рё count == (*startIter).getNum() - 1
 				{
-					if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
+					if (start >= end)	// СѓСЃР»РѕРІРёРµ СЌРєРІРёРІР°Р»РµРЅС‚РЅРѕРµ С‚РѕРјСѓ, С‡С‚Рѕ СЃС‚СЂРѕРєР° РїРѕР»РЅРѕСЃС‚СЊСЋ Р·Р°РєСЂР°С€РµРЅР°
 						return;
-					this->setColorWithInformation(pict, posit, --end, CellType::white);	// и добавляем в конце 0
+					this->setColorWithInformation(pict, posit, --end, CellType::white);	// Рё РґРѕР±Р°РІР»СЏРµРј РІ РєРѕРЅС†Рµ 0
 				}
 			}
-			++endIter;	// переходим к следующему числу
+			++endIter;	// РїРµСЂРµС…РѕРґРёРј Рє СЃР»РµРґСѓСЋС‰РµРјСѓ С‡РёСЃР»Сѓ
 		}
-		if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
+		if (start >= end)	// СѓСЃР»РѕРІРёРµ СЌРєРІРёРІР°Р»РµРЅС‚РЅРѕРµ С‚РѕРјСѓ, С‡С‚Рѕ СЃС‚СЂРѕРєР° РїРѕР»РЅРѕСЃС‚СЊСЋ Р·Р°РєСЂР°С€РµРЅР°
 			return;
 	}
 }

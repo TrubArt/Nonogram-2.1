@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #ifndef METHOD_LAST_COLOR_SET
 #define METHOD_LAST_COLOR_SET
 #include "../Imethod.h"
@@ -6,7 +6,7 @@
 // forward declaration
 enum class updCondReturnParam;
 
-// закрашивает все CellType::undefined в цвет param
+// Р·Р°РєСЂР°С€РёРІР°РµС‚ РІСЃРµ CellType::undefined РІ С†РІРµС‚ param
 class LastColorSet : public Imethod
 {
 public:
