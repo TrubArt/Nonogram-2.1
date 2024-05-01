@@ -5,7 +5,7 @@ void LastColorSet::realization(const Condition* const cond, Picture* pict, const
 
 void  LastColorSet::anotrealization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit, UpdCondReturnParam param) const
 {
-	if (param != UpdCondReturnParam::LineNotCompleted)
+	if (param != UpdCondReturnParam::lineNotCompleted)
 	{
 		const Line* analyzedLine = cond->getLinePtr();
 		for (int i = cond->getStart(); i < cond->getEnd(); ++i)

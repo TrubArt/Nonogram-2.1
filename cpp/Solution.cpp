@@ -99,7 +99,7 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 
 					// изменение данных о строке после цикла
 					UpdCondReturnParam updPar = conditions[rowOrCol][positionInRowOrCol]->updateCondition();
-					if (updPar != UpdCondReturnParam::LineNotCompleted)	// если строка закончена, то однозначно закрашиваем оставшиеся поля
+					if (updPar != UpdCondReturnParam::lineNotCompleted)	// если строка закончена, то однозначно закрашиваем оставшиеся поля
 						LastColorSet().anotrealization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol), updPar);
 				}
 			}

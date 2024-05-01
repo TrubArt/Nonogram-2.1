@@ -1,4 +1,5 @@
 ﻿#include "../headers/NumberAndBorder.h"
+#include "../headers/Line.h"
 
 NumberAndBorders::NumberAndBorders(int number, const myP& dia, const myP& realdia) : dia(dia), realDia(realdia)
 {

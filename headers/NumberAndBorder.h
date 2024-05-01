@@ -1,8 +1,10 @@
 ﻿#pragma once
 #ifndef NUMBER_NONOGRAM
 #define NUMBER_NONOGRAM
-#include "Line.h"
 #include <string>
+
+// forward declaration
+class Line;
 
 // класс, хранящий число и его характеристики
 class NumberAndBorders

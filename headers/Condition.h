@@ -9,9 +9,9 @@
 // enum для типа возращаемого значения функции updateCondition()
 enum class UpdCondReturnParam
 {
-	LineNotCompleted = -1,
-	SetWhite,
-	SetBlack
+	lineNotCompleted = -1,
+	setWhite,
+	setBlack
 };
 
 // все данные о строке изменяются только в этом классе и классе NumberAndBorders

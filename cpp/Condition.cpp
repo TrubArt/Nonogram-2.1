@@ -71,16 +71,16 @@ UpdCondReturnParam Condition::updateCondition()
 		if (data->getCountTypeCell(CellType::white) == allCountWhiteCell)
 		{
 			isFull = true;
-			return UpdCondReturnParam::SetBlack;
+			return UpdCondReturnParam::setBlack;
 		}
 		if (data->getCountTypeCell(CellType::black) == allCountBlackCell)
 		{
 			isFull = true;
-			return UpdCondReturnParam::SetWhite;
+			return UpdCondReturnParam::setWhite;
 		}
 	}
 
-	return UpdCondReturnParam::LineNotCompleted;
+	return UpdCondReturnParam::lineNotCompleted;
 }
 
 std::string Condition::toString() const
