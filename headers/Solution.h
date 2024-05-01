@@ -3,7 +3,7 @@
 #define SOLUTION_NONOGRAM
 #include "Picture.h"
 #include "Condition.h"
-#include "../methods/Imethod.h"
+#include "../methods/IMethod.h"
 #include <array>
 #include <vector>
 #include <string>
@@ -35,7 +35,7 @@ public:
 	// functions
 
 	// метод, представляющий из себя шаблон для прогонки каждого метода
-	void callingMethods(const std::vector<Imethod*>& methods);
+	void callingMethods(const std::vector<IMethod*>& methods);
 	std::string pictToString() const;
 	std::string conditionsToString() const;
 };

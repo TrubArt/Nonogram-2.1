@@ -4,11 +4,11 @@
 #include <vector>
 
 // forward declaration
-class Imethod;
+class IMethod;
 
 class MethodsVectorShell
 {
-	std::vector<Imethod*> methods;
+	std::vector<IMethod*> methods;
 
 public:
 
@@ -22,8 +22,8 @@ public:
 	// functions
 
 	void clear();
-	void pushMehod(Imethod* x);
-	const std::vector<Imethod*>& get() const;
+	void pushMehod(IMethod* x);
+	const std::vector<IMethod*>& get() const;
 };
 
 #endif // !METHODSVECTORSHELL_NONOGRAM

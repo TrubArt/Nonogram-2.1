@@ -73,13 +73,13 @@ bool Solution::isEndOfWork() const
 	return true;
 }
 
-void Solution::callingMethods(const std::vector<Imethod*>& methods)
+void Solution::callingMethods(const std::vector<IMethod*>& methods)
 {
 	// цикл с прогоном всех методов
 	for (const auto& i : methods)
 	{
 
-		std::cout << "Изображение до работы метода\n" << pict->toString() << "\n";
+		std::cout << "Изображение до работы метода\n" << this->pictToString() << "\n";
 		std::cout << "Границы до работы метода\n" << this->conditionsToString() << "\n";
 
 
@@ -98,15 +98,15 @@ void Solution::callingMethods(const std::vector<Imethod*>& methods)
 					StartEndNum().realization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol));
 
 					// изменение данных о строке после цикла
-					updCondReturnParam updPar = conditions[rowOrCol][positionInRowOrCol]->updateCondition();
-					if (updPar != updCondReturnParam::LineNotCompleted)	// если строка закончена, то однозначно закрашиваем оставшиеся поля
+					UpdCondReturnParam updPar = conditions[rowOrCol][positionInRowOrCol]->updateCondition();
+					if (updPar != UpdCondReturnParam::LineNotCompleted)	// если строка закончена, то однозначно закрашиваем оставшиеся поля
 						LastColorSet().anotrealization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol), updPar);
 				}
 			}
 		}
 
 
-		std::cout << "Изображение после работы метода:\n" << pict->toString() << "\n";
+		std::cout << "Изображение после работы метода:\n" << this->pictToString() << "\n";
 		std::cout << "Границы после работы метода:\n" << this->conditionsToString() << "\n";
 
 	}

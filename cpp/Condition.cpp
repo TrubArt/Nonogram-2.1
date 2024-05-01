@@ -52,7 +52,7 @@ const std::list<NumberAndBorders>& Condition::getNumInfo() const
 	return numInfo;
 }
 
-updCondReturnParam Condition::updateCondition()
+UpdCondReturnParam Condition::updateCondition()
 {
 	if (*data != statLine)
 	{
@@ -71,16 +71,16 @@ updCondReturnParam Condition::updateCondition()
 		if (data->getCountTypeCell(CellType::white) == allCountWhiteCell)
 		{
 			isFull = true;
-			return updCondReturnParam::SetBlack;
+			return UpdCondReturnParam::SetBlack;
 		}
 		if (data->getCountTypeCell(CellType::black) == allCountBlackCell)
 		{
 			isFull = true;
-			return updCondReturnParam::SetWhite;
+			return UpdCondReturnParam::SetWhite;
 		}
 	}
 
-	return updCondReturnParam::LineNotCompleted;
+	return UpdCondReturnParam::LineNotCompleted;
 }
 
 std::string Condition::toString() const

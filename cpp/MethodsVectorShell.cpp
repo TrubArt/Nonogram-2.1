@@ -11,7 +11,7 @@ MethodsVectorShell::MethodsVectorShell()
 //{
 //	for (int i = 0; i < static_cast<int>(x.methods.size()); i++)
 //	{
-//		methods[i] = new Imethod(x.methods[i]);
+//		methods[i] = new IMethod(x.methods[i]);
 //	}
 //}
 
@@ -31,12 +31,12 @@ void MethodsVectorShell::clear()
 	methods.clear();
 }
 
-void MethodsVectorShell::pushMehod(Imethod* x)
+void MethodsVectorShell::pushMehod(IMethod* x)
 {
 	methods.push_back(x);
 }
 
-const std::vector<Imethod*>& MethodsVectorShell::get() const
+const std::vector<IMethod*>& MethodsVectorShell::get() const
 {
 	return methods;
 }

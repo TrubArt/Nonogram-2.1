@@ -7,7 +7,7 @@
 #include <list>
 
 // enum для типа возращаемого значения функции updateCondition()
-enum class updCondReturnParam
+enum class UpdCondReturnParam
 {
 	LineNotCompleted = -1,
 	SetWhite,
@@ -53,7 +53,7 @@ public:
 
 	// functions
 
-	updCondReturnParam updateCondition();
+	UpdCondReturnParam updateCondition();
 	std::string toString() const;
 
 private:

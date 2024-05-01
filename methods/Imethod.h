@@ -9,7 +9,7 @@ class Picture;
 enum class CellType;
 
 // интерфес для методов
-class Imethod
+class IMethod
 {
 public:
 	// функция, реализующая метод, изменяющий изображение. Входные параметры:

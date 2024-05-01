@@ -4,7 +4,7 @@
 #include "headers/Picture.h"
 #include "headers/MethodsVectorShell.h"
 
-bool nonogramSolution(Solution& maintask, const std::vector<Imethod*>& methods)
+bool nonogramSolution(Solution& maintask, const std::vector<IMethod*>& methods)
 {
 	int step = 1;
 	bool noChangesAfterCycle = false;
