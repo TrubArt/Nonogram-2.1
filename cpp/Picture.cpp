@@ -129,6 +129,20 @@ void Picture::setColor(int rowNumber, int index, CellType Ctype)
 	columns[index]->setCellType(rowNumber, Ctype);
 }
 
+void Picture::printToConsoleDifferences(const Picture& pict) const
+{
+	if (pict.rows.size() != rows.size() || pict.columns.size() != columns.size())
+		std::cout << "Ошибка в printToConsoleDifferences. Разные размеры изображений\n";
+	else
+	{
+		for (int strNum = 0; strNum < static_cast<int>(rows.size()); ++strNum)
+		{
+			rows[strNum]->printToConsoleDifferences(*pict.rows[strNum]);
+			std::cout << "\n";
+		}
+	}
+}
+
 std::string Picture::toString() const
 {
 	std::string answer;

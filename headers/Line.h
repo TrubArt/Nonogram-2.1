@@ -43,6 +43,8 @@ public:
 	// возвращает первый индекс справа типа Ctype в диапазоне[startIndex, endIndex) в Line
 	int getRightIndexTypeCell(int startIndex, int endIndex, CellType Ctype) const;
 
+	// выводит в консоль Line, где подсвечены различающиеся клетки между this и line
+	void printToConsoleDifferences(const Line& line) const;
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Line& line);
 };

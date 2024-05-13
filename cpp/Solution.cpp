@@ -75,6 +75,9 @@ bool Solution::isEndOfWork() const
 
 void Solution::callingMethods(const std::vector<IMethod*>& methods)
 {
+	// изображение, с которым будет сравниваться pict для вывода изменений в консоль
+	Picture differences(*pict);
+
 	// цикл с прогоном всех методов
 	for (const auto& i : methods)
 	{
@@ -105,8 +108,10 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 		}
 
 
-		std::cout << "Изображение после работы метода " << i->methodName() << ":\n" << this->pictToString() << "\n";
-		std::cout << "Границы после работы метода:\n" << this->conditionsToString() << "\n";
+		std::cout << "Изображение после работы метода " << i->methodName() << ":\n"; //<< this->pictToString() << "\n";
+		pict->printToConsoleDifferences(differences);
+		differences = *pict;
+		std::cout << "\nГраницы после работы метода:\n" << this->conditionsToString() << "\n";
 
 	}
 }

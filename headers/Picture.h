@@ -29,6 +29,8 @@ public:
 
 	// functions
 
+	// выводит в консоль картинку, где подсвечены различающиеся клетки между this и pict
+	void printToConsoleDifferences(const Picture& pict) const;
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Picture& pict); // печать изображения
 };
