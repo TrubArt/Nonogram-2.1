@@ -3,7 +3,17 @@
 
 void LastColorSet::realization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit) const {}
 
-void  LastColorSet::anotrealization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit, UpdCondReturnParam param) const
+std::string LastColorSet::methodName() const
+{
+	return "LastColorSet";
+}
+
+std::string LastColorSet::principleOfMethodWork() const
+{
+	return "";
+}
+
+void LastColorSet::anotrealization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit, UpdCondReturnParam param) const
 {
 	if (param != UpdCondReturnParam::lineNotCompleted)
 	{

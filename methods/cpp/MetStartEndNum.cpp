@@ -59,3 +59,13 @@ void StartEndNum::realization(const Condition* const cond, Picture* pict, const 
 			return;
 	}
 }
+
+std::string StartEndNum::methodName() const
+{
+	return "StartEndNum";
+}
+
+std::string StartEndNum::principleOfMethodWork() const
+{
+	return "";
+}

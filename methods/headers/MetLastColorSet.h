@@ -11,6 +11,8 @@ class LastColorSet : public IMethod
 {
 public:
 	void realization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit) const override;
+	virtual std::string methodName() const override;
+	virtual std::string principleOfMethodWork() const override;
 	void anotrealization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit, UpdCondReturnParam param) const;
 };
 

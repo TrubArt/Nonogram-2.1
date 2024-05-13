@@ -79,8 +79,8 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 	for (const auto& i : methods)
 	{
 
-		std::cout << "Изображение до работы метода\n" << this->pictToString() << "\n";
-		std::cout << "Границы до работы метода\n" << this->conditionsToString() << "\n";
+		//std::cout << "Изображение до работы методов\n" << this->pictToString() << "\n";
+		//std::cout << "Границы до работы методов\n" << this->conditionsToString() << "\n";
 
 
 		// двойной цикл для прохода по всем строкам/столбцам
@@ -105,7 +105,7 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 		}
 
 
-		std::cout << "Изображение после работы метода:\n" << this->pictToString() << "\n";
+		std::cout << "Изображение после работы метода " << i->methodName() << ":\n" << this->pictToString() << "\n";
 		std::cout << "Границы после работы метода:\n" << this->conditionsToString() << "\n";
 
 	}

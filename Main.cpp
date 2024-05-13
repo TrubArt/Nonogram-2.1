@@ -11,6 +11,8 @@ bool nonogramSolution(Solution& maintask, const std::vector<IMethod*>& methods)
 
 	while (!noChangesAfterCycle && !maintask.isEndOfWork())
 	{
+		std::cout << "--------------------step" << step << "--------------------\n";
+
 		Picture pictureToCompare{ maintask.getPicture() };
 
 		// работа методов
