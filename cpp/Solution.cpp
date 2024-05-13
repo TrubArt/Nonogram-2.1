@@ -90,8 +90,7 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 			{
 				if (!conditions[rowOrCol][positionInRowOrCol]->getIsFullFlag())		// если строка ещё не завершена
 				{
-					// вызов определённого метода
-					
+					// вызов определённого метода					
 					i->realization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol));
 
 					// метод по определению числа с края строки

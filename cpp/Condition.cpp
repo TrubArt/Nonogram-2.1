@@ -10,7 +10,8 @@ Condition::Condition(int lineSize, const Line* const ptr, const std::vector<int>
 
 	for (int i = 0; i < static_cast<int>(info.size()); ++i)
 	{
-		numInfo.push_back(NumberAndBorders(info[i], std::make_pair(start, end), std::make_pair(start, end)));
+		// данные для диапазонов передаются именно в таком формате, поскольку D - должен только сужаться, а RD - расширяться
+		numInfo.push_back(NumberAndBorders(info[i], std::make_pair(start, end), std::make_pair(end, start)));
 	}
 	this->updateBorders();
 
@@ -200,9 +201,9 @@ void Condition::updateRealDia()
 		{
 			it->setFlagExistRd(true);	// найден реальный диапазон
 
-			if (leftBorder > it->getRD().first)		// улучшениe startRDia
+			if (leftBorder < it->getRD().first)		// улучшениe startRDia
 				it->setRD(std::make_pair(leftBorder, it->getRD().second));
-			if (rightBorder < it->getRD().second)	// улучшениe endRDia
+			if (rightBorder > it->getRD().second)	// улучшениe endRDia
 				it->setRD(std::make_pair(it->getRD().first, rightBorder));
 		}
 
