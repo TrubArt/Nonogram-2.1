@@ -151,6 +151,7 @@
     <ClCompile Include="methods\cpp\MetLastColorSet.cpp" />
     <ClCompile Include="methods\cpp\MetStartEndNum.cpp" />
     <ClCompile Include="methods\cpp\MetUnambiguousBlack.cpp" />
+    <ClCompile Include="methods\cpp\MetUnambiguousWhite.cpp" />
     <ClCompile Include="methods\IMethod.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +166,7 @@
     <ClInclude Include="methods\headers\MetLastColorSet.h" />
     <ClInclude Include="methods\headers\MetStartEndNum.h" />
     <ClInclude Include="methods\headers\MetUnambiguousBlack.h" />
+    <ClInclude Include="methods\headers\MetUnambiguousWhite.h" />
     <ClInclude Include="methods\IMethod.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

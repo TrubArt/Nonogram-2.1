@@ -20,5 +20,9 @@ std::string UnambiguousBlack::methodName() const
 
 std::string UnambiguousBlack::principleOfMethodWork() const
 {
-	return "";
+	std::string answ;
+	answ.append("Проходится по всем незаконченным числам в линии. Работает с диапазоном(D).\n");
+	answ.append("Определяет чёрные клетки, которые однозначно можно закрасить, путём наложения числа относительно начала и конца диапазона(D).\n");
+	answ.append("Закрашивает клетки, которые принадлежат числу и в первом и втором случае");
+	return answ;
 }

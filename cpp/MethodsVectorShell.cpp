@@ -1,10 +1,12 @@
 ﻿#include "../headers/MethodsVectorShell.h"
 
 #include "../methods/headers/MetUnambiguousBlack.h"
+#include "../methods/headers/MetUnambiguousWhite.h"
 
 MethodsVectorShell::MethodsVectorShell()
 {
 	methods.push_back(new UnambiguousBlack());
+	methods.push_back(new UnambiguousWhite());
 }
 
 //MethodsVectorShell::MethodsVectorShell(const MethodsVectorShell& x)
