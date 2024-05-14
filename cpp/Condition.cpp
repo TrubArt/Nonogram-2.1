@@ -1,4 +1,5 @@
 ﻿#include "../headers/Condition.h"
+#include <Windows.h>
 
 Condition::Condition(int lineSize, const Line* const ptr, const std::vector<int>& info) : data{ ptr }, statLine(lineSize + 1) // делаем *data != statLine
 {
@@ -84,6 +85,44 @@ UpdCondReturnParam Condition::updateCondition()
 	return UpdCondReturnParam::lineNotCompleted;
 }
 
+void Condition::printToConsoleDifferences(const Condition& cond, int color) const
+{
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (isFull)
+	{
+		if (isFull != cond.isFull)
+			SetConsoleTextAttribute(console, 4);
+		std::cout << "-\n";
+		SetConsoleTextAttribute(console, 7);
+	}
+	else
+	{
+		std::cout << "\tНачало: ";
+
+		if (start != cond.start)
+			SetConsoleTextAttribute(console, 4);
+		std::cout << start;
+		SetConsoleTextAttribute(console, 7);
+
+		std::cout << ", Конец: ";
+
+		if (end != cond.end)
+			SetConsoleTextAttribute(console, 4);
+		std::cout << end;
+		SetConsoleTextAttribute(console, 7);
+
+		std::cout << "\n\tСписок:";
+
+		for (auto thisIt = numInfo.cbegin(), condIt = cond.numInfo.cbegin(); thisIt!= numInfo.cend(); ++thisIt, ++condIt)
+		{
+			std::cout << " ";
+			thisIt->printToConsoleDifferences((*condIt), color);
+		}
+
+		std::cout << "\n";
+	}
+}
+
 std::string Condition::toString() const
 {
 	if (isFull)
@@ -91,7 +130,7 @@ std::string Condition::toString() const
 	else
 	{
 		std::string answer;
-		answer.append("\tНачало: " + std::to_string(start) + ", " + "Конец: " + std::to_string(end) + "\n");
+		answer.append("\tНачало: " + std::to_string(start) + ", Конец: " + std::to_string(end) + "\n");
 		answer.append("\tСписок:");
 
 		for (const auto& i : numInfo)

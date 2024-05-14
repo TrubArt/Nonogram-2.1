@@ -36,6 +36,9 @@ public:
 
 	// метод, представляющий из себя шаблон для прогонки каждого метода
 	void callingMethods(const std::vector<IMethod*>& methods);
+
+	// выводит в консоль this, подсвечивая color различия между this и cond
+	void printToConsoleConditionDifferences(const std::array<std::vector<Condition*>, 2>& cond, int color) const;
 	std::string pictToString() const;
 	std::string conditionsToString() const;
 };

@@ -76,7 +76,17 @@ bool Solution::isEndOfWork() const
 void Solution::callingMethods(const std::vector<IMethod*>& methods)
 {
 	// изображение, с которым будет сравниваться pict для вывода изменений в консоль
-	Picture differences(*pict);
+	Picture pictDifferences(*pict);
+
+	std::array<std::vector<Condition*>, 2> condDif;
+	for (int i = 0; i < static_cast<int>(conditions.size()); ++i)
+	{
+		condDif[i].resize(conditions[i].size());
+		for (int j = 0; j < static_cast<int>(conditions[i].size()); ++j)
+		{
+			condDif[i][j] = new Condition(*conditions[i][j]);
+		}
+	}
 
 	// цикл с прогоном всех методов
 	for (const auto& i : methods)
@@ -108,11 +118,31 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 		}
 
 
-		std::cout << "Изображение после работы метода " << i->methodName() << ":\n"; //<< this->pictToString() << "\n";
-		pict->printToConsoleDifferences(differences);
-		differences = *pict;
-		std::cout << "\nГраницы после работы метода:\n" << this->conditionsToString() << "\n";
+		std::cout << "Изображение после работы " << i->methodName() << ":\n"; //<< this->pictToString() << "\n";
+		pict->printToConsoleDifferences(pictDifferences, 4);
+		pictDifferences = *pict;
 
+		std::cout << "\nГраницы после работы " << i->methodName() << ":\n"; //<< this->conditionsToString() << "\n";
+		this->printToConsoleConditionDifferences(condDif, 4);
+		for (int i = 0; i < static_cast<int>(conditions.size()); ++i)
+		{
+			for (int j = 0; j < static_cast<int>(conditions[i].size()); ++j)
+			{
+				*condDif[i][j] = *conditions[i][j];
+			}
+		}
+	}
+}
+
+void Solution::printToConsoleConditionDifferences(const std::array<std::vector<Condition*>, 2>& cond, int color) const
+{
+	for (int i = 0; i < static_cast<int>(conditions.size()); ++i)
+	{
+		for (int j = 0; j < static_cast<int>(conditions[i].size()); ++j)
+		{
+			std::cout << i << " " << j << ": ";
+			conditions[i][j]->printToConsoleDifferences(*cond[i][j], color);
+		}
 	}
 }
 

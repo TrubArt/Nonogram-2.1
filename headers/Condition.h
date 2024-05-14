@@ -24,7 +24,7 @@ class Condition
 
 	int allCountWhiteCell;					// общее количество белых клеток - '0'
 	int allCountBlackCell;					// общее количество чёрных клеток - '1'
-	const Line* const data;					// константный указатель на соответствующий Line
+	const Line* data;					// константный указатель на соответствующий Line
 
 	// изменяемые в процессе решения величины
 
@@ -39,9 +39,7 @@ public:
 
 	Condition() = delete;
 	Condition(int lineSize, const Line* const ptr, const std::vector<int>& info);
-	Condition(const Condition&) = delete;
 	~Condition();
-	Condition& operator=(const Condition&) = delete;
 
 	// getters & setters
 
@@ -54,6 +52,9 @@ public:
 	// functions
 
 	UpdCondReturnParam updateCondition();
+
+	// выводит в консоль this, подсвечивая color различия между this и cond
+	void printToConsoleDifferences(const Condition& cond, int color) const;
 	std::string toString() const;
 
 private:

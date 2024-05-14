@@ -29,8 +29,11 @@ public:
 
 	// functions
 
-	// выводит в консоль картинку, где подсвечены различающиеся клетки между this и pict
-	void printToConsoleDifferences(const Picture& pict) const;
+	// выводит в консоль this, подсвечивая color различия между this и pict
+	void printToConsoleDifferences(const Picture& pict, int color) const;
+
+	// выводит в консоль Picture, где CellType::white подсвечены цветом whiteColor, а подсвечены цветом CellType::black blackColor
+	void printToConsoleColor(int whiteColor, int blackColor) const;
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Picture& pict); // печать изображения
 };

@@ -1,5 +1,6 @@
 ﻿#include "../headers/NumberAndBorder.h"
 #include "../headers/Line.h"
+#include <Windows.h>
 
 NumberAndBorders::NumberAndBorders(int number, const myP& dia, const myP& realdia) : dia(dia), realDia(realdia)
 {
@@ -49,6 +50,47 @@ void NumberAndBorders::updateNumberAndBorders(const Line* const data)
 	this->updateDviaRD(data);
 }
 
+void NumberAndBorders::printToConsoleDifferences(const NumberAndBorders& data, int color) const
+{
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(console, 7);
+
+	std::cout << number << "{D[";
+
+	if (dia.first != data.dia.first)
+		SetConsoleTextAttribute(console, 4);
+	std::cout << dia.first;
+	SetConsoleTextAttribute(console, 7);
+
+	std::cout << ",";
+
+	if (dia.second != data.dia.second)
+		SetConsoleTextAttribute(console, 4);
+	std::cout << dia.second;
+	SetConsoleTextAttribute(console, 7);
+
+	std::cout << "), RD[";
+
+	if (isExistRD)
+	{
+		if (realDia.first != data.realDia.first)
+			SetConsoleTextAttribute(console, 4);
+		std::cout << realDia.first;
+		SetConsoleTextAttribute(console, 7);
+
+		std::cout << ",";
+
+		if (realDia.second != data.realDia.second)
+			SetConsoleTextAttribute(console, 4);
+		std::cout << realDia.second;
+		SetConsoleTextAttribute(console, 7);
+	}
+	else
+		std::cout << "NaN";
+
+	std::cout << ")}";
+}
+
 std::string NumberAndBorders::toString() const
 {
 	std::string answer;
@@ -84,8 +126,8 @@ void NumberAndBorders::updateDIf0InEdges(const Line* const data)
 	}
 
 	int rightBlack = data->getRightIndexTypeCell(dia.first, dia.second, CellType::white);	// первый правый CellType::white в D
-	while (rightBlack != -1 && (dia.second - 1) - rightBlack < number) {	// если leftBlack находится и расстояние от него до dia.first меньше самого number,
-		dia.second = rightBlack;										// то number туда не поместится, соответственно сдвигаем границу
+	while (rightBlack != -1 && (dia.second - 1) - rightBlack < number) {	// если rightBlack находится и расстояние от него до dia.second меньше самого number,
+		dia.second = rightBlack;											// то number туда не поместится, соответственно сдвигаем границу
 		rightBlack = data->getRightIndexTypeCell(dia.first, dia.second, CellType::white);
 	}
 }

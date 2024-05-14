@@ -50,5 +50,5 @@ int main()
 		std::cout << "\nИзображение не закончено после отработки всех методов:(\n";
 
 	std::cout << "Изображение после окончания решения:\n";
-	std::cout << maintask1.getPicture();
+	maintask1.getPicture().printToConsoleColor(1, 4);
 }

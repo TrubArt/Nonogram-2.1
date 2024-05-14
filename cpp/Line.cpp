@@ -1,9 +1,6 @@
 ﻿#include "../headers/Line.h"
 #include <algorithm>
 #include <Windows.h>
-//#include <iostream>
-//#include <conio.h>
-//#include <stdio.h>
 
 Line::Line(int size)
 {
@@ -148,15 +145,32 @@ int Line::getRightIndexTypeCell(int startIndex, int endIndex, CellType Ctype) co
 	return answer;
 }
 
-void Line::printToConsoleDifferences(const Line& line) const
+void Line::printToConsoleDifferences(const Line& line, int color) const
 {
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 	for (int index = 0; index < static_cast<int>(data.size()); ++index)
 	{
 		if (data[index]->get() != line.data[index]->get())
-		{
-			SetConsoleTextAttribute(console, 4);
-		}
+			SetConsoleTextAttribute(console, color);
+
+		if (index == 0)
+			std::cout << data[index]->toString();
+		else
+			std::cout << " " << data[index]->toString();
+
+		SetConsoleTextAttribute(console, 7);
+	}
+}
+
+void Line::printToConsoleColor(int whiteColor, int blackColor) const
+{
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	for (int index = 0; index < static_cast<int>(data.size()); ++index)
+	{
+		if (data[index]->get() == CellType::black)
+			SetConsoleTextAttribute(console, blackColor);
+		if (data[index]->get() == CellType::white)
+			SetConsoleTextAttribute(console, whiteColor);
 
 		if (index == 0)
 			std::cout << data[index]->toString();
