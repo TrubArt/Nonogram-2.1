@@ -40,7 +40,11 @@ private:
 	// приближает RD до границ D, тк RD не может выходить за пределы D
 	void updateRDviaD();
 
+	// уменьшает D, если на краях число не помещается из-за расположения 0
+	void updateDIf0InEdges(const Line* const data);
+
 	// улучшает D, если в RD есть хоть одна black клетка
+	// недосягаемость https://www.nonograms.ru/methods
 	void updateDviaRD(const Line* const data);
 };
 #endif // !NUMBER_NONOGRAM

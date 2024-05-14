@@ -44,6 +44,7 @@ void NumberAndBorders::setRD(const myP& x)
 
 void NumberAndBorders::updateNumberAndBorders(const Line* const data)
 {
+	this->updateDIf0InEdges(data);
 	this->updateRDviaD();
 	this->updateDviaRD(data);
 }
@@ -71,6 +72,21 @@ void NumberAndBorders::updateRDviaD()
 			realDia.first = dia.first;
 		if (realDia.second > dia.second)
 			realDia.second = dia.second;
+	}
+}
+
+void NumberAndBorders::updateDIf0InEdges(const Line* const data)
+{
+	int leftBlack = data->getLeftIndexTypeCell(dia.first, dia.second, CellType::white);		// первый левый CellType::white в D
+	while (leftBlack != -1 && leftBlack - dia.first < number) {	// если leftBlack находится и расстояние от него до dia.first меньше самого number,
+		dia.first = leftBlack + 1;								// то number туда не поместится, соответственно сдвигаем границу
+		leftBlack = data->getLeftIndexTypeCell(dia.first, dia.second, CellType::white);
+	}
+
+	int rightBlack = data->getRightIndexTypeCell(dia.first, dia.second, CellType::white);	// первый правый CellType::white в D
+	while (rightBlack != -1 && (dia.second - 1) - rightBlack < number) {	// если leftBlack находится и расстояние от него до dia.first меньше самого number,
+		dia.second = rightBlack;										// то number туда не поместится, соответственно сдвигаем границу
+		rightBlack = data->getRightIndexTypeCell(dia.first, dia.second, CellType::white);
 	}
 }
 
