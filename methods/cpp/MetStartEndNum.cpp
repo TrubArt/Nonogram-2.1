@@ -67,5 +67,9 @@ std::string StartEndNum::methodName() const
 
 std::string StartEndNum::principleOfMethodWork() const
 {
-	return "";
+	std::string answ;
+	answ.append("Если в линии на позиции start или end находится CellType::black, то\n");
+	answ.append("можно закрасить клетки однозначно принадлежащий первому или последнему числу.\n");
+	answ.append("Метод повторяется в цикле до тех пор, пока не встретится CellType::undefined\n");
+	return answ;
 }

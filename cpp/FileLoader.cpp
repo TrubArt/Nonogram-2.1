@@ -21,7 +21,7 @@ bool FileLoader::isEmpty() const
 	return file.eof();
 }
 
-int FileLoader::getNumber(const std::string& str, int& index)
+int FileLoader::getNumber(const std::string& str, int& index) const
 {
 	std::string tmp;
 	while (str[index] != ' ' && index < static_cast<int>(str.length()))

@@ -27,6 +27,6 @@ private:
 	/// <param name="str">строка для поиска</param>
 	/// <param name="index">индекс начала поиска(изменяется функцией)</param>
 	/// <returns>одно число из строки</returns>
-	int getNumber(const std::string& str, int& index);
+	int getNumber(const std::string& str, int& index) const;
 };
 #endif // !FILELOADER_NONOGRAM

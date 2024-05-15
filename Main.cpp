@@ -6,12 +6,12 @@
 
 bool nonogramSolution(Solution& maintask, const std::vector<IMethod*>& methods)
 {
-	int step = 1;
+	int step = 0;
 	bool noChangesAfterCycle = false;
 
 	while (!noChangesAfterCycle && !maintask.isEndOfWork())
 	{
-		std::cout << "--------------------step" << step << "--------------------\n";
+		std::cout << "--------------------step" << ++step << "--------------------\n";
 
 		Picture pictureToCompare{ maintask.getPicture() };
 
@@ -21,8 +21,6 @@ bool nonogramSolution(Solution& maintask, const std::vector<IMethod*>& methods)
 		// если после работы методов нет изменений
 		if (pictureToCompare == maintask.getPicture() && !maintask.isEndOfWork())
 			noChangesAfterCycle = true;
-
-		step++;
 	}
 
 	return noChangesAfterCycle;
@@ -50,5 +48,5 @@ int main()
 		std::cout << "\nИзображение не закончено после отработки всех методов:(\n";
 
 	std::cout << "Изображение после окончания решения:\n";
-	maintask1.getPicture().printToConsoleColor(1, 4);
+	maintask1.getPicture().printToConsoleColor(0, 7);
 }

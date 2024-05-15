@@ -10,7 +10,10 @@ std::string LastColorSet::methodName() const
 
 std::string LastColorSet::principleOfMethodWork() const
 {
-	return "";
+	std::string answ;
+	answ.append("Метод принимает на вход UpdCondReturnParam param, который сообщает классу о том, что\n");
+	answ.append("необходимо все оставшиеся в линии CellType::undefined закрасить в цвет param");
+	return answ;
 }
 
 void LastColorSet::anotrealization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit, UpdCondReturnParam param) const
