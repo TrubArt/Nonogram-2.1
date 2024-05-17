@@ -15,7 +15,7 @@ Line::Line(const Line& x)
 {
 	data.resize(x.data.size());
 
-	for (int i = 0; i < static_cast<int>(data.size()); ++i)
+	for (size_t i = 0; i < data.size(); ++i)
 	{
 		data[i] = new Cell(x.data[i]->get());
 	}
@@ -41,7 +41,7 @@ Line& Line::operator=(const Line& x)
 
 		data.resize(x.data.size());
 
-		for (int i = 0; i < static_cast<int>(data.size()); ++i)
+		for (size_t i = 0; i < data.size(); ++i)
 		{
 			data[i] = new Cell(x.data[i]->get());
 		}
@@ -56,7 +56,7 @@ bool Line::operator==(const Line& x) const
 		return false;
 	else
 	{
-		for (int i = 0; i < static_cast<int>(data.size()); ++i)
+		for (size_t i = 0; i < data.size(); ++i)
 		{
 			if (data[i]->get() != x.data[i]->get())
 				return false;
@@ -70,9 +70,9 @@ bool Line::operator!=(const Line& x) const
 	return !(*this == x);
 }
 
-void Line::setCellType(int index, CellType Ctype)
+void Line::setCellType(int index, CellType cType)
 {
-	data[index]->set(Ctype);
+	data[index]->set(cType);
 }
 
 CellType Line::getCellType(int index) const
@@ -85,16 +85,16 @@ size_t Line::getSize() const
 	return data.size();
 }
 
-int Line::getCountTypeCell(CellType Ctype) const
+int Line::getCountTypeCell(CellType cType) const
 {
-	//return std::count_if(data.begin(), data.end(), [Ctype](Cell* x) { return x->get() == Ctype ? true : false; });
-	return this->getCountTypeCell(0, static_cast<int>(data.size()), Ctype);
+	//return std::count_if(data.begin(), data.end(), [cType](Cell* x) { return x->get() == cType ? true : false; });
+	return this->getCountTypeCell(0, data.size(), cType);
 }
 
-int Line::getCountTypeCell(int startIndex, int endIndex, CellType Ctype) const
+int Line::getCountTypeCell(int startIndex, int endIndex, CellType cType) const
 {
 	int answer = 0;
-	if (startIndex < 0 || endIndex > static_cast<int>(data.size()))
+	if (startIndex < 0 || endIndex > data.size())
 	{
 		std::cout << "Выход за границы Line\n";
 		return answer;
@@ -102,17 +102,17 @@ int Line::getCountTypeCell(int startIndex, int endIndex, CellType Ctype) const
 
 	for (int i = startIndex; i < endIndex; ++i)
 	{
-		if (data[i]->get() == Ctype)
+		if (data[i]->get() == cType)
 			++answer;
 	}
 
 	return answer;
 }
 
-int Line::getLeftIndexTypeCell(int startIndex, int endIndex, CellType Ctype) const
+int Line::getLeftIndexTypeCell(int startIndex, int endIndex, CellType cType) const
 {
 	int answer = -1;
-	if (startIndex < 0 || endIndex > static_cast<int>(data.size()))
+	if (startIndex < 0 || endIndex > data.size())
 	{
 		std::cout << "Выход за границы Line\n";
 		return answer;
@@ -120,17 +120,17 @@ int Line::getLeftIndexTypeCell(int startIndex, int endIndex, CellType Ctype) con
 
 	for (int i = startIndex; i < endIndex; ++i)
 	{
-		if (data[i]->get() == Ctype)
+		if (data[i]->get() == cType)
 			return i;
 	}
 
 	return answer;
 }
 
-int Line::getRightIndexTypeCell(int startIndex, int endIndex, CellType Ctype) const
+int Line::getRightIndexTypeCell(int startIndex, int endIndex, CellType cType) const
 {
 	int answer = -1;
-	if (startIndex < 0 || endIndex > static_cast<int>(data.size()))
+	if (startIndex < 0 || endIndex > data.size())
 	{
 		std::cout << "Выход за границы Line\n";
 		return answer;
@@ -138,7 +138,7 @@ int Line::getRightIndexTypeCell(int startIndex, int endIndex, CellType Ctype) co
 
 	for (int i = endIndex - 1; i >= startIndex; --i)
 	{
-		if (data[i]->get() == Ctype)
+		if (data[i]->get() == cType)
 			return i;
 	}
 
@@ -148,7 +148,7 @@ int Line::getRightIndexTypeCell(int startIndex, int endIndex, CellType Ctype) co
 void Line::printToConsoleDifferences(const Line& line, int color) const
 {
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-	for (int index = 0; index < static_cast<int>(data.size()); ++index)
+	for (size_t index = 0; index < data.size(); ++index)
 	{
 		if (data[index]->get() != line.data[index]->get())
 			SetConsoleTextAttribute(console, color);
@@ -165,7 +165,7 @@ void Line::printToConsoleDifferences(const Line& line, int color) const
 void Line::printToConsoleColor(int whiteColor, int blackColor) const
 {
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-	for (int index = 0; index < static_cast<int>(data.size()); ++index)
+	for (size_t index = 0; index < data.size(); ++index)
 	{
 		if (data[index]->get() == CellType::black)
 			SetConsoleTextAttribute(console, blackColor);
@@ -186,10 +186,7 @@ std::string Line::toString() const
 	std::string answer;
 	for (const auto& i : data)
 	{
-		if (&i == data.data())
-			answer.append(i->toString());
-		else
-			answer.append(" " + i->toString());
+		answer.append((&i == data.data() ? "" : " ") + i->toString());
 	}
 
 	return answer;

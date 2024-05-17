@@ -1,10 +1,10 @@
 ﻿#include "IMethod.h"
 #include "../headers/Picture.h"
 
-void IMethod::setColorWithInformation(Picture* pict, const std::pair<int, int>& posit, int index, CellType Ctype) const
+void IMethod::setColorWithInformation(Picture* pict, const std::pair<int, int>& posit, int index, CellType cType) const
 {
 	if (posit.first == 0)
-		pict->setColor(posit.second, index, Ctype);
+		pict->setColor(posit.second, index, cType);
 	else
-		pict->setColor(index, posit.second, Ctype);
+		pict->setColor(index, posit.second, cType);
 }

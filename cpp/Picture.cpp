@@ -5,9 +5,9 @@ namespace
 	// функция нужна для проверки синхронизации строк и столбцов
 	bool checkSynchronization(const std::vector<Line*>& rows, const std::vector<Line*>& columns)
 	{
-		for (int i = 0; i < static_cast<int>(rows.size()); ++i)
+		for (size_t i = 0; i < rows.size(); ++i)
 		{
-			for (int j = 0; j < static_cast<int>(columns.size()); ++j)
+			for (size_t j = 0; j < columns.size(); ++j)
 			{
 				if (rows[i]->getCellType(j) != columns[j]->getCellType(i))
 					return false;
@@ -38,11 +38,11 @@ Picture::Picture(const Picture& x)
 	rows.resize(x.rows.size());
 	columns.resize(x.columns.size());
 
-	for (int i = 0; i < static_cast<int>(rows.size()); ++i)
+	for (size_t i = 0; i < rows.size(); ++i)
 	{
 		rows[i] = new Line(*x.rows[i]);
 	}
-	for (int i = 0; i < static_cast<int>(columns.size()); ++i)
+	for (size_t i = 0; i < columns.size(); ++i)
 	{
 		columns[i] = new Line(*x.columns[i]);
 	}
@@ -63,30 +63,30 @@ Picture::~Picture()
 Picture& Picture::operator=(const Picture& x)
 {
 	if (&x != this)
+		return *this;
+
+	// предварительная очистка памяти
+	for (auto& i : rows)
 	{
-		// предварительная очистка памяти
-		for (auto& i : rows)
-		{
-			if (i)
-				delete i;
-		}
-		for (auto& i : columns)
-		{
-			if (i)
-				delete i;
-		}
+		if (i)
+			delete i;
+	}
+	for (auto& i : columns)
+	{
+		if (i)
+			delete i;
+	}
 
-		rows.resize(x.rows.size());
-		columns.resize(x.columns.size());
+	rows.resize(x.rows.size());
+	columns.resize(x.columns.size());
 
-		for (int i = 0; i < static_cast<int>(rows.size()); ++i)
-		{
-			rows[i] = new Line(*x.rows[i]);
-		}
-		for (int i = 0; i < static_cast<int>(columns.size()); ++i)
-		{
-			columns[i] = new Line(*x.columns[i]);
-		}
+	for (size_t i = 0; i < rows.size(); ++i)
+	{
+		rows[i] = new Line(*x.rows[i]);
+	}
+	for (size_t i = 0; i < columns.size(); ++i)
+	{
+		columns[i] = new Line(*x.columns[i]);
 	}
 
 	return *this;
@@ -94,7 +94,7 @@ Picture& Picture::operator=(const Picture& x)
 
 bool Picture::operator==(const Picture& x) const
 {
-	for (int i = 0; i < static_cast<int>(rows.size()); ++i)
+	for (size_t i = 0; i < rows.size(); ++i)
 	{
 		if (*rows[i] != *x.rows[i])
 			return false;
@@ -110,12 +110,10 @@ bool Picture::operator!=(const Picture& x) const
 
 const Line* const Picture::getPtr(const std::pair<int, int>& x) const
 {
-	if (x.first == 0)
-		return rows[x.second];
-	else return columns[x.second];
+	return x.first == 0 ? rows[x.second] : columns[x.second];
 }
 
-void Picture::setColor(int rowNumber, int index, CellType Ctype)
+void Picture::setColor(int rowNumber, int index, CellType cType)
 {
 	if (!checkSynchronization(rows, columns))
 	{
@@ -125,8 +123,8 @@ void Picture::setColor(int rowNumber, int index, CellType Ctype)
 
 	// необходимо 2 вызова, чтобы была однозначная картинка
 	// и с точки зрения строк и с точки зрения столбцов
-	rows[rowNumber]->setCellType(index, Ctype);
-	columns[index]->setCellType(rowNumber, Ctype);
+	rows[rowNumber]->setCellType(index, cType);
+	columns[index]->setCellType(rowNumber, cType);
 }
 
 void Picture::printToConsoleDifferences(const Picture& pict, int color) const
@@ -135,7 +133,7 @@ void Picture::printToConsoleDifferences(const Picture& pict, int color) const
 		std::cout << "Ошибка в printToConsoleDifferences. Разные размеры изображений\n";
 	else
 	{
-		for (int strNum = 0; strNum < static_cast<int>(rows.size()); ++strNum)
+		for (size_t strNum = 0; strNum < rows.size(); ++strNum)
 		{
 			rows[strNum]->printToConsoleDifferences(*pict.rows[strNum], color);
 			std::cout << "\n";
@@ -145,7 +143,7 @@ void Picture::printToConsoleDifferences(const Picture& pict, int color) const
 
 void Picture::printToConsoleColor(int whiteColor, int blackColor) const
 {
-	for (int strNum = 0; strNum < static_cast<int>(rows.size()); ++strNum)
+	for (size_t strNum = 0; strNum < rows.size(); ++strNum)
 	{
 		rows[strNum]->printToConsoleColor(whiteColor, blackColor);
 		std::cout << "\n";

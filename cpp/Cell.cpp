@@ -5,14 +5,14 @@ Cell::Cell()
 	cellType = CellType::undefined; 
 }
 
-Cell::Cell(CellType Ctype) 
+Cell::Cell(CellType cType) 
 { 
-	cellType = Ctype; 
+	cellType = cType; 
 }
 
-void Cell::set(CellType Ctype)
+void Cell::set(CellType cType)
 {
-	cellType = Ctype;
+	cellType = cType;
 }
 
 CellType Cell::get() const
@@ -22,13 +22,7 @@ CellType Cell::get() const
 
 std::string Cell::toString() const
 {
-	std::string answer;
-	if (cellType == CellType::undefined)
-		answer.append("*");
-	else
-		answer.append(std::to_string(static_cast<int>(cellType)));
-
-	return answer;
+	return cellType == CellType::undefined ? "*" : std::to_string(static_cast<int>(cellType));
 }
 
 std::ostream& operator<<(std::ostream& out, const Cell& cell)

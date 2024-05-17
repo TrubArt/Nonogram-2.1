@@ -21,11 +21,11 @@ public:
 	// constructors, destructor, operators
 
 	Cell();
-	Cell(CellType Ctype);
+	Cell(CellType cType);
 
 	// getters & setters
 
-	void set(CellType Ctype);
+	void set(CellType cType);
 	CellType get() const;
 
 	// functions

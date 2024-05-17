@@ -9,7 +9,7 @@ Condition::Condition(int lineSize, const Line* const ptr, const std::vector<int>
 
 	allCountBlackCell = 0;
 
-	for (int i = 0; i < static_cast<int>(info.size()); ++i)
+	for (size_t i = 0; i < info.size(); ++i)
 	{
 		// данные для диапазонов передаются именно в таком формате, поскольку D - должен только сужаться, а RD - расширяться
 		numInfo.push_back(NumberAndBorders(info[i], std::make_pair(start, end), std::make_pair(end, start)));
@@ -56,30 +56,30 @@ const std::list<NumberAndBorders>& Condition::getNumInfo() const
 
 UpdCondReturnParam Condition::updateCondition()
 {
-	if (*data != statLine)
+	if (*data == statLine)
+		return UpdCondReturnParam::lineNotCompleted;
+
+	statLine = *data; // обновляем состояние строки до актуального
+
+	// обновление start
+	this->updateStart();
+
+	// обновление start
+	this->updateEnd();
+
+	// обновление диапазонов в numInfo
+	this->updateBorders();
+
+	// проверка на то, что строку можно однозначно определить
+	if (data->getCountTypeCell(CellType::white) == allCountWhiteCell)
 	{
-		statLine = *data; // обновляем состояние строки до актуального
-
-		// обновление start
-		this->updateStart();
-
-		// обновление start
-		this->updateEnd();
-
-		// обновление диапазонов в numInfo
-		this->updateBorders();
-
-		// проверка на то, что строку можно однозначно определить
-		if (data->getCountTypeCell(CellType::white) == allCountWhiteCell)
-		{
-			isFull = true;
-			return UpdCondReturnParam::setBlack;
-		}
-		if (data->getCountTypeCell(CellType::black) == allCountBlackCell)
-		{
-			isFull = true;
-			return UpdCondReturnParam::setWhite;
-		}
+		isFull = true;
+		return UpdCondReturnParam::setBlack;
+	}
+	if (data->getCountTypeCell(CellType::black) == allCountBlackCell)
+	{
+		isFull = true;
+		return UpdCondReturnParam::setWhite;
 	}
 
 	return UpdCondReturnParam::lineNotCompleted;
@@ -127,19 +127,18 @@ std::string Condition::toString() const
 {
 	if (isFull)
 		return "-\n";
-	else
+
+	std::string answer;
+	answer.append("\tНачало: " + std::to_string(start) + ", Конец: " + std::to_string(end) + "\n");
+	answer.append("\tСписок:");
+
+	for (const auto& i : numInfo)
 	{
-		std::string answer;
-		answer.append("\tНачало: " + std::to_string(start) + ", Конец: " + std::to_string(end) + "\n");
-		answer.append("\tСписок:");
-
-		for (const auto& i : numInfo)
-		{
-			answer.append(" " + i.toString());
-		}
-
-		return answer.append("\n");
+		answer.append(" " + i.toString());
 	}
+
+	return answer.append("\n");
+
 }
 
 void Condition::updateStart()
@@ -198,7 +197,7 @@ void Condition::updateBorders()
 
 void Condition::updateDia()
 {
-	enum helpEnum {space = 1};	// enum обозначающий пробел(одна CellType::whiteCell)
+	enum HelpEnum {space = 1};	// enum обозначающий пробел(одна CellType::whiteCell)
 
 	int leftNums = start;		// количество занятых клеток слева от текущего числа
 	int rightNums = end;		// количество занятых клеток справа от текущего числа

@@ -6,7 +6,7 @@
 Solution::Solution(const std::string& fileCondition, const std::string& fileAdditCondit)
 {
 	// enum для обращения к строкам/столбцам в conditions
-	enum lineClassifier { row, col };
+	enum LineClassifier { row, col };
 
 	FileLoader cond(fileCondition);
 
@@ -39,7 +39,6 @@ Solution::Solution(const std::string& fileCondition, const std::string& fileAddi
 	{
 		conditions[col][i] = new Condition(sizeN, pict->getPtr(std::make_pair(col, i)), cond.getNumbersSequence());
 	}
-
 }
 
 Solution::~Solution()
@@ -62,9 +61,9 @@ Picture Solution::getPicture() const
 
 bool Solution::isEndOfWork() const
 {
-	for (int i = 0; i < static_cast<int>(conditions.size()); ++i)
+	for (size_t i = 0; i < conditions.size(); ++i)
 	{
-		for (int j = 0; j < static_cast<int>(conditions[i].size()); ++j)
+		for (size_t j = 0; j < conditions[i].size(); ++j)
 		{
 			if (!conditions[i][j]->getIsFullFlag())
 				return false;
@@ -79,10 +78,10 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 	Picture pictDifferences(*pict);
 
 	std::array<std::vector<Condition*>, 2> condDif;
-	for (int i = 0; i < static_cast<int>(conditions.size()); ++i)
+	for (size_t i = 0; i < conditions.size(); ++i)
 	{
 		condDif[i].resize(conditions[i].size());
-		for (int j = 0; j < static_cast<int>(conditions[i].size()); ++j)
+		for (size_t j = 0; j < conditions[i].size(); ++j)
 		{
 			condDif[i][j] = new Condition(*conditions[i][j]);
 		}
@@ -97,23 +96,24 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 
 
 		// двойной цикл для прохода по всем строкам/столбцам
-		for (int rowOrCol = 0; rowOrCol < static_cast<int>(conditions.size()); ++rowOrCol)
+		for (size_t rowOrCol = 0; rowOrCol < conditions.size(); ++rowOrCol)
 		{
-			for (int positionInRowOrCol = 0; positionInRowOrCol < static_cast<int>(conditions[rowOrCol].size()); ++positionInRowOrCol)
+			for (size_t positionInRowOrCol = 0; positionInRowOrCol < conditions[rowOrCol].size(); ++positionInRowOrCol)
 			{
-				if (!conditions[rowOrCol][positionInRowOrCol]->getIsFullFlag())		// если строка ещё не завершена
-				{
-					// вызов определённого метода					
-					i->realization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol));
+				if (conditions[rowOrCol][positionInRowOrCol]->getIsFullFlag())		// если строка ещё не завершена
+					continue;
 
-					// метод по определению числа с края строки
-					StartEndNum().realization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol));
+				// вызов определённого метода					
+				i->realization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol));
 
-					// изменение данных о строке после цикла
-					UpdCondReturnParam updPar = conditions[rowOrCol][positionInRowOrCol]->updateCondition();
-					if (updPar != UpdCondReturnParam::lineNotCompleted)	// если строка закончена, то однозначно закрашиваем оставшиеся поля
-						LastColorSet().anotrealization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol), updPar);
-				}
+				// метод по определению числа с края строки
+				StartEndNum().realization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol));
+
+				// изменение данных о строке после цикла
+				UpdCondReturnParam updPar = conditions[rowOrCol][positionInRowOrCol]->updateCondition();
+				if (updPar != UpdCondReturnParam::lineNotCompleted)	// если строка закончена, то однозначно закрашиваем оставшиеся поля
+					LastColorSet().anotrealization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol), updPar);
+
 			}
 		}
 
@@ -124,9 +124,9 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 
 		std::cout << "\nГраницы после работы " << i->methodName() << ":\n"; //<< this->conditionsToString() << "\n";
 		this->printToConsoleConditionDifferences(condDif, 4);
-		for (int i = 0; i < static_cast<int>(conditions.size()); ++i)
+		for (size_t i = 0; i < conditions.size(); ++i)
 		{
-			for (int j = 0; j < static_cast<int>(conditions[i].size()); ++j)
+			for (size_t j = 0; j < conditions[i].size(); ++j)
 			{
 				*condDif[i][j] = *conditions[i][j];
 			}
@@ -136,9 +136,9 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 
 void Solution::printToConsoleConditionDifferences(const std::array<std::vector<Condition*>, 2>& cond, int color) const
 {
-	for (int i = 0; i < static_cast<int>(conditions.size()); ++i)
+	for (size_t i = 0; i < conditions.size(); ++i)
 	{
-		for (int j = 0; j < static_cast<int>(conditions[i].size()); ++j)
+		for (size_t j = 0; j < conditions[i].size(); ++j)
 		{
 			std::cout << i << " " << j << ": ";
 			conditions[i][j]->printToConsoleDifferences(*cond[i][j], color);
@@ -155,9 +155,9 @@ std::string Solution::conditionsToString() const
 {
 	std::string answer;
 
-	for (int i = 0; i < static_cast<int>(conditions.size()); ++i)
+	for (size_t i = 0; i < conditions.size(); ++i)
 	{
-		for (int j = 0; j < static_cast<int>(conditions[i].size()); ++j)
+		for (size_t j = 0; j < conditions[i].size(); ++j)
 		{
 			answer.append(std::to_string(i) + " " + std::to_string(j) + ": ");
 			answer.append(conditions[i][j]->toString());
