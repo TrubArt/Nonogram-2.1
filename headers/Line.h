@@ -31,16 +31,16 @@ public:
 
 	// functions
 
-	// возвращает количество клеток типа Ctype в Line
-	int getCountTypeCell(CellType Ctype) const;
+	// возвращает количество клеток типа cType в Line
+	int getCountTypeCell(CellType cType) const;
 
-	// возвращает количество клеток типа Ctype в диапазоне[startIndex, endIndex) в Line
+	// возвращает количество клеток типа cType в диапазоне[startIndex, endIndex) в Line
 	int getCountTypeCell(int startIndex, int endIndex, CellType cType) const;
 
-	// возвращает первый индекс слева типа Ctype в диапазоне[startIndex, endIndex) в Line
+	// возвращает первый индекс слева типа cType в диапазоне[startIndex, endIndex) в Line
 	int getLeftIndexTypeCell(int startIndex, int endIndex, CellType cType) const;
 
-	// возвращает первый индекс справа типа Ctype в диапазоне[startIndex, endIndex) в Line
+	// возвращает первый индекс справа типа cType в диапазоне[startIndex, endIndex) в Line
 	int getRightIndexTypeCell(int startIndex, int endIndex, CellType cType) const;
 
 	// выводит в консоль this, подсвечивая color различия между this и line

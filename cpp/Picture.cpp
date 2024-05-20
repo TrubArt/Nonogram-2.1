@@ -130,14 +130,15 @@ void Picture::setColor(int rowNumber, int index, CellType cType)
 void Picture::printToConsoleDifferences(const Picture& pict, int color) const
 {
 	if (pict.rows.size() != rows.size() || pict.columns.size() != columns.size())
-		std::cout << "Ошибка в printToConsoleDifferences. Разные размеры изображений\n";
-	else
 	{
-		for (size_t strNum = 0; strNum < rows.size(); ++strNum)
-		{
-			rows[strNum]->printToConsoleDifferences(*pict.rows[strNum], color);
-			std::cout << "\n";
-		}
+		std::cout << "Ошибка в printToConsoleDifferences. Разные размеры изображений\n";
+		return;
+	}
+
+	for (size_t strNum = 0; strNum < rows.size(); ++strNum)
+	{
+		rows[strNum]->printToConsoleDifferences(*pict.rows[strNum], color);
+		std::cout << "\n";
 	}
 }
 

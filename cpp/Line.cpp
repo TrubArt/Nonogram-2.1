@@ -54,15 +54,14 @@ bool Line::operator==(const Line& x) const
 {
 	if (data.size() != x.data.size())
 		return false;
-	else
+
+	for (size_t i = 0; i < data.size(); ++i)
 	{
-		for (size_t i = 0; i < data.size(); ++i)
-		{
-			if (data[i]->get() != x.data[i]->get())
-				return false;
-		}
-		return true;
+		if (data[i]->get() != x.data[i]->get())
+			return false;
 	}
+	return true;
+
 }
 
 bool Line::operator!=(const Line& x) const

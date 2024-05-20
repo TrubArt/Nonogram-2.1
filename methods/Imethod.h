@@ -26,8 +26,8 @@ public:
 	// возвращает описание принципа работы метода
 	virtual std::string principleOfMethodWork() const = 0;
 
-	// функция, закрашивающая в Pict posit.first под номером posit.second позиции index цветом Ctype
-	void setColorWithInformation(Picture* pict, const std::pair<int, int>& posit, int index, CellType Ctype) const;
+	// функция, закрашивающая в Pict posit.first под номером posit.second позиции index цветом cType
+	void setColorWithInformation(Picture* pict, const std::pair<int, int>& posit, int index, CellType cType) const;
 };
 
 #endif // !IMETHOD_NONOGRAM
