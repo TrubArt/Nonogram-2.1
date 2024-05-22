@@ -12,25 +12,25 @@ void StartEndNum::realization(const Condition* const cond, Picture* pict, const 
 	{
 		if (analyzedLine->getCellType(start) == CellType::white) {
 			++start;
-			continue;
 		}
-
-		++start;		// тк первая клетка числа уже закрашена
-		for (int count = 0; count <= (*startIter).getNum() - 1; ++count)		// закрашиваем количество клеток, равное числу
+		else
 		{
-			if (count < (*startIter).getNum() - 1)
+			++start;		// тк первая клетка числа уже закрашена
+			for (int count = 0; count <= (*startIter).getNum() - 1; ++count)		// закрашиваем количество клеток, равное числу
 			{
-				this->setColorWithInformation(pict, posit, start++, CellType::black);	// закрашиваем Number-1 клетку
+				if (count < (*startIter).getNum() - 1)
+				{
+					this->setColorWithInformation(pict, posit, start++, CellType::black);	// закрашиваем Number-1 клетку
+				}
+				else		// если count == (*startIter).getNum() - 1
+				{
+					if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
+						return;
+					this->setColorWithInformation(pict, posit, start++, CellType::white);	// и добавляем в конце 0
+				}
 			}
-			else		// если count == (*startIter).getNum() - 1
-			{
-				if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
-					return;
-				this->setColorWithInformation(pict, posit, start++, CellType::white);	// и добавляем в конце 0
-			}
+			++startIter;	// переходим к следующему числу
 		}
-		++startIter;	// переходим к следующему числу
-
 		if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
 			return;
 	}
@@ -40,25 +40,25 @@ void StartEndNum::realization(const Condition* const cond, Picture* pict, const 
 	{
 		if (analyzedLine->getCellType(end - 1) == CellType::white) {
 			--end;
-			continue;
 		}
-
-		--end;		// тк первая клетка числа уже закрашена
-		for (int count = 0; count <= (*endIter).getNum() - 1; ++count)
+		else
 		{
-			if (count < (*endIter).getNum() - 1)
+			--end;		// тк первая клетка числа уже закрашена
+			for (int count = 0; count <= (*endIter).getNum() - 1; ++count)
 			{
-				this->setColorWithInformation(pict, posit, --end, CellType::black);	// закрашиваем Number-1 клетку
+				if (count < (*endIter).getNum() - 1)
+				{
+					this->setColorWithInformation(pict, posit, --end, CellType::black);	// закрашиваем Number-1 клетку
+				}
+				else		// если count == (*startIter).getNum() - 1
+				{
+					if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
+						return;
+					this->setColorWithInformation(pict, posit, --end, CellType::white);	// и добавляем в конце 0
+				}
 			}
-			else		// если count == (*startIter).getNum() - 1
-			{
-				if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
-					return;
-				this->setColorWithInformation(pict, posit, --end, CellType::white);	// и добавляем в конце 0
-			}
+			++endIter;	// переходим к следующему числу
 		}
-		++endIter;	// переходим к следующему числу
-
 		if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
 			return;
 	}

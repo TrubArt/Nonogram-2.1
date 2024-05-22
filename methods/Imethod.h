@@ -1,7 +1,6 @@
 ﻿#pragma once
 #ifndef IMETHOD_NONOGRAM
 #define IMETHOD_NONOGRAM
-#include <utility>
 #include <string>
 
 // forward declaration

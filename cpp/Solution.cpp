@@ -90,11 +90,6 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 	// цикл с прогоном всех методов
 	for (const auto& i : methods)
 	{
-
-		//std::cout << "Изображение до работы методов\n" << this->pictToString() << "\n";
-		//std::cout << "Границы до работы методов\n" << this->conditionsToString() << "\n";
-
-
 		// двойной цикл для прохода по всем строкам/столбцам
 		for (size_t rowOrCol = 0; rowOrCol < conditions.size(); ++rowOrCol)
 		{

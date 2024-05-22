@@ -64,7 +64,7 @@ UpdCondReturnParam Condition::updateCondition()
 	// обновление start
 	this->updateStart();
 
-	// обновление start
+	// обновление end
 	this->updateEnd();
 
 	// обновление диапазонов в numInfo
