@@ -152,9 +152,9 @@ void Line::printToConsoleDifferences(const Line& line, int color) const
 		if (data[index]->get() != line.data[index]->get())
 			SetConsoleTextAttribute(console, color);
 
-		if (index == 0)
+		/*if (index == 0)
 			std::cout << data[index]->toString();
-		else
+		else*/
 			std::cout << " " << data[index]->toString();
 
 		SetConsoleTextAttribute(console, 7);
@@ -171,9 +171,9 @@ void Line::printToConsoleColor(int whiteColor, int blackColor) const
 		if (data[index]->get() == CellType::white)
 			SetConsoleTextAttribute(console, whiteColor);
 
-		if (index == 0)
+		/*if (index == 0)
 			std::cout << data[index]->toString();
-		else
+		else*/
 			std::cout << " " << data[index]->toString();
 
 		SetConsoleTextAttribute(console, 7);
@@ -185,7 +185,8 @@ std::string Line::toString() const
 	std::string answer;
 	for (const auto& i : data)
 	{
-		answer.append((&i == data.data() ? "" : " ") + i->toString());
+		//answer.append((&i == data.data() ? "" : " ") + i->toString());
+		answer.append(" " + i->toString());
 	}
 
 	return answer;

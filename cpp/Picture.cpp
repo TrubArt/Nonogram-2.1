@@ -63,30 +63,31 @@ Picture::~Picture()
 Picture& Picture::operator=(const Picture& x)
 {
 	if (&x != this)
-		return *this;
+	{
 
-	// предварительная очистка памяти
-	for (auto& i : rows)
-	{
-		if (i)
-			delete i;
-	}
-	for (auto& i : columns)
-	{
-		if (i)
-			delete i;
-	}
+		// предварительная очистка памяти
+		for (auto& i : rows)
+		{
+			if (i)
+				delete i;
+		}
+		for (auto& i : columns)
+		{
+			if (i)
+				delete i;
+		}
 
-	rows.resize(x.rows.size());
-	columns.resize(x.columns.size());
+		rows.resize(x.rows.size());
+		columns.resize(x.columns.size());
 
-	for (size_t i = 0; i < rows.size(); ++i)
-	{
-		rows[i] = new Line(*x.rows[i]);
-	}
-	for (size_t i = 0; i < columns.size(); ++i)
-	{
-		columns[i] = new Line(*x.columns[i]);
+		for (size_t i = 0; i < rows.size(); ++i)
+		{
+			rows[i] = new Line(*x.rows[i]);
+		}
+		for (size_t i = 0; i < columns.size(); ++i)
+		{
+			columns[i] = new Line(*x.columns[i]);
+		}
 	}
 
 	return *this;
