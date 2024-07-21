@@ -18,7 +18,7 @@ namespace
 	} // на релизе убрать
 }
 
-Picture::Picture(int N, int M)
+Picture::Picture(size_t N, size_t M)
 {
 	rows.resize(N);
 	columns.resize(M);
@@ -114,7 +114,7 @@ const Line* const Picture::getPtr(const std::pair<int, int>& x) const
 	return x.first == 0 ? rows[x.second] : columns[x.second];
 }
 
-void Picture::setColor(int rowNumber, int index, CellType cType)
+void Picture::setColor(int rowNumber, size_t index, CellType cType)
 {
 	if (!checkSynchronization(rows, columns))
 	{

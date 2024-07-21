@@ -38,7 +38,7 @@ public:
 	// constructors, destructor, operators
 
 	Condition() = delete;
-	Condition(int lineSize, const Line* const ptr, const std::vector<int>& info);
+	Condition(size_t lineSize, const Line* const ptr, const std::vector<int>& info);
 	~Condition();
 
 	// getters & setters

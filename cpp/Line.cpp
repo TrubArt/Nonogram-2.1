@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <Windows.h>
 
-Line::Line(int size)
+Line::Line(size_t size)
 {
 	data.resize(size);
 	for (auto& i : data)
@@ -69,12 +69,12 @@ bool Line::operator!=(const Line& x) const
 	return !(*this == x);
 }
 
-void Line::setCellType(int index, CellType cType)
+void Line::setCellType(size_t index, CellType cType)
 {
 	data[index]->set(cType);
 }
 
-CellType Line::getCellType(int index) const
+CellType Line::getCellType(size_t index) const
 {
 	return data[index]->get();
 }
@@ -90,16 +90,16 @@ int Line::getCountTypeCell(CellType cType) const
 	return this->getCountTypeCell(0, data.size(), cType);
 }
 
-int Line::getCountTypeCell(int startIndex, int endIndex, CellType cType) const
+int Line::getCountTypeCell(size_t startIndex, size_t endIndex, CellType cType) const
 {
 	int answer = 0;
-	if (startIndex < 0 || endIndex > data.size())
+	if (endIndex > data.size())
 	{
 		std::cout << "Выход за границы Line\n";
 		return answer;
 	}
 
-	for (int i = startIndex; i < endIndex; ++i)
+	for (size_t i = startIndex; i < endIndex; ++i)
 	{
 		if (data[i]->get() == cType)
 			++answer;
@@ -108,16 +108,16 @@ int Line::getCountTypeCell(int startIndex, int endIndex, CellType cType) const
 	return answer;
 }
 
-int Line::getLeftIndexTypeCell(int startIndex, int endIndex, CellType cType) const
+int Line::getLeftIndexTypeCell(size_t startIndex, size_t endIndex, CellType cType) const
 {
 	int answer = -1;
-	if (startIndex < 0 || endIndex > data.size())
+	if (endIndex > data.size())
 	{
 		std::cout << "Выход за границы Line\n";
 		return answer;
 	}
 
-	for (int i = startIndex; i < endIndex; ++i)
+	for (size_t i = startIndex; i < endIndex; ++i)
 	{
 		if (data[i]->get() == cType)
 			return i;
@@ -126,16 +126,17 @@ int Line::getLeftIndexTypeCell(int startIndex, int endIndex, CellType cType) con
 	return answer;
 }
 
-int Line::getRightIndexTypeCell(int startIndex, int endIndex, CellType cType) const
+int Line::getRightIndexTypeCell(size_t startIndex, size_t endIndex, CellType cType) const
 {
 	int answer = -1;
-	if (startIndex < 0 || endIndex > data.size())
+	if (endIndex > data.size())
 	{
 		std::cout << "Выход за границы Line\n";
 		return answer;
 	}
 
-	for (int i = endIndex - 1; i >= startIndex; --i)
+	int iStartIndex = static_cast<int>(startIndex);
+	for (int i = endIndex - 1; i >= iStartIndex; --i)
 	{
 		if (data[i]->get() == cType)
 			return i;

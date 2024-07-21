@@ -1,7 +1,7 @@
 ﻿#include "../headers/Condition.h"
 #include <Windows.h>
 
-Condition::Condition(int lineSize, const Line* const ptr, const std::vector<int>& info) : data{ ptr }, statLine(lineSize + 1) // делаем *data != statLine
+Condition::Condition(size_t lineSize, const Line* const ptr, const std::vector<int>& info) : data{ ptr }, statLine(lineSize + 1) // делаем *data != statLine
 {
 	start = 0;
 	end = lineSize;
@@ -138,7 +138,6 @@ std::string Condition::toString() const
 	}
 
 	return answer.append("\n");
-
 }
 
 void Condition::updateStart()

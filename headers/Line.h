@@ -16,7 +16,7 @@ public:
 	// constructors, destructor, operators
 
 	Line() = default;
-	Line(int size);
+	Line(size_t size);
 	Line(const Line& x);
 	~Line();
 	Line& operator=(const Line& x);
@@ -25,8 +25,8 @@ public:
 
 	// getters & setters
 
-	void setCellType(int index, CellType cType);
-	CellType getCellType(int index) const;
+	void setCellType(size_t index, CellType cType);
+	CellType getCellType(size_t index) const;
 	size_t getSize() const;
 
 	// functions
@@ -35,13 +35,13 @@ public:
 	int getCountTypeCell(CellType cType) const;
 
 	// возвращает количество клеток типа cType в диапазоне[startIndex, endIndex) в Line
-	int getCountTypeCell(int startIndex, int endIndex, CellType cType) const;
+	int getCountTypeCell(size_t startIndex, size_t endIndex, CellType cType) const;
 
 	// возвращает первый индекс слева типа cType в диапазоне[startIndex, endIndex) в Line
-	int getLeftIndexTypeCell(int startIndex, int endIndex, CellType cType) const;
+	int getLeftIndexTypeCell(size_t startIndex, size_t endIndex, CellType cType) const;
 
 	// возвращает первый индекс справа типа cType в диапазоне[startIndex, endIndex) в Line
-	int getRightIndexTypeCell(int startIndex, int endIndex, CellType cType) const;
+	int getRightIndexTypeCell(size_t startIndex, size_t endIndex, CellType cType) const;
 
 	// выводит в консоль this, подсвечивая color различия между this и line
 	void printToConsoleDifferences(const Line& line, int color) const;

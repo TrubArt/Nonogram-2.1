@@ -15,7 +15,7 @@ class Picture
 public:
 	// constructors, destructor, operators
 
-	Picture(int N, int M);
+	Picture(size_t N, size_t M);
 	Picture(const Picture& x);
 	~Picture();
 	Picture& operator=(const Picture& x);
@@ -25,7 +25,7 @@ public:
 	// getters & setters
 
 	const Line* const getPtr(const std::pair<int, int>& x) const;
-	void setColor(int rowNumber, int index, CellType cType);
+	void setColor(int rowNumber, size_t index, CellType cType);
 
 	// functions
 

@@ -14,8 +14,8 @@ Solution::Solution(const std::string& fileCondition, const std::string& fileAddi
 
 	// получение данных о размере изображения
 	tmp = cond.getNumbersSequence();
-	int sizeN = tmp[0];
-	int sizeM = tmp[1];
+	size_t sizeN = tmp[0];
+	size_t sizeM = tmp[1];
 
 	pict = new Picture(sizeN, sizeM);
 	conditions[row].resize(sizeN);
@@ -31,11 +31,11 @@ Solution::Solution(const std::string& fileCondition, const std::string& fileAddi
 	}
 
 	// потом получение данных о строках и столбцах
-	for (int i = 0; i < sizeN; ++i)
+	for (size_t i = 0; i < sizeN; ++i)
 	{
 		conditions[row][i] = new Condition(sizeM, pict->getPtr(std::make_pair(row, i)), cond.getNumbersSequence());
 	}
-	for (int i = 0; i < sizeM; ++i)
+	for (size_t i = 0; i < sizeM; ++i)
 	{
 		conditions[col][i] = new Condition(sizeN, pict->getPtr(std::make_pair(col, i)), cond.getNumbersSequence());
 	}
