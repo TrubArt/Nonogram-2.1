@@ -36,7 +36,9 @@ Line& Line::operator=(const Line& x)
 		for (const auto& i : data) // предварительно освобождается память
 		{
 			if (i)
+			{
 				delete i;
+			}
 		}
 
 		data.resize(x.data.size());
@@ -53,12 +55,16 @@ Line& Line::operator=(const Line& x)
 bool Line::operator==(const Line& x) const
 {
 	if (data.size() != x.data.size())
+	{
 		return false;
+	} 
 
 	for (size_t i = 0; i < data.size(); ++i)
 	{
 		if (data[i]->get() != x.data[i]->get())
+		{
 			return false;
+		}
 	}
 	return true;
 
@@ -102,7 +108,9 @@ int Line::getCountTypeCell(size_t startIndex, size_t endIndex, CellType cType) c
 	for (size_t i = startIndex; i < endIndex; ++i)
 	{
 		if (data[i]->get() == cType)
+		{
 			++answer;
+		}
 	}
 
 	return answer;
@@ -120,7 +128,9 @@ int Line::getLeftIndexTypeCell(size_t startIndex, size_t endIndex, CellType cTyp
 	for (size_t i = startIndex; i < endIndex; ++i)
 	{
 		if (data[i]->get() == cType)
+		{
 			return i;
+		}
 	}
 
 	return answer;
@@ -139,7 +149,9 @@ int Line::getRightIndexTypeCell(size_t startIndex, size_t endIndex, CellType cTy
 	for (int i = endIndex - 1; i >= iStartIndex; --i)
 	{
 		if (data[i]->get() == cType)
+		{
 			return i;
+		}
 	}
 
 	return answer;
@@ -151,14 +163,12 @@ void Line::printToConsoleDifferences(const Line& line, int color) const
 	for (size_t index = 0; index < data.size(); ++index)
 	{
 		if (data[index]->get() != line.data[index]->get())
+		{
 			SetConsoleTextAttribute(console, color);
+		}
+		std::cout << " " << data[index]->toString();
 
-		/*if (index == 0)
-			std::cout << data[index]->toString();
-		else*/
-			std::cout << " " << data[index]->toString();
-
-		SetConsoleTextAttribute(console, 7);
+		SetConsoleTextAttribute(console, 15);
 	}
 }
 
@@ -168,16 +178,16 @@ void Line::printToConsoleColor(int whiteColor, int blackColor) const
 	for (size_t index = 0; index < data.size(); ++index)
 	{
 		if (data[index]->get() == CellType::black)
+		{
 			SetConsoleTextAttribute(console, blackColor);
+		}
 		if (data[index]->get() == CellType::white)
+		{
 			SetConsoleTextAttribute(console, whiteColor);
+		}
+		std::cout << " " << data[index]->toString();
 
-		/*if (index == 0)
-			std::cout << data[index]->toString();
-		else*/
-			std::cout << " " << data[index]->toString();
-
-		SetConsoleTextAttribute(console, 7);
+		SetConsoleTextAttribute(console, 15);
 	}
 }
 
@@ -186,7 +196,6 @@ std::string Line::toString() const
 	std::string answer;
 	for (const auto& i : data)
 	{
-		//answer.append((&i == data.data() ? "" : " ") + i->toString());
 		answer.append(" " + i->toString());
 	}
 

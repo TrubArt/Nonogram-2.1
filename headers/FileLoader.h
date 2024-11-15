@@ -11,7 +11,7 @@ class FileLoader
 	std::ifstream file;	// поток с файлом
 
 public:
-	// constructors, destructor, operators
+	// ctors, dtor, operators
 
 	FileLoader() = delete;
 	FileLoader(const std::string& fileName);

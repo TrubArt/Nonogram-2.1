@@ -12,12 +12,12 @@ class MethodsVectorShell
 
 public:
 
-	// constructor, destructor, operators
+	// ctor, dtor, operators
 
 	MethodsVectorShell();
-	MethodsVectorShell(const MethodsVectorShell& x) = delete;
+	MethodsVectorShell(const MethodsVectorShell&) = delete;
 	~MethodsVectorShell();
-	MethodsVectorShell& operator=(const MethodsVectorShell& x) = delete;
+	MethodsVectorShell& operator=(const MethodsVectorShell&) = delete;
 
 	// functions
 

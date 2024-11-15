@@ -27,7 +27,9 @@ Solution::Solution(const std::string& fileCondition, const std::string& fileAddi
 	{
 		tmp = f2.getNumbersSequence();
 		if (!tmp.empty())
+		{
 			pict->setColor(tmp[0], tmp[1], static_cast<CellType>(tmp[2]));
+		}
 	}
 
 	// потом получение данных о строках и столбцах
@@ -66,7 +68,9 @@ bool Solution::isEndOfWork() const
 		for (size_t j = 0; j < conditions[i].size(); ++j)
 		{
 			if (!conditions[i][j]->getIsFullFlag())
+			{
 				return false;
+			}
 		}
 	}
 	return true;
@@ -77,6 +81,7 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 	// изображение, с которым будет сравниваться pict для вывода изменений в консоль
 	Picture pictDifferences(*pict);
 
+	// данные строк, с которыми будет сравниваться conditions для вывода изменений в консоль
 	std::array<std::vector<Condition*>, 2> condDif;
 	for (size_t i = 0; i < conditions.size(); ++i)
 	{
@@ -96,7 +101,9 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 			for (size_t positionInRowOrCol = 0; positionInRowOrCol < conditions[rowOrCol].size(); ++positionInRowOrCol)
 			{
 				if (conditions[rowOrCol][positionInRowOrCol]->getIsFullFlag())		// если строка ещё не завершена
+				{
 					continue;
+				}
 
 				// вызов определённого метода					
 				i->realization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol));
@@ -107,11 +114,14 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 				// изменение данных о строке после цикла
 				UpdCondReturnParam updPar = conditions[rowOrCol][positionInRowOrCol]->updateCondition();
 				if (updPar != UpdCondReturnParam::lineNotCompleted)	// если строка закончена, то однозначно закрашиваем оставшиеся поля
+				{
 					LastColorSet().anotrealization(conditions[rowOrCol][positionInRowOrCol], pict, std::make_pair(rowOrCol, positionInRowOrCol), updPar);
+				}
 
 			}
 		}
 
+		// изменение pictDifferences и condDif текущими значениями pict и conditions
 
 		std::cout << "Изображение после работы " << i->methodName() << ":\n"; //<< this->pictToString() << "\n";
 		pict->printToConsoleDifferences(pictDifferences, 4);

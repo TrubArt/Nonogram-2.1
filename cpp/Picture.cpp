@@ -10,7 +10,9 @@ namespace
 			for (size_t j = 0; j < columns.size(); ++j)
 			{
 				if (rows[i]->getCellType(j) != columns[j]->getCellType(i))
+				{
 					return false;
+				}
 			}
 		}
 
@@ -69,12 +71,16 @@ Picture& Picture::operator=(const Picture& x)
 		for (auto& i : rows)
 		{
 			if (i)
+			{
 				delete i;
+			}
 		}
 		for (auto& i : columns)
 		{
 			if (i)
+			{
 				delete i;
+			}
 		}
 
 		rows.resize(x.rows.size());
@@ -98,7 +104,9 @@ bool Picture::operator==(const Picture& x) const
 	for (size_t i = 0; i < rows.size(); ++i)
 	{
 		if (*rows[i] != *x.rows[i])
+		{
 			return false;
+		}
 	}
 
 	return true;

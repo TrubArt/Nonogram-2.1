@@ -15,7 +15,7 @@ public:
 	// функция, реализующая метод, изменяющий изображение. Входные параметры:
 	// cond - условие конкретной строки/столбца
 	// pict - изображение, в которое будут вноситься изменения
-	// posit.first - определяет срока или столбец
+	// posit.first - определяет строка или столбец
 	// posit.second - номер строки/столбца
 	virtual void realization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit) const = 0;
 

@@ -44,7 +44,9 @@ std::vector<int> FileLoader::getNumbersSequence()
 	for (size_t i = 0; i < str.length(); ++i)
 	{
 		if (str[i] != ' ')
+		{
 			tmpvec.push_back(getNumber(str, i));
+		}
 	}
 
 	return tmpvec;

@@ -10,7 +10,8 @@ void StartEndNum::realization(const Condition* const cond, Picture* pict, const 
 	std::list<NumberAndBorders>::const_iterator startIter = cond->getNumInfo().cbegin();
 	while (analyzedLine->getCellType(start) != CellType::undefined)
 	{
-		if (analyzedLine->getCellType(start) == CellType::white) {
+		if (analyzedLine->getCellType(start) == CellType::white) 
+		{
 			++start;
 		}
 		else
@@ -25,20 +26,25 @@ void StartEndNum::realization(const Condition* const cond, Picture* pict, const 
 				else		// если count == (*startIter).getNum() - 1
 				{
 					if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
+					{
 						return;
+					}
 					this->setColorWithInformation(pict, posit, start++, CellType::white);	// и добавляем в конце 0
 				}
 			}
 			++startIter;	// переходим к следующему числу
 		}
 		if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
+		{
 			return;
+		}
 	}
 
 	std::list<NumberAndBorders>::const_reverse_iterator endIter = cond->getNumInfo().crbegin();
 	while (analyzedLine->getCellType(end - 1) != CellType::undefined)
 	{
-		if (analyzedLine->getCellType(end - 1) == CellType::white) {
+		if (analyzedLine->getCellType(end - 1) == CellType::white) 
+		{
 			--end;
 		}
 		else
@@ -53,14 +59,18 @@ void StartEndNum::realization(const Condition* const cond, Picture* pict, const 
 				else		// если count == (*startIter).getNum() - 1
 				{
 					if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
+					{
 						return;
+					}
 					this->setColorWithInformation(pict, posit, --end, CellType::white);	// и добавляем в конце 0
 				}
 			}
 			++endIter;	// переходим к следующему числу
 		}
 		if (start >= end)	// условие эквивалентное тому, что строка полностью закрашена
+		{
 			return;
+		}
 	}
 }
 

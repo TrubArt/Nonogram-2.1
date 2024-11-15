@@ -9,7 +9,7 @@ class Line;
 // класс, хранящий число и его характеристики
 class NumberAndBorders
 {
-	typedef std::pair<int, int> myP;
+	using myP = std::pair<int, int>;
 
 	int number;		// число
 	myP dia;		// (D) диапазон, в котором может теоретически находиться число
@@ -17,7 +17,7 @@ class NumberAndBorders
 	myP realDia;	// (RD) диапазон, в котором находится только это число
 
 public:
-	// constructors, destructor, operators
+	// ctors, dtor, operators
 
 	NumberAndBorders(int number, const myP& dia, const myP& realdia);
 

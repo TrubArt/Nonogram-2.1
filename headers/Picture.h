@@ -16,15 +16,15 @@ public:
 	// constructors, destructor, operators
 
 	Picture(size_t N, size_t M);
-	Picture(const Picture& x);
+	Picture(const Picture&);
 	~Picture();
-	Picture& operator=(const Picture& x);
-	bool operator==(const Picture& x) const;
-	bool operator!=(const Picture& x) const;
+	Picture& operator=(const Picture&);
+	bool operator==(const Picture&) const;
+	bool operator!=(const Picture&) const;
 
 	// getters & setters
 
-	const Line* const getPtr(const std::pair<int, int>& x) const;
+	const Line* const getPtr(const std::pair<int, int>&) const;
 	void setColor(int rowNumber, size_t index, CellType cType);
 
 	// functions
@@ -32,7 +32,7 @@ public:
 	// выводит в консоль this, подсвечивая color различия между this и pict
 	void printToConsoleDifferences(const Picture& pict, int color) const;
 
-	// выводит в консоль Picture, где CellType::white подсвечены цветом whiteColor, а подсвечены цветом CellType::black blackColor
+	// выводит в консоль Picture, где CellType::white подсвечены цветом whiteColor, а CellType::black подсвечены цветом blackColor
 	void printToConsoleColor(int whiteColor, int blackColor) const;
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Picture& pict); // печать изображения

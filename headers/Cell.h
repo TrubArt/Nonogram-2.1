@@ -18,7 +18,7 @@ class Cell
 	CellType cellType; //тип клетки
 
 public:
-	// constructors, destructor, operators
+	// ctors, dctor, operators
 
 	Cell();
 	Cell(CellType cType);

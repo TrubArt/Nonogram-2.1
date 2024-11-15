@@ -1,14 +1,14 @@
 ﻿#include "../headers/Condition.h"
 #include <Windows.h>
 
-Condition::Condition(size_t lineSize, const Line* const ptr, const std::vector<int>& info) : data{ ptr }, statLine(lineSize + 1) // делаем *data != statLine
+Condition::Condition(size_t lineSize, const Line* const ptr, const std::vector<int>& info)
+	: allCountBlackCell(0)
+	, data(ptr)
+	, isFull(false)
+	, start(0)
+	, end(static_cast<int>(lineSize))
+	, statLine(lineSize + 1) // делаем *data != statLine
 {
-	start = 0;
-	end = lineSize;
-	isFull = false;
-
-	allCountBlackCell = 0;
-
 	for (size_t i = 0; i < info.size(); ++i)
 	{
 		// данные для диапазонов передаются именно в таком формате, поскольку D - должен только сужаться, а RD - расширяться
@@ -57,7 +57,9 @@ const std::list<NumberAndBorders>& Condition::getNumInfo() const
 UpdCondReturnParam Condition::updateCondition()
 {
 	if (*data == statLine)
+	{
 		return UpdCondReturnParam::lineNotCompleted;
+	}
 
 	statLine = *data; // обновляем состояние строки до актуального
 
@@ -91,25 +93,31 @@ void Condition::printToConsoleDifferences(const Condition& cond, int color) cons
 	if (isFull)
 	{
 		if (isFull != cond.isFull)
+		{
 			SetConsoleTextAttribute(console, 4);
+		}
 		std::cout << "-\n";
-		SetConsoleTextAttribute(console, 7);
+		SetConsoleTextAttribute(console, 15);
 	}
 	else
 	{
 		std::cout << "\tНачало: ";
 
 		if (start != cond.start)
+		{
 			SetConsoleTextAttribute(console, 4);
+		}
 		std::cout << start;
-		SetConsoleTextAttribute(console, 7);
+		SetConsoleTextAttribute(console, 15);
 
 		std::cout << ", Конец: ";
 
 		if (end != cond.end)
+		{
 			SetConsoleTextAttribute(console, 4);
+		}
 		std::cout << end;
-		SetConsoleTextAttribute(console, 7);
+		SetConsoleTextAttribute(console, 15);
 
 		std::cout << "\n\tСписок:";
 
@@ -126,7 +134,9 @@ void Condition::printToConsoleDifferences(const Condition& cond, int color) cons
 std::string Condition::toString() const
 {
 	if (isFull)
+	{
 		return "-\n";
+	}
 
 	std::string answer;
 	answer.append("\tНачало: " + std::to_string(start) + ", Конец: " + std::to_string(end) + "\n");
@@ -143,12 +153,16 @@ std::string Condition::toString() const
 void Condition::updateStart()
 {
 	if (start >= end)
+	{
 		return;
+	}
 
 	while (data->getCellType(start) != CellType::undefined)
 	{
-		if (data->getCellType(start) == CellType::white) 
+		if (data->getCellType(start) == CellType::white)
+		{
 			++start;
+		}
 		else
 		{
 			// данный случай обрабатывается методом StartEndNum. Он закрашивает необходимые клетки.
@@ -159,19 +173,25 @@ void Condition::updateStart()
 		}
 
 		if (start >= end)
+		{
 			return;
+		}
 	}
 }
 
 void Condition::updateEnd()
 {
 	if (start >= end)
+	{
 		return;
+	}
 
 	while (data->getCellType(end - 1) != CellType::undefined)
 	{
-		if (data->getCellType(end - 1) == CellType::white) 
+		if (data->getCellType(end - 1) == CellType::white)
+		{
 			--end;
+		}
 		else
 		{
 			// данный случай обрабатывается методом StartEndNum. Он закрашивает необходимые клетки.
@@ -182,7 +202,9 @@ void Condition::updateEnd()
 		}
 
 		if (start >= end)
+		{
 			return;
+		}
 	}
 }
 
@@ -191,32 +213,40 @@ void Condition::updateBorders()
 	this->updateDia();
 	this->updateRealDia();
 	for (auto& i : numInfo)
+	{
 		i.updateNumberAndBorders(data);
+	}
 }
 
 void Condition::updateDia()
 {
 	enum HelpEnum {space = 1};	// enum обозначающий пробел(одна CellType::whiteCell)
 
-	int leftNums = start;		// количество занятых клеток слева от текущего числа
 	int rightNums = end;		// количество занятых клеток справа от текущего числа
-	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)	// задаём посчитанные начальные параметры
+
+	// подсчёт оптимальной правой границы для первого числа
+	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)
 	{
 		rightNums -= it->getNum() + space;
 	}
 
-	// считаем для каждого числа его диапазон
+	int leftNums = start;		// количество занятых клеток слева от текущего числа
 
+	// подсчёт для каждого числа нового диапазона
 	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)
 	{
-		rightNums += it->getNum() + space;	// добавление текущего числа слева
+		rightNums += it->getNum() + space;	// добавление текущего числа для анализа и пересмотр его правой границы
 
 		if (leftNums > it->getD().first)	// улучшениe startDia
+		{
 			it->setD(std::make_pair(leftNums, it->getD().second));
+		}
 		if (rightNums < it->getD().second)	// улучшениe endDia
+		{
 			it->setD(std::make_pair(it->getD().first, rightNums));
+		}
 
-		leftNums += it->getNum() + space;	// добавление текущего числа справа
+		leftNums += it->getNum() + space;	// удаление текущего числа из анализа, изменение левой границы для следующего числа
 	}
 }
 
@@ -230,18 +260,26 @@ void Condition::updateRealDia()
 		auto ittmp = it;
 		// определение rightBorder
 		if (it == --numInfo.end())
+		{
 			rightBorder = end;
+		}
 		else
+		{
 			rightBorder = (++ittmp)->getD().first;
+		}
 
 		if (leftBorder < rightBorder)	// проверка что в таком диапазоне есть хотя бы 1 клетка
 		{
 			it->setFlagExistRd(true);	// найден реальный диапазон
 
 			if (leftBorder < it->getRD().first)		// улучшениe startRDia
+			{
 				it->setRD(std::make_pair(leftBorder, it->getRD().second));
+			}
 			if (rightBorder > it->getRD().second)	// улучшениe endRDia
+			{
 				it->setRD(std::make_pair(it->getRD().first, rightBorder));
+			}
 		}
 
 		// определение next leftBorder

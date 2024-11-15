@@ -22,20 +22,20 @@ class Condition
 {
 	// неизменяемые в процессе решения величины
 
-	int allCountWhiteCell;					// общее количество белых клеток - '0'
-	int allCountBlackCell;					// общее количество чёрных клеток - '1'
-	const Line* data;					// константный указатель на соответствующий Line
+	int allCountWhiteCell;					// общее количество белых клеток - CellType::white ('0')
+	int allCountBlackCell;					// общее количество чёрных клеток - CellType::black ('1')
+	const Line* data;						// константный указатель на соответствующий Line
 
 	// изменяемые в процессе решения величины
 
 	bool isFull;							// индикатор того заполнена ли строка полностью
-	int start;								// индекс первой '*'
-	int end;								// индекс после последней '*'
+	int start;								// индекс первой CellType::undefined ('*')
+	int end;								// индекс после последней CellType::undefined ('*')
 	Line statLine;							// запоминает состояние строки для сравнения с data
 	std::list<NumberAndBorders> numInfo;	// список, хранящий все числа из data
 
 public:
-	// constructors, destructor, operators
+	// ctors, dtor, operators
 
 	Condition() = delete;
 	Condition(size_t lineSize, const Line* const ptr, const std::vector<int>& info);

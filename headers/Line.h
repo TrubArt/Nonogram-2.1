@@ -13,15 +13,15 @@ class Line
 	// переход на умные указатели
 
 public:
-	// constructors, destructor, operators
+	// ctors, dtor, operators
 
 	Line() = default;
-	Line(size_t size);
-	Line(const Line& x);
+	Line(size_t);
+	Line(const Line&);
 	~Line();
-	Line& operator=(const Line& x);
-	bool operator==(const Line& x) const;
-	bool operator!=(const Line& x) const;
+	Line& operator=(const Line&);
+	bool operator==(const Line&) const;
+	bool operator!=(const Line&) const;
 
 	// getters & setters
 
@@ -43,10 +43,10 @@ public:
 	// возвращает первый индекс справа типа cType в диапазоне[startIndex, endIndex) в Line
 	int getRightIndexTypeCell(size_t startIndex, size_t endIndex, CellType cType) const;
 
-	// выводит в консоль this, подсвечивая color различия между this и line
+	// выводит в консоль this, подсвечивая цветом color различия между this и line
 	void printToConsoleDifferences(const Line& line, int color) const;
 
-	// выводит в консоль Line, где CellType::white подсвечены цветом whiteColor, а подсвечены цветом CellType::black blackColor
+	// выводит в консоль Line, где CellType::white подсвечены цветом whiteColor, а CellType::black подсвечены цветом blackColor
 	void printToConsoleColor(int whiteColor, int blackColor) const;
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Line& line);

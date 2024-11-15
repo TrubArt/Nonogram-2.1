@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#define NOMINMAX
 #include <Windows.h>
 #include "headers/Solution.h"
 #include "headers/Picture.h"
@@ -20,7 +21,9 @@ bool nonogramSolution(Solution& maintask, const std::vector<IMethod*>& methods)
 
 		// если после работы методов нет изменений
 		if (pictureToCompare == maintask.getPicture() && !maintask.isEndOfWork())
+		{
 			noChangesAfterCycle = true;
+		}
 	}
 
 	return noChangesAfterCycle;
@@ -45,8 +48,10 @@ int main()
 
 	// обработка причины прекращения цикла
 	if (earlyCycleOut)
+	{
 		std::cout << "\nИзображение не закончено после отработки всех методов:(\n";
+	}
 
 	std::cout << "Изображение после окончания решения:\n";
-	maintask1.getPicture().printToConsoleColor(8, 1);
+	maintask1.getPicture().printToConsoleColor(0, 1);
 }

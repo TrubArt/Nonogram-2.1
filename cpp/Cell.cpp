@@ -1,14 +1,10 @@
 ﻿#include "../headers/Cell.h"
 
-Cell::Cell()
-{ 
-	cellType = CellType::undefined; 
-}
+Cell::Cell() : cellType(CellType::undefined)
+{}
 
-Cell::Cell(CellType cType) 
-{ 
-	cellType = cType; 
-}
+Cell::Cell(CellType cType) : cellType(cType)
+{}
 
 void Cell::set(CellType cType)
 {

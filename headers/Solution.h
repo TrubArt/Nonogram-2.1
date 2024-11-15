@@ -15,7 +15,7 @@ class Solution
 	std::array<std::vector<Condition*>, 2> conditions;	// массив с условиями для строк и столбцов
 
 public:
-	// constructors, destructor, operators
+	// ctors, dctor, operators
 	
 	Solution() = delete;
 
