@@ -17,7 +17,7 @@ public:
 	// pict - изображение, в которое будут вноситься изменения
 	// posit.first - определяет строка или столбец
 	// posit.second - номер строки/столбца
-	virtual void realization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit) const = 0;
+	virtual void realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const = 0;
 
 	// возвращает название метода
 	virtual std::string methodName() const = 0;

@@ -24,11 +24,6 @@ Condition::Condition(size_t lineSize, const Line* const ptr, const std::vector<i
 	allCountWhiteCell = lineSize - allCountBlackCell;
 }
 
-Condition::~Condition()
-{
-	// delete data не делается, тк за освобождение этого указателя отвечает класс Picture 
-}
-
 bool Condition::getIsFullFlag() const
 {
 	return isFull;

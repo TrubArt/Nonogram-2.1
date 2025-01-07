@@ -15,6 +15,7 @@ class Picture
 public:
 	// constructors, destructor, operators
 
+	Picture() = default;
 	Picture(size_t N, size_t M);
 	Picture(const Picture&);
 	~Picture();

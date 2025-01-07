@@ -7,7 +7,7 @@
 class UnambiguousWhite : public IMethod
 {
 public:
-	void realization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit) const override;
+	void realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const override;
 	std::string methodName() const override;
 	std::string principleOfMethodWork() const override;
 };

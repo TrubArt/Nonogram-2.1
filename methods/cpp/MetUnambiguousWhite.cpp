@@ -1,10 +1,10 @@
 ﻿#include "../headers/MetUnambiguousWhite.h"
 #include "../../headers/Solution.h"
 
-void UnambiguousWhite::realization(const Condition* const cond, Picture* pict, const std::pair<int, int>& posit) const
+void UnambiguousWhite::realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const
 {
-	auto list = cond->getNumInfo();
-	int leftBorder = cond->getStart();
+	auto list = cond.getNumInfo();
+	int leftBorder = cond.getStart();
 
 	for (const auto& element : list)
 	{
@@ -17,7 +17,7 @@ void UnambiguousWhite::realization(const Condition* const cond, Picture* pict, c
 	}
 
 	// анализ элементов между LastElement.getD().second и cond->getEnd()
-	for (int index = leftBorder; index < cond->getEnd(); ++index)
+	for (int index = leftBorder; index < cond.getEnd(); ++index)
 	{
 		this->setColorWithInformation(pict, posit, index, CellType::white);
 	}

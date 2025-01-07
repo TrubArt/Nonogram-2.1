@@ -39,7 +39,6 @@ public:
 
 	Condition() = default;
 	Condition(size_t lineSize, const Line* const ptr, const std::vector<int>& info);
-	~Condition();
 
 	// getters & setters
 
