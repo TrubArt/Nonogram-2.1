@@ -17,15 +17,15 @@ class Solution
 public:
 	// ctors, dctor, operators
 	
-	Solution() = delete;
+	Solution() = default;
 
 	/// <param name="fileCondition:">файл с условиями строк</param>
 	/// <param name="fileAdditCondit:">файл с доп условиями цвета</param>
 	Solution(const std::string& fileCondition, const std::string& fileAdditCondit);
 
-	Solution(const Solution&) = delete;
+	Solution(const Solution&);
 	~Solution();
-	Solution& operator=(const Solution&) = delete;
+	Solution& operator=(const Solution&);
 
 	// getters & setters
 
@@ -38,7 +38,7 @@ public:
 	void callingMethods(const std::vector<IMethod*>& methods);
 
 	// выводит в консоль this, подсвечивая color различия между this и cond
-	void printToConsoleConditionDifferences(const std::array<std::vector<Condition*>, 2>& cond, int color) const;
+	void printToConsoleConditionDifferences(const std::array<std::vector<Condition>, 2>& cond, int color) const;
 	std::string pictToString() const;
 	std::string conditionsToString() const;
 };

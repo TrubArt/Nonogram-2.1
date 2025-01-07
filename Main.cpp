@@ -54,4 +54,5 @@ int main()
 
 	std::cout << "Изображение после окончания решения:\n";
 	maintask1.getPicture().printToConsoleColor(0, 1);
+	std::cin.get();
 }

@@ -37,7 +37,7 @@ class Condition
 public:
 	// ctors, dtor, operators
 
-	Condition() = delete;
+	Condition() = default;
 	Condition(size_t lineSize, const Line* const ptr, const std::vector<int>& info);
 	~Condition();
 

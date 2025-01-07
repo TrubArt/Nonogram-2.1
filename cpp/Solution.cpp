@@ -82,13 +82,13 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 	Picture pictDifferences(*pict);
 
 	// данные строк, с которыми будет сравниваться conditions для вывода изменений в консоль
-	std::array<std::vector<Condition*>, 2> condDif;
+	std::array<std::vector<Condition>, 2> condDif;
 	for (size_t i = 0; i < conditions.size(); ++i)
 	{
 		condDif[i].resize(conditions[i].size());
 		for (size_t j = 0; j < conditions[i].size(); ++j)
 		{
-			condDif[i][j] = new Condition(*conditions[i][j]);
+			condDif[i][j] = *conditions[i][j];
 		}
 	}
 
@@ -100,7 +100,7 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 		{
 			for (size_t positionInRowOrCol = 0; positionInRowOrCol < conditions[rowOrCol].size(); ++positionInRowOrCol)
 			{
-				if (conditions[rowOrCol][positionInRowOrCol]->getIsFullFlag())		// если строка ещё не завершена
+				if (conditions[rowOrCol][positionInRowOrCol]->getIsFullFlag())		// если строка уже завершена
 				{
 					continue;
 				}
@@ -133,20 +133,20 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 		{
 			for (size_t j = 0; j < conditions[i].size(); ++j)
 			{
-				*condDif[i][j] = *conditions[i][j];
+				condDif[i][j] = *conditions[i][j];
 			}
 		}
 	}
 }
 
-void Solution::printToConsoleConditionDifferences(const std::array<std::vector<Condition*>, 2>& cond, int color) const
+void Solution::printToConsoleConditionDifferences(const std::array<std::vector<Condition>, 2>& cond, int color) const
 {
 	for (size_t i = 0; i < conditions.size(); ++i)
 	{
 		for (size_t j = 0; j < conditions[i].size(); ++j)
 		{
 			std::cout << i << " " << j << ": ";
-			conditions[i][j]->printToConsoleDifferences(*cond[i][j], color);
+			conditions[i][j]->printToConsoleDifferences(cond[i][j], color);
 		}
 	}
 }
