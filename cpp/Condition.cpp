@@ -1,6 +1,15 @@
 ﻿#include "../headers/Condition.h"
 #include <Windows.h>
 
+Condition::Condition()
+	: allCountWhiteCell(0)
+	, allCountBlackCell(0)
+	, data(nullptr)
+	, isFull(false)
+	, start(0)
+	, end(0)
+{}
+
 Condition::Condition(size_t lineSize, const Line* const ptr, const std::vector<int>& info)
 	: allCountBlackCell(0)
 	, data(ptr)
@@ -14,14 +23,14 @@ Condition::Condition(size_t lineSize, const Line* const ptr, const std::vector<i
 		// данные для диапазонов передаются именно в таком формате, поскольку D - должен только сужаться, а RD - расширяться
 		numInfo.push_back(NumberAndBorders(info[i], std::make_pair(start, end), std::make_pair(end, start)));
 	}
-	this->updateBorders();
 
 	for (const auto& i : numInfo)
 	{
 		allCountBlackCell += i.getNum();
 	}
-
 	allCountWhiteCell = lineSize - allCountBlackCell;
+
+	this->updateBorders();
 }
 
 bool Condition::getIsFullFlag() const
@@ -93,37 +102,36 @@ void Condition::printToConsoleDifferences(const Condition& cond, int color) cons
 		}
 		std::cout << "-\n";
 		SetConsoleTextAttribute(console, 15);
+		return;
 	}
-	else
+
+	std::cout << "\tНачало: ";
+
+	if (start != cond.start)
 	{
-		std::cout << "\tНачало: ";
-
-		if (start != cond.start)
-		{
-			SetConsoleTextAttribute(console, 4);
-		}
-		std::cout << start;
-		SetConsoleTextAttribute(console, 15);
-
-		std::cout << ", Конец: ";
-
-		if (end != cond.end)
-		{
-			SetConsoleTextAttribute(console, 4);
-		}
-		std::cout << end;
-		SetConsoleTextAttribute(console, 15);
-
-		std::cout << "\n\tСписок:";
-
-		for (auto thisIt = numInfo.cbegin(), condIt = cond.numInfo.cbegin(); thisIt!= numInfo.cend(); ++thisIt, ++condIt)
-		{
-			std::cout << " ";
-			thisIt->printToConsoleDifferences((*condIt), color);
-		}
-
-		std::cout << "\n";
+		SetConsoleTextAttribute(console, 4);
 	}
+	std::cout << start;
+	SetConsoleTextAttribute(console, 15);
+
+	std::cout << ", Конец: ";
+
+	if (end != cond.end)
+	{
+		SetConsoleTextAttribute(console, 4);
+	}
+	std::cout << end;
+	SetConsoleTextAttribute(console, 15);
+
+	std::cout << "\n\tСписок:";
+
+	for (auto thisIt = numInfo.cbegin(), condIt = cond.numInfo.cbegin(); thisIt != numInfo.cend(); ++thisIt, ++condIt)
+	{
+		std::cout << " ";
+		thisIt->printToConsoleDifferences((*condIt), color);
+	}
+
+	std::cout << "\n";
 }
 
 std::string Condition::toString() const
@@ -220,7 +228,7 @@ void Condition::updateDia()
 	int rightNums = end;		// количество занятых клеток справа от текущего числа
 
 	// подсчёт оптимальной правой границы для первого числа
-	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)
+	for (auto it = numInfo.cbegin(); it != numInfo.cend(); ++it)
 	{
 		rightNums -= it->getNum() + space;
 	}

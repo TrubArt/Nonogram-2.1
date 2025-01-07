@@ -37,7 +37,7 @@ class Condition
 public:
 	// ctors, dtor, operators
 
-	Condition() = default;
+	Condition();
 	Condition(size_t lineSize, const Line* const ptr, const std::vector<int>& info);
 
 	// getters & setters

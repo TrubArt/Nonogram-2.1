@@ -76,22 +76,24 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 		{
 			for (size_t positionInRowOrCol = 0; positionInRowOrCol < conditions[rowOrCol].size(); ++positionInRowOrCol)
 			{
-				if (conditions[rowOrCol][positionInRowOrCol].getIsFullFlag())		// если строка уже завершена
+				Condition& curentCond = conditions[rowOrCol][positionInRowOrCol];
+
+				if (curentCond.getIsFullFlag())		// если строка уже завершена
 				{
 					continue;
 				}
 
 				// вызов определённого метода					
-				i->realization(conditions[rowOrCol][positionInRowOrCol], &pict, std::make_pair(rowOrCol, positionInRowOrCol));
+				i->realization(curentCond, &pict, std::make_pair(rowOrCol, positionInRowOrCol));
 
 				// метод по определению числа с края строки
-				StartEndNum().realization(conditions[rowOrCol][positionInRowOrCol], &pict, std::make_pair(rowOrCol, positionInRowOrCol));
+				StartEndNum().realization(curentCond, &pict, std::make_pair(rowOrCol, positionInRowOrCol));
 
 				// изменение данных о строке после цикла
-				UpdCondReturnParam updPar = conditions[rowOrCol][positionInRowOrCol].updateCondition();
+				UpdCondReturnParam updPar = curentCond.updateCondition();
 				if (updPar != UpdCondReturnParam::lineNotCompleted)	// если строка закончена, то однозначно закрашиваем оставшиеся поля
 				{
-					LastColorSet().anotrealization(conditions[rowOrCol][positionInRowOrCol], &pict, std::make_pair(rowOrCol, positionInRowOrCol), updPar);
+					LastColorSet().anotrealization(curentCond, &pict, std::make_pair(rowOrCol, positionInRowOrCol), updPar);
 				}
 
 			}
