@@ -1,5 +1,4 @@
-﻿#pragma once
-#ifndef PICTURE_NONOGRAM
+﻿#ifndef PICTURE_NONOGRAM
 #define PICTURE_NONOGRAM
 #include "Line.h"
 #include <iostream>

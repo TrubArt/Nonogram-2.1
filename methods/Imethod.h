@@ -1,5 +1,4 @@
-﻿#pragma once
-#ifndef IMETHOD_NONOGRAM
+﻿#ifndef IMETHOD_NONOGRAM
 #define IMETHOD_NONOGRAM
 #include <string>
 

@@ -1,5 +1,4 @@
-﻿#pragma once
-#ifndef METHOD_LAST_COLOR_SET
+﻿#ifndef METHOD_LAST_COLOR_SET
 #define METHOD_LAST_COLOR_SET
 #include "../IMethod.h"
 

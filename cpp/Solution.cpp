@@ -65,7 +65,7 @@ bool Solution::isEndOfWork() const
 
 void Solution::callingMethods(const std::vector<IMethod*>& methods)
 {
-	//// копия, с которыми будет сравниваться *this для вывода изменений в консоль
+	//// копия, с которой будет сравниваться *this для вывода изменений в консоль
 	Solution copy = *this;
 
 	// цикл с прогоном всех методов

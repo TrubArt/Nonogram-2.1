@@ -1,5 +1,4 @@
-﻿#pragma once
-#ifndef METHODSVECTORSHELL_NONOGRAM
+﻿#ifndef METHODSVECTORSHELL_NONOGRAM
 #define METHODSVECTORSHELL_NONOGRAM
 #include <vector>
 

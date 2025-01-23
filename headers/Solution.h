@@ -1,5 +1,4 @@
-﻿#pragma once
-#ifndef SOLUTION_NONOGRAM
+﻿#ifndef SOLUTION_NONOGRAM
 #define SOLUTION_NONOGRAM
 #include "Picture.h"
 #include "Condition.h"

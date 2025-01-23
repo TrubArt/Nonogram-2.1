@@ -1,6 +1,5 @@
-﻿#pragma once
-#ifndef CONITION_NONOGRAM
-#define CONITION_NONOGRAM
+﻿#ifndef CONDITION_NONOGRAM
+#define CONDITION_NONOGRAM
 #include "Line.h"
 #include "NumberAndBorder.h"
 #include <string>
@@ -38,12 +37,12 @@ public:
 	// ctors, dtor, operators
 
 	Condition();
-	Condition(size_t lineSize, const Line* const ptr, const std::vector<int>& info);
+	Condition(size_t lineSize, const Line* ptr, const std::vector<int>& info);
 
 	// getters & setters
 
 	bool getIsFullFlag() const;
-	const Line* const getLinePtr() const;
+	const Line* getLinePtr() const;
 	int getStart() const;
 	int getEnd() const;
 	const std::list<NumberAndBorders>& getNumInfo() const;
@@ -69,4 +68,4 @@ private:
 	// существует ли диапазон между реальными границами соседних чисел
 	void updateRealDia();
 };
-#endif // !CONITION_NONOGRAM
+#endif // !CONDITION_NONOGRAM

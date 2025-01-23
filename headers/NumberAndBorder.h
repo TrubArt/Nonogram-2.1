@@ -1,5 +1,4 @@
-﻿#pragma once
-#ifndef NUMBER_NONOGRAM
+﻿#ifndef NUMBER_NONOGRAM
 #define NUMBER_NONOGRAM
 #include <string>
 

@@ -1,5 +1,4 @@
-﻿#pragma once
-#ifndef FILELOADER_NONOGRAM
+﻿#ifndef FILELOADER_NONOGRAM
 #define FILELOADER_NONOGRAM
 #include <fstream>
 #include <string>
@@ -13,7 +12,7 @@ class FileLoader
 public:
 	// ctors, dtor, operators
 
-	FileLoader() = delete;
+	FileLoader() = default;
 	FileLoader(const std::string& fileName);
 	~FileLoader();
 

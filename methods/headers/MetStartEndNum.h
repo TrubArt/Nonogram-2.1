@@ -1,5 +1,4 @@
-﻿#pragma once
-#ifndef METHOD_STARTENDNUM_NONOGRAM
+﻿#ifndef METHOD_STARTENDNUM_NONOGRAM
 #define METHOD_STARTENDNUM_NONOGRAM
 #include "../IMethod.h"
 

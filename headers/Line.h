@@ -1,5 +1,4 @@
-﻿#pragma once
-#ifndef LINE_NONOGRAM
+﻿#ifndef LINE_NONOGRAM
 #define LINE_NONOGRAM
 #include "Cell.h"
 #include <iostream>

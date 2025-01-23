@@ -10,7 +10,7 @@ Condition::Condition()
 	, end(0)
 {}
 
-Condition::Condition(size_t lineSize, const Line* const ptr, const std::vector<int>& info)
+Condition::Condition(size_t lineSize, const Line* ptr, const std::vector<int>& info)
 	: allCountBlackCell(0)
 	, data(ptr)
 	, isFull(false)
@@ -38,7 +38,7 @@ bool Condition::getIsFullFlag() const
 	return isFull;
 }
 
-const Line* const Condition::getLinePtr() const
+const Line* Condition::getLinePtr() const
 {
 	return data;
 }
