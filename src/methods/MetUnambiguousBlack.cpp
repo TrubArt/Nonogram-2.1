@@ -1,4 +1,4 @@
-﻿#include "MetUnambiguousBlack.h"
+﻿#include "metUnambiguousBlack.h"
 
 void UnambiguousBlack::realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const
 {

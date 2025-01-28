@@ -1,6 +1,7 @@
 ﻿#ifndef METHOD_LAST_COLOR_SET
 #define METHOD_LAST_COLOR_SET
-#include "IMethod.h"
+
+#include "iMethod.h"
 
 // закрашивает все CellType::undefined в цвет param
 class LastColorSet : public IMethod

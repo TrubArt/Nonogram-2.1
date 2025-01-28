@@ -1,9 +1,10 @@
-﻿#include <iostream>
+﻿#include "src/solution.h"
+#include "src/picture/picture.h"
+#include "src/methods/methodsVectorShell.h"
+
+#include <iostream>
 #define NOMINMAX
 #include <Windows.h>
-#include "src/Solution.h"
-#include "src/picture/Picture.h"
-#include "src/MethodsVectorShell.h"
 
 bool nonogramSolution(Solution& maintask, const std::vector<IMethod*>& methods)
 {

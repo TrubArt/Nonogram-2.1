@@ -1,5 +1,6 @@
 ﻿#ifndef CELL_NONOGRAM
 #define CELL_NONOGRAM
+
 #include <iostream>
 #include <string>
 

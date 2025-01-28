@@ -1,4 +1,4 @@
-﻿#include "MetLastColorSet.h"
+﻿#include "metLastColorSet.h"
 
 void LastColorSet::realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const
 {}

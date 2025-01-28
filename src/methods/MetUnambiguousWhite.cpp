@@ -1,4 +1,4 @@
-﻿#include "MetUnambiguousWhite.h"
+﻿#include "metUnambiguousWhite.h"
 
 void UnambiguousWhite::realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const
 {

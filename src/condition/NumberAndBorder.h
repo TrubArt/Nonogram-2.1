@@ -1,6 +1,8 @@
 ﻿#ifndef NUMBER_NONOGRAM
 #define NUMBER_NONOGRAM
-#include "../picture/Line.h"
+
+#include "../picture/line.h"
+
 #include <string>
 
 // класс, хранящий число и его характеристики

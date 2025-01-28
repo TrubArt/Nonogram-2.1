@@ -1,6 +1,8 @@
 ﻿#ifndef LINE_NONOGRAM
 #define LINE_NONOGRAM
-#include "Cell.h"
+
+#include "cell.h" 
+      
 #include <iostream>
 #include <string>
 #include <vector>

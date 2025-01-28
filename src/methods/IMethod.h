@@ -1,11 +1,10 @@
 ﻿#ifndef IMETHOD_NONOGRAM
 #define IMETHOD_NONOGRAM
-#include "../picture/Picture.h"
-#include "../condition/Condition.h"
-#include <string>
 
-// forward declaration
-class Condition;
+#include "../picture/picture.h"
+#include "../condition/condition.h"
+
+#include <string>
 
 // интерфес для методов
 class IMethod

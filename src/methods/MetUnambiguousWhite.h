@@ -1,6 +1,7 @@
 ﻿#ifndef METHOD_UNAMBIGUOUSWHITE_NONOGRAM
 #define METHOD_UNAMBIGUOUSWHITE_NONOGRAM
-#include "IMethod.h"
+
+#include "iMethod.h"
 
 // определяет 100% CellType::white
 class UnambiguousWhite : public IMethod

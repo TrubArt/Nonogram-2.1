@@ -1,5 +1,6 @@
 ﻿#ifndef FILELOADER_NONOGRAM
 #define FILELOADER_NONOGRAM
+
 #include <fstream>
 #include <string>
 #include <vector>

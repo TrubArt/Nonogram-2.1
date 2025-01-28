@@ -1,4 +1,4 @@
-﻿#include "Picture.h"
+﻿#include "picture.h"
 
 namespace
 {

@@ -1,4 +1,5 @@
-﻿#include "NumberAndBorder.h"
+﻿#include "numberAndBorder.h"
+
 #define NOMINMAX
 #include <Windows.h>
 

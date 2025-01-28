@@ -1,6 +1,8 @@
 ﻿#ifndef PICTURE_NONOGRAM
 #define PICTURE_NONOGRAM
-#include "Line.h"
+
+#include "line.h"
+
 #include <iostream>
 #include <vector>
 #include <string>

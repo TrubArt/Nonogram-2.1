@@ -1,7 +1,9 @@
 ﻿#ifndef CONDITION_NONOGRAM
 #define CONDITION_NONOGRAM
-#include "../picture/Line.h"
-#include "NumberAndBorder.h"
+
+#include "../picture/line.h"
+#include "numberAndBorder.h" 
+
 #include <string>
 #include <list>
 

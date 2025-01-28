@@ -1,6 +1,8 @@
 ﻿#ifndef METHODSVECTORSHELL_NONOGRAM
 #define METHODSVECTORSHELL_NONOGRAM
-#include "methods/IMethod.h"
+
+#include "iMethod.h"
+
 #include <vector>
 
 class MethodsVectorShell

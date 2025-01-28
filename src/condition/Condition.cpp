@@ -1,4 +1,5 @@
-﻿#include "Condition.h"
+﻿#include "condition.h"
+
 #define NOMINMAX
 #include <Windows.h>
 

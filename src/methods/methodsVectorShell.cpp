@@ -1,7 +1,6 @@
-﻿#include "MethodsVectorShell.h"
-
-#include "methods/MetUnambiguousBlack.h"
-#include "methods/MetUnambiguousWhite.h"
+﻿#include "methodsVectorShell.h"
+#include "metUnambiguousBlack.h"
+#include "metUnambiguousWhite.h"
 
 MethodsVectorShell::MethodsVectorShell()
 {
