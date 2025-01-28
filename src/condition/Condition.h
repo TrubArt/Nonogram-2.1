@@ -1,6 +1,6 @@
 ﻿#ifndef CONDITION_NONOGRAM
 #define CONDITION_NONOGRAM
-#include "Line.h"
+#include "../picture/Line.h"
 #include "NumberAndBorder.h"
 #include <string>
 #include <list>

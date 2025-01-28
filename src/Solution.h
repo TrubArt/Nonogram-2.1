@@ -1,8 +1,8 @@
 ﻿#ifndef SOLUTION_NONOGRAM
 #define SOLUTION_NONOGRAM
-#include "Picture.h"
-#include "Condition.h"
-#include "../methods/IMethod.h"
+#include "methods/IMethod.h"
+#include "picture/Picture.h"
+#include "condition/Condition.h"
 #include <array>
 #include <vector>
 #include <string>

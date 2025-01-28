@@ -1,5 +1,4 @@
-﻿#include "../headers/MetStartEndNum.h"
-#include "../../headers/Solution.h"
+﻿#include "MetStartEndNum.h"
 
 void StartEndNum::realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const
 {

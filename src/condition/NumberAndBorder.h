@@ -1,9 +1,7 @@
 ﻿#ifndef NUMBER_NONOGRAM
 #define NUMBER_NONOGRAM
+#include "../picture/Line.h"
 #include <string>
-
-// forward declaration
-class Line;
 
 // класс, хранящий число и его характеристики
 class NumberAndBorders
@@ -32,7 +30,7 @@ public:
 
 	// functions
 
-	void updateNumberAndBorders(const Line* const data);
+	void updateNumberAndBorders(const Line* data);
 
 	// выводит в консоль this, подсвечивая color различия между this и data
 	void printToConsoleDifferences(const NumberAndBorders& data, int color) const;
@@ -43,10 +41,10 @@ private:
 	void updateRDviaD();
 
 	// уменьшает D, если на краях число не помещается из-за расположения 0
-	void updateDIf0InEdges(const Line* const data);
+	void updateDIf0InEdges(const Line* data);
 
 	// улучшает D, если в RD есть хоть одна black клетка
 	// недосягаемость https://www.nonograms.ru/methods
-	void updateDviaRD(const Line* const data);
+	void updateDviaRD(const Line* data);
 };
 #endif // !NUMBER_NONOGRAM

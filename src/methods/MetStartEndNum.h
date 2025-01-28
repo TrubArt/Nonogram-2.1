@@ -1,6 +1,6 @@
 ﻿#ifndef METHOD_STARTENDNUM_NONOGRAM
 #define METHOD_STARTENDNUM_NONOGRAM
-#include "../IMethod.h"
+#include "IMethod.h"
 
 // если start || end == CellType::black, то однозначно закрашивает клетки принадлежащие первому/последнему числу
 class StartEndNum : public IMethod

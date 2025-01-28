@@ -1,4 +1,4 @@
-﻿#include "../headers/Cell.h"
+﻿#include "Cell.h"
 
 Cell::Cell() : cellType(CellType::undefined)
 {}

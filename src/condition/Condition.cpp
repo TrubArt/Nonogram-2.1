@@ -1,4 +1,5 @@
-﻿#include "../headers/Condition.h"
+﻿#include "Condition.h"
+#define NOMINMAX
 #include <Windows.h>
 
 Condition::Condition()

@@ -1,9 +1,6 @@
 ﻿#ifndef METHOD_LAST_COLOR_SET
 #define METHOD_LAST_COLOR_SET
-#include "../IMethod.h"
-
-// forward declaration
-enum class UpdCondReturnParam;
+#include "IMethod.h"
 
 // закрашивает все CellType::undefined в цвет param
 class LastColorSet : public IMethod

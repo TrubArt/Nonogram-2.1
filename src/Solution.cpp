@@ -1,7 +1,7 @@
-﻿#include "../headers/Solution.h"
-#include "../headers/FileLoader.h"
-#include "../methods/headers/MetStartEndNum.h"
-#include "../methods/headers/MetLastColorSet.h"
+﻿#include "Solution.h"
+#include "FileLoader.h"
+#include "methods/MetLastColorSet.h"
+#include "methods/MetStartEndNum.h"
 
 Solution::Solution(const std::string& fileCondition, const std::string& fileAdditCondit)
 {

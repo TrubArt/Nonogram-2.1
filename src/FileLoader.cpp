@@ -1,4 +1,4 @@
-﻿#include "../headers/FileLoader.h"
+﻿#include "FileLoader.h"
 #include <iostream>
 
 FileLoader::FileLoader(const std::string& fileName)

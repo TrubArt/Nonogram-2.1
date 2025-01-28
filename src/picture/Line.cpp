@@ -1,5 +1,6 @@
-﻿#include "../headers/Line.h"
+﻿#include "Line.h"
 #include <algorithm>
+#define NOMINMAX
 #include <Windows.h>
 
 Line::Line(size_t size)

@@ -1,5 +1,5 @@
-﻿#include "../headers/NumberAndBorder.h"
-#include "../headers/Line.h"
+﻿#include "NumberAndBorder.h"
+#define NOMINMAX
 #include <Windows.h>
 
 NumberAndBorders::NumberAndBorders(int number, const myP& dia, const myP& realdia) 
@@ -41,7 +41,7 @@ void NumberAndBorders::setRD(const myP& x)
 	realDia = x;
 }
 
-void NumberAndBorders::updateNumberAndBorders(const Line* const data)
+void NumberAndBorders::updateNumberAndBorders(const Line* data)
 {
 	this->updateDIf0InEdges(data);
 	this->updateRDviaD();
@@ -135,7 +135,7 @@ void NumberAndBorders::updateRDviaD()
 	}
 }
 
-void NumberAndBorders::updateDIf0InEdges(const Line* const data)
+void NumberAndBorders::updateDIf0InEdges(const Line* data)
 {
 	int leftBlack = data->getLeftIndexTypeCell(dia.first, dia.second, CellType::white);		// первый левый CellType::white в D
 	while (leftBlack != -1 && leftBlack - dia.first < number) {	// если leftBlack находится и расстояние от него до dia.first меньше самого number,
@@ -150,7 +150,7 @@ void NumberAndBorders::updateDIf0InEdges(const Line* const data)
 	}
 }
 
-void NumberAndBorders::updateDviaRD(const Line* const data)
+void NumberAndBorders::updateDviaRD(const Line* data)
 {
 	int numberOfBlack = data->getCountTypeCell(realDia.first, realDia.second, CellType::black);
 	if (numberOfBlack != 0)

@@ -1,6 +1,6 @@
 ﻿#ifndef METHOD_UNAMBIGUOUSBLACK_NONOGRAM
 #define METHOD_UNAMBIGUOUSBLACK_NONOGRAM
-#include "../IMethod.h"
+#include "IMethod.h"
 
 // определяет 100% CellType::black в центре диапазона каждого числа
 class UnambiguousBlack : public IMethod

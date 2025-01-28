@@ -1,11 +1,11 @@
 ﻿#ifndef IMETHOD_NONOGRAM
 #define IMETHOD_NONOGRAM
+#include "../picture/Picture.h"
+#include "../condition/Condition.h"
 #include <string>
 
 // forward declaration
 class Condition;
-class Picture;
-enum class CellType;
 
 // интерфес для методов
 class IMethod

@@ -1,9 +1,7 @@
 ﻿#ifndef METHODSVECTORSHELL_NONOGRAM
 #define METHODSVECTORSHELL_NONOGRAM
+#include "methods/IMethod.h"
 #include <vector>
-
-// forward declaration
-class IMethod;
 
 class MethodsVectorShell
 {
