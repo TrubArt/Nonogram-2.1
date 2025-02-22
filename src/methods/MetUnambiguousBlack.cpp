@@ -2,7 +2,7 @@
 
 void UnambiguousBlack::realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const
 {
-	auto list = cond.getNumInfo();	
+	const std::list<NumberAndBorders>& list = cond.getNumInfo();
 	for(const auto& element : list)
 	{ 
 		for (int index = element.getD().second - element.getNum(); index < element.getD().first + element.getNum(); ++index)

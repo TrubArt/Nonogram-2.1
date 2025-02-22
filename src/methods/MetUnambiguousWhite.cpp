@@ -31,6 +31,6 @@ std::string UnambiguousWhite::principleOfMethodWork() const
 {
 	std::string answ;
 	answ.append("Проходится по всем незаконченным числам в линии. Работает с диапазоном(D).\n");
-	answ.append("Находит клетки, непринадлежащие ни одному диапазону и определяет их как белые.\n");
+	answ.append("Находит клетки, не принадлежащие ни одному диапазону и определяет их как белые.\n");
 	return answ;
 }

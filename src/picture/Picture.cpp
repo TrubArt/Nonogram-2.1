@@ -130,6 +130,20 @@ void Picture::setColor(int rowNumber, size_t index, CellType cType)
 		std::exit(1);
 	}
 
+	CellType cellColor = rows[rowNumber]->getCellType(index);
+
+	// обработка ситуации, если клетка уже закрашена
+	if (cellColor != CellType::undefined)
+	{
+		if (cellColor == cType)
+		{
+			return;
+		}
+
+		std::cerr << "Repainting of an already painted cell!!!\n";
+		std::exit(1);
+	}
+
 	// необходимо 2 вызова, чтобы была однозначная картинка
 	// и с точки зрения строк и с точки зрения столбцов
 	rows[rowNumber]->setCellType(index, cType);
