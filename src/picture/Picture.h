@@ -26,8 +26,10 @@ public:
 
 	// getters & setters
 
-	const Line* const getPtr(const std::pair<int, int>&) const;
-	void setColor(int rowNumber, size_t index, CellType cType);
+	const Line* getPtr(const std::pair<int, int>&) const;
+
+	// true, если произошла закраска, иначе false
+	bool setColor(int rowNumber, size_t index, CellType cType);
 
 	// functions
 
@@ -38,5 +40,10 @@ public:
 	void printToConsoleColor(int whiteColor, int blackColor) const;
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Picture& pict); // печать изображения
+
+private:
+	// определяет необходимо ли вносить измененияв изображение или нет
+	bool needChanges(int rowNumber, size_t index, CellType cType) const;
+	void paint(int rowNumber, size_t index, CellType cType);
 };
 #endif // !PICTURE_NONOGRAM

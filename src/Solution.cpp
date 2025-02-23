@@ -3,6 +3,8 @@
 #include "methods/metLastColorSet.h"
 #include "methods/metStartEndNum.h"
 
+const MethodsVectorShell Solution::methods = MethodsVectorShell();
+
 Solution::Solution(const std::string& fileCondition, const std::string& fileAdditCondit)
 {
 	// enum для обращения к строкам/столбцам в conditions
@@ -21,14 +23,18 @@ Solution::Solution(const std::string& fileCondition, const std::string& fileAddi
 	conditions[row].resize(sizeN);
 	conditions[col].resize(sizeM);
 
-	// сначала добавление доп. цветов
+	// сначала добавление изначально заданных клеток
 	FileLoader f2(fileAdditCondit);
 	while (!f2.isEmpty())
 	{
 		tmp = f2.getNumbersSequence();
 		if (!tmp.empty())
 		{
-			pict.setColor(tmp[0], tmp[1], static_cast<CellType>(tmp[2]));
+			PaintCellInfo cellInfo(tmp[0], tmp[1], static_cast<CellType>(tmp[2]));
+			if (pict.setColor(cellInfo.rowNumber, cellInfo.indexInRow, cellInfo.color))
+			{
+				queue.push_back(cellInfo);
+			}
 		}
 	}
 
@@ -63,20 +69,25 @@ bool Solution::isEndOfWork() const
 	return true;
 }
 
-void Solution::callingMethods(const std::vector<IMethod*>& methods)
+std::vector<PaintCellInfo> Solution::getQueue() const
 {
-	//// копия, с которой будет сравниваться *this для вывода изменений в консоль
+	return queue;
+}
+
+void Solution::callingMethods()
+{
+	// копия, с которой будет сравниваться *this для вывода изменений в консоль
 	Solution copy = *this;
 
 	// цикл с прогоном всех методов
-	for (const auto& i : methods)
+	for (const auto& i : methods.get())
 	{
 		// двойной цикл для прохода по всем строкам/столбцам
 		for (size_t rowOrCol = 0; rowOrCol < conditions.size(); ++rowOrCol)
 		{
-			for (size_t positionInRowOrCol = 0; positionInRowOrCol < conditions[rowOrCol].size(); ++positionInRowOrCol)
+			for (size_t lineNumber = 0; lineNumber < conditions[rowOrCol].size(); ++lineNumber)
 			{
-				Condition& curentCond = conditions[rowOrCol][positionInRowOrCol];
+				Condition& curentCond = conditions[rowOrCol][lineNumber];
 
 				if (curentCond.getIsFullFlag())		// если строка уже завершена
 				{
@@ -84,18 +95,19 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 				}
 
 				// вызов определённого метода					
-				i->realization(curentCond, &pict, std::make_pair(rowOrCol, positionInRowOrCol));
+				i->realization(curentCond, pict, queue, rowOrCol, lineNumber);
 
 				// метод по определению числа с края строки
-				StartEndNum().realization(curentCond, &pict, std::make_pair(rowOrCol, positionInRowOrCol));
+				StartEndNum().realization(curentCond, pict, queue, rowOrCol, lineNumber);
 
 				// изменение данных о строке после цикла
 				UpdCondReturnParam updPar = curentCond.updateCondition();
-				if (updPar != UpdCondReturnParam::lineNotCompleted)	// если строка закончена, то однозначно закрашиваем оставшиеся поля
-				{
-					LastColorSet().anotrealization(curentCond, &pict, std::make_pair(rowOrCol, positionInRowOrCol), updPar);
-				}
 
+				// если строка закончена, то однозначно закрашиваем оставшиеся поля
+				if (updPar != UpdCondReturnParam::lineNotCompleted)
+				{
+					LastColorSet().anotrealization(curentCond, pict, queue, rowOrCol, lineNumber, updPar);
+				}
 			}
 		}
 
@@ -106,6 +118,30 @@ void Solution::callingMethods(const std::vector<IMethod*>& methods)
 
 		copy = *this;
 	}
+}
+
+bool Solution::nonogramSolution()
+{
+	int step = 0;
+	bool noChangesAfterCycle = false;
+
+	while (!noChangesAfterCycle && !isEndOfWork())
+	{
+		std::cout << "--------------------step" << ++step << "--------------------\n";
+
+		Picture pictureToCompare{ pict };
+
+		// работа методов
+		callingMethods();
+
+		// если после работы методов нет изменений
+		if (pictureToCompare == pict && !isEndOfWork())
+		{
+			noChangesAfterCycle = true;
+		}
+	}
+
+	return noChangesAfterCycle;
 }
 
 void Solution::printToConsoleDifferences(const Solution& copy, int color) const

@@ -1,7 +1,9 @@
 ﻿#include "metLastColorSet.h"
 
-void LastColorSet::realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const
-{}
+void LastColorSet::realization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex) const
+{
+	std::cout << "\n\n\n\n Dont use this function, use anotherrealization! \n\n\n\n";
+}
 
 std::string LastColorSet::methodName() const
 {
@@ -16,7 +18,8 @@ std::string LastColorSet::principleOfMethodWork() const
 	return answ;
 }
 
-void LastColorSet::anotrealization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit, UpdCondReturnParam param) const
+void LastColorSet::anotrealization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue
+									, bool isColumn, size_t rowOrColIndex, UpdCondReturnParam param) const
 {
 	if (param == UpdCondReturnParam::lineNotCompleted)
 	{
@@ -24,11 +27,13 @@ void LastColorSet::anotrealization(const Condition& cond, Picture* pict, const s
 	}
 
 	const Line* analyzedLine = cond.getLinePtr();
-	for (int i = cond.getStart(); i < cond.getEnd(); ++i)
+	for (int index = cond.getStart(); index < cond.getEnd(); ++index)
 	{
-		if (analyzedLine->getCellType(i) == CellType::undefined)
+		if (analyzedLine->getCellType(index) != CellType::undefined)
 		{
-			this->setColorWithInformation(pict, posit, i, static_cast<CellType>(param));
+			continue;
 		}
+
+		setColorAndAddInQueue(pict, queue, isColumn, rowOrColIndex, index, static_cast<CellType>(param));
 	}
 }

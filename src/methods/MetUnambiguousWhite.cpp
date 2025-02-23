@@ -1,6 +1,6 @@
 ﻿#include "metUnambiguousWhite.h"
 
-void UnambiguousWhite::realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const
+void UnambiguousWhite::realization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex) const
 {
 	auto list = cond.getNumInfo();
 	int leftBorder = cond.getStart();
@@ -9,7 +9,7 @@ void UnambiguousWhite::realization(const Condition& cond, Picture* pict, const s
 	{
 		for (int index = leftBorder; index < element.getD().first; ++index)
 		{
-			this->setColorWithInformation(pict, posit, index, CellType::white);
+			setColorAndAddInQueue(pict, queue, isColumn, rowOrColIndex, index, CellType::white);
 		}
 
 		leftBorder = element.getD().second;
@@ -18,7 +18,7 @@ void UnambiguousWhite::realization(const Condition& cond, Picture* pict, const s
 	// анализ элементов между LastElement.getD().second и cond->getEnd()
 	for (int index = leftBorder; index < cond.getEnd(); ++index)
 	{
-		this->setColorWithInformation(pict, posit, index, CellType::white);
+		setColorAndAddInQueue(pict, queue, isColumn, rowOrColIndex, index, CellType::white);
 	}
 }
 

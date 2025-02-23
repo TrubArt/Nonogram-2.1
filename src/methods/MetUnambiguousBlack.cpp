@@ -1,13 +1,13 @@
 ﻿#include "metUnambiguousBlack.h"
 
-void UnambiguousBlack::realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const
+void UnambiguousBlack::realization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex) const
 {
 	const std::list<NumberAndBorders>& list = cond.getNumInfo();
 	for(const auto& element : list)
 	{ 
 		for (int index = element.getD().second - element.getNum(); index < element.getD().first + element.getNum(); ++index)
 		{
-			this->setColorWithInformation(pict, posit, index, CellType::black);
+			setColorAndAddInQueue(pict, queue, isColumn, rowOrColIndex, index, CellType::black);
 		}
 	}
 }

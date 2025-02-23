@@ -7,10 +7,10 @@
 class LastColorSet : public IMethod
 {
 public:
-	void realization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit) const override;
+	void realization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex) const override;
 	std::string methodName() const override;
 	std::string principleOfMethodWork() const override;
-	void anotrealization(const Condition& cond, Picture* pict, const std::pair<int, int>& posit, UpdCondReturnParam param) const;
+	void anotrealization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex, UpdCondReturnParam param) const;
 };
 
 #endif // !METHOD_LAST_COLOR_SET

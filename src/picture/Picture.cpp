@@ -117,37 +117,20 @@ bool Picture::operator!=(const Picture& x) const
 	return !(*this == x);
 }
 
-const Line* const Picture::getPtr(const std::pair<int, int>& x) const
+const Line* Picture::getPtr(const std::pair<int, int>& x) const
 {
 	return x.first == 0 ? rows[x.second] : columns[x.second];
 }
 
-void Picture::setColor(int rowNumber, size_t index, CellType cType)
+bool Picture::setColor(int rowNumber, size_t index, CellType cType)
 {
-	if (!checkSynchronization(rows, columns))
+	if (!needChanges(rowNumber, index, cType))
 	{
-		std::cerr << "Нарушена синхронизация таблицы!!!\n";
-		std::exit(1);
+		return false;
 	}
 
-	CellType cellColor = rows[rowNumber]->getCellType(index);
-
-	// обработка ситуации, если клетка уже закрашена
-	if (cellColor != CellType::undefined)
-	{
-		if (cellColor == cType)
-		{
-			return;
-		}
-
-		std::cerr << "Repainting of an already painted cell!!!\n";
-		std::exit(1);
-	}
-
-	// необходимо 2 вызова, чтобы была однозначная картинка
-	// и с точки зрения строк и с точки зрения столбцов
-	rows[rowNumber]->setCellType(index, cType);
-	columns[index]->setCellType(rowNumber, cType);
+	paint(rowNumber, index, cType);
+	return true;
 }
 
 void Picture::printToConsoleDifferences(const Picture& pict, int color) const
@@ -188,4 +171,40 @@ std::ostream& operator<<(std::ostream& out, const Picture& pict)
 {
 	out << pict.toString();
 	return out;
+}
+
+bool Picture::needChanges(int rowNumber, size_t index, CellType cType) const
+{
+	if (!checkSynchronization(rows, columns))
+	{
+		std::cerr << "Нарушена синхронизация таблицы!!!\n";
+		std::exit(1);
+	}
+
+	enum NeedToDraw { no, yes };
+	CellType cellColor = rows[rowNumber]->getCellType(index);
+
+	if (cellColor == CellType::undefined)
+	{
+		return NeedToDraw::yes;
+	}
+
+	// обработка ситуации, если клетка уже закрашена
+	if (cellColor == cType)
+	{
+		return NeedToDraw::no;
+	}
+
+	std::cerr << "Repainting of an already painted cell!!!\n";
+	std::exit(1);
+
+	return NeedToDraw::no;
+}
+
+void Picture::paint(int rowNumber, size_t index, CellType cType)
+{
+	// необходимо 2 вызова, чтобы была однозначная картинка
+	// и с точки зрения строк и с точки зрения столбцов
+	rows[rowNumber]->setCellType(index, cType);
+	columns[index]->setCellType(rowNumber, cType);
 }
