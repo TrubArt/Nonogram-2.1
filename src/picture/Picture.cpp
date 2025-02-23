@@ -137,7 +137,7 @@ void Picture::printToConsoleDifferences(const Picture& pict, int color) const
 {
 	if (pict.rows.size() != rows.size() || pict.columns.size() != columns.size())
 	{
-		std::cout << "Ошибка в printToConsoleDifferences. Разные размеры изображений\n";
+		std::cout << "Error in Picture::printToConsoleDifferences. Different picture sizes\n";
 		return;
 	}
 
@@ -177,7 +177,7 @@ bool Picture::needChanges(int rowNumber, size_t index, CellType cType) const
 {
 	if (!checkSynchronization(rows, columns))
 	{
-		std::cerr << "Нарушена синхронизация таблицы!!!\n";
+		std::cerr << "Picture synchronization failed!!!\n";
 		std::exit(1);
 	}
 

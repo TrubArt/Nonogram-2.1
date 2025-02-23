@@ -7,12 +7,9 @@
 
 int main()
 {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-
 	Solution maintask("Condition", "Additional color condition");
 
-	std::cout << "Изображение до решения:\n";
+	std::cout << "Picture before:\n";
 	std::cout << maintask.getPicture();
 
 	bool earlyCycleOut = maintask.nonogramSolution();
@@ -20,10 +17,10 @@ int main()
 	// обработка причины прекращения цикла
 	if (earlyCycleOut)
 	{
-		std::cout << "\nИзображение не закончено после отработки всех методов:(\n";
+		std::cout << "\nPicture dont finish:(\n";
 	}
 
-	std::cout << "Изображение после окончания решения:\n";
+	std::cout << "Finaly picture:\n";
 	maintask.getPicture().printToConsoleColor(0, 1);
 	std::cin.get();
 
