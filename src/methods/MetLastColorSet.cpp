@@ -27,7 +27,7 @@ void LastColorSet::anotrealization(const Condition& cond, Picture& pict, std::ve
 	}
 
 	const Line* analyzedLine = cond.getLinePtr();
-	for (int index = cond.getStart(); index < cond.getEnd(); ++index)
+	for (size_t index = cond.getStart(); index < cond.getEnd(); ++index)
 	{
 		if (analyzedLine->getCellType(index) != CellType::undefined)
 		{

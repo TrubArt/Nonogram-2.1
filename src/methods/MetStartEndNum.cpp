@@ -3,8 +3,8 @@
 void StartEndNum::realization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex) const
 {
 	const Line* analyzedLine = cond.getLinePtr();
-	int start = cond.getStart();
-	int end = cond.getEnd();
+	size_t start = cond.getStart();
+	size_t end = cond.getEnd();
 
 	auto startIter = cond.getNumInfo().cbegin();
 	while (analyzedLine->getCellType(start) != CellType::undefined)
@@ -16,7 +16,7 @@ void StartEndNum::realization(const Condition& cond, Picture& pict, std::vector<
 		else
 		{
 			++start;		// тк первая клетка числа уже закрашена
-			for (int count = 0; count <= startIter->getNum() - 1; ++count)		// закрашиваем количество клеток, равное числу
+			for (size_t count = 0; count <= startIter->getNum() - 1; ++count)		// закрашиваем количество клеток, равное числу
 			{
 				if (count < startIter->getNum() - 1)
 				{
@@ -51,7 +51,7 @@ void StartEndNum::realization(const Condition& cond, Picture& pict, std::vector<
 		else
 		{
 			--end;		// тк первая клетка числа уже закрашена
-			for (int count = 0; count <= endIter->getNum() - 1; ++count)
+			for (size_t count = 0; count <= endIter->getNum() - 1; ++count)
 			{
 				if (count < endIter->getNum() - 1)
 				{

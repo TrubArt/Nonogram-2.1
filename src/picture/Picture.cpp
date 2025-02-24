@@ -117,12 +117,12 @@ bool Picture::operator!=(const Picture& x) const
 	return !(*this == x);
 }
 
-const Line* Picture::getPtr(const std::pair<int, int>& x) const
+const Line* Picture::getPtr(const std::pair<size_t, size_t>& x) const
 {
 	return x.first == 0 ? rows[x.second] : columns[x.second];
 }
 
-bool Picture::setColor(int rowNumber, size_t index, CellType cType)
+bool Picture::setColor(size_t rowNumber, size_t index, CellType cType)
 {
 	if (!needChanges(rowNumber, index, cType))
 	{
@@ -173,7 +173,7 @@ std::ostream& operator<<(std::ostream& out, const Picture& pict)
 	return out;
 }
 
-bool Picture::needChanges(int rowNumber, size_t index, CellType cType) const
+bool Picture::needChanges(size_t rowNumber, size_t index, CellType cType) const
 {
 	if (!checkSynchronization(rows, columns))
 	{
@@ -201,7 +201,7 @@ bool Picture::needChanges(int rowNumber, size_t index, CellType cType) const
 	return NeedToDraw::no;
 }
 
-void Picture::paint(int rowNumber, size_t index, CellType cType)
+void Picture::paint(size_t rowNumber, size_t index, CellType cType)
 {
 	// необходимо 2 вызова, чтобы была однозначная картинка
 	// и с точки зрения строк и с точки зрения столбцов

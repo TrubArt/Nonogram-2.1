@@ -12,7 +12,7 @@ Solution::Solution(const std::string& fileCondition, const std::string& fileAddi
 
 	FileLoader cond(fileCondition);
 
-	std::vector<int> tmp;
+	std::vector<size_t> tmp;
 
 	// получение данных о размере изображения
 	tmp = cond.getNumbersSequence();

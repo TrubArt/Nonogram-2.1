@@ -33,10 +33,10 @@ public:
 	// functions
 
 	// возвращает количество клеток типа cType в Line
-	int getCountTypeCell(CellType cType) const;
+	size_t getCountTypeCell(CellType cType) const;
 
 	// возвращает количество клеток типа cType в диапазоне[startIndex, endIndex) в Line
-	int getCountTypeCell(size_t startIndex, size_t endIndex, CellType cType) const;
+	size_t getCountTypeCell(size_t startIndex, size_t endIndex, CellType cType) const;
 
 	// возвращает первый индекс слева типа cType в диапазоне[startIndex, endIndex) в Line
 	int getLeftIndexTypeCell(size_t startIndex, size_t endIndex, CellType cType) const;

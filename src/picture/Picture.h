@@ -26,10 +26,10 @@ public:
 
 	// getters & setters
 
-	const Line* getPtr(const std::pair<int, int>&) const;
+	const Line* getPtr(const std::pair<size_t, size_t>&) const;
 
 	// true, если произошла закраска, иначе false
-	bool setColor(int rowNumber, size_t index, CellType cType);
+	bool setColor(size_t rowNumber, size_t index, CellType cType);
 
 	// functions
 
@@ -43,7 +43,7 @@ public:
 
 private:
 	// определяет необходимо ли вносить измененияв изображение или нет
-	bool needChanges(int rowNumber, size_t index, CellType cType) const;
-	void paint(int rowNumber, size_t index, CellType cType);
+	bool needChanges(size_t rowNumber, size_t index, CellType cType) const;
+	void paint(size_t rowNumber, size_t index, CellType cType);
 };
 #endif // !PICTURE_NONOGRAM

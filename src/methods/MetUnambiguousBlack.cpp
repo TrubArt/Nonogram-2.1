@@ -5,7 +5,7 @@ void UnambiguousBlack::realization(const Condition& cond, Picture& pict, std::ve
 	const std::list<NumberAndBorders>& list = cond.getNumInfo();
 	for(const auto& element : list)
 	{ 
-		for (int index = element.getD().second - element.getNum(); index < element.getD().first + element.getNum(); ++index)
+		for (size_t index = element.getD().second - element.getNum(); index < element.getD().first + element.getNum(); ++index)
 		{
 			setColorAndAddInQueue(pict, queue, isColumn, rowOrColIndex, index, CellType::black);
 		}

@@ -12,12 +12,12 @@ Condition::Condition()
 	, end(0)
 {}
 
-Condition::Condition(size_t lineSize, const Line* ptr, const std::vector<int>& info)
+Condition::Condition(size_t lineSize, const Line* ptr, const std::vector<size_t>& info)
 	: allCountBlackCell(0)
 	, data(ptr)
 	, isFull(false)
 	, start(0)
-	, end(static_cast<int>(lineSize))
+	, end(lineSize)
 	, statLine(lineSize + 1) // делаем *data != statLine
 {
 	for (size_t i = 0; i < info.size(); ++i)
@@ -45,12 +45,12 @@ const Line* Condition::getLinePtr() const
 	return data;
 }
 
-int Condition::getStart() const
+size_t Condition::getStart() const
 {
 	return start;
 }
 
-int Condition::getEnd() const
+size_t Condition::getEnd() const
 {
 	return end;
 }
@@ -172,7 +172,7 @@ void Condition::updateStart()
 		{
 			// данный случай обрабатывается методом StartEndNum. Он закрашивает необходимые клетки.
 			// здесь же остаётся только обновить данные о начале
-			int number = numInfo.front().getNum();
+			size_t number = numInfo.front().getNum();
 			numInfo.pop_front();
 			start += number + 1;
 		}
@@ -201,7 +201,7 @@ void Condition::updateEnd()
 		{
 			// данный случай обрабатывается методом StartEndNum. Он закрашивает необходимые клетки.
 			// здесь же остаётся только обновить данные о конце
-			int number = numInfo.back().getNum();
+			size_t number = numInfo.back().getNum();
 			numInfo.pop_back();
 			end -= number + 1;
 		}
@@ -227,7 +227,7 @@ void Condition::updateDia()
 {
 	enum HelpEnum {space = 1};	// enum обозначающий пробел(одна CellType::whiteCell)
 
-	int rightNums = end;		// количество занятых клеток справа от текущего числа
+	size_t rightNums = end;		// количество занятых клеток справа от текущего числа
 
 	// подсчёт оптимальной правой границы для первого числа
 	for (auto it = numInfo.cbegin(); it != numInfo.cend(); ++it)
@@ -235,7 +235,7 @@ void Condition::updateDia()
 		rightNums -= it->getNum() + space;
 	}
 
-	int leftNums = start;		// количество занятых клеток слева от текущего числа
+	size_t leftNums = start;		// количество занятых клеток слева от текущего числа
 
 	// подсчёт для каждого числа нового диапазона
 	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)
@@ -257,7 +257,7 @@ void Condition::updateDia()
 
 void Condition::updateRealDia()
 {
-	int leftBorder = start;
+	size_t leftBorder = start;
 	int rightBorder = -1;
 
 	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)

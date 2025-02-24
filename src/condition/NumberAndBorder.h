@@ -10,7 +10,7 @@ class NumberAndBorders
 {
 	using myP = std::pair<int, int>;
 
-	int number;		// число
+	size_t number;	// число
 	myP dia;		// (D) диапазон, в котором может теоретически находиться число
 	bool isExistRD;	// флаг, показывающий, существует ли реальный диапазон
 	myP realDia;	// (RD) диапазон, в котором находится только это число
@@ -18,11 +18,11 @@ class NumberAndBorders
 public:
 	// ctors, dtor, operators
 
-	NumberAndBorders(int number, const myP& dia, const myP& realdia);
+	NumberAndBorders(size_t number, const myP& dia, const myP& realdia);
 
 	// getters & setters
 
-	int getNum() const;
+	size_t getNum() const;
 	const myP& getD() const;
 	const myP& getRD() const;
 	bool getFlagExistRd() const;
@@ -43,7 +43,7 @@ private:
 	void updateRDviaD();
 
 	// уменьшает D, если на краях число не помещается из-за расположения 0
-	void updateDIf0InEdges(const Line* data);
+	void updateDIfWhiteInEdges(const Line* data);
 
 	// улучшает D, если в RD есть хоть одна black клетка
 	// недосягаемость https://www.nonograms.ru/methods

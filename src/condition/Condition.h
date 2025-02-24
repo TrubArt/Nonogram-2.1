@@ -23,15 +23,15 @@ class Condition
 {
 	// неизменяемые в процессе решения величины
 
-	int allCountWhiteCell;					// общее количество белых клеток - CellType::white ('0')
-	int allCountBlackCell;					// общее количество чёрных клеток - CellType::black ('1')
+	size_t allCountWhiteCell;				// общее количество белых клеток - CellType::white ('0')
+	size_t allCountBlackCell;				// общее количество чёрных клеток - CellType::black ('1')
 	const Line* data;						// константный указатель на соответствующий Line
 
 	// изменяемые в процессе решения величины
 
 	bool isFull;							// индикатор того заполнена ли строка полностью
-	int start;								// индекс первой CellType::undefined ('*')
-	int end;								// индекс после последней CellType::undefined ('*')
+	size_t start;							// индекс первой CellType::undefined ('*')
+	size_t end;								// индекс после последней CellType::undefined ('*')
 	Line statLine;							// запоминает состояние строки для сравнения с data
 	std::list<NumberAndBorders> numInfo;	// список, хранящий все числа из data
 
@@ -39,14 +39,14 @@ public:
 	// ctors, dtor, operators
 
 	Condition();
-	Condition(size_t lineSize, const Line* ptr, const std::vector<int>& info);
+	Condition(size_t lineSize, const Line* ptr, const std::vector<size_t>& info);
 
 	// getters & setters
 
 	bool getIsFullFlag() const;
 	const Line* getLinePtr() const;
-	int getStart() const;
-	int getEnd() const;
+	size_t getStart() const;
+	size_t getEnd() const;
 	const std::list<NumberAndBorders>& getNumInfo() const;
 
 	// functions

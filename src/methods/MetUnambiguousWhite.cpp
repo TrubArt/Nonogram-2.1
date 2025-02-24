@@ -3,11 +3,11 @@
 void UnambiguousWhite::realization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex) const
 {
 	auto list = cond.getNumInfo();
-	int leftBorder = cond.getStart();
+	size_t leftBorder = cond.getStart();
 
 	for (const auto& element : list)
 	{
-		for (int index = leftBorder; index < element.getD().first; ++index)
+		for (size_t index = leftBorder; index < element.getD().first; ++index)
 		{
 			setColorAndAddInQueue(pict, queue, isColumn, rowOrColIndex, index, CellType::white);
 		}
@@ -16,7 +16,7 @@ void UnambiguousWhite::realization(const Condition& cond, Picture& pict, std::ve
 	}
 
 	// анализ элементов между LastElement.getD().second и cond->getEnd()
-	for (int index = leftBorder; index < cond.getEnd(); ++index)
+	for (size_t index = leftBorder; index < cond.getEnd(); ++index)
 	{
 		setColorAndAddInQueue(pict, queue, isColumn, rowOrColIndex, index, CellType::white);
 	}
