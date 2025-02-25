@@ -68,8 +68,8 @@ bool Line::operator==(const Line& x) const
 			return false;
 		}
 	}
-	return true;
 
+	return true;
 }
 
 bool Line::operator!=(const Line& x) const

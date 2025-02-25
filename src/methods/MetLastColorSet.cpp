@@ -2,7 +2,32 @@
 
 void LastColorSet::realization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex) const
 {
-	std::cout << "\n\n\n\n Dont use this function, use anotherrealization! \n\n\n\n";
+	const Line* analyzedLine = cond.getLinePtr();
+
+	CellType remainedColorCells = CellType::undefined;
+	if (analyzedLine->getCountTypeCell(CellType::white) == cond.getAllCountWhiteCell())
+	{
+		remainedColorCells = CellType::black;
+	}
+	if (analyzedLine->getCountTypeCell(CellType::black) == cond.getAllCountBlackCell())
+	{
+		remainedColorCells = CellType::white;
+	}
+
+	if (remainedColorCells == CellType::undefined)
+	{
+		return;
+	}
+
+	for (size_t index = cond.getStart(); index < cond.getEnd(); ++index)
+	{
+		if (analyzedLine->getCellType(index) != CellType::undefined)
+		{
+			continue;
+		}
+
+		setColorAndAddInQueue(pict, queue, isColumn, rowOrColIndex, index, remainedColorCells);
+	}
 }
 
 std::string LastColorSet::methodName() const
@@ -13,27 +38,7 @@ std::string LastColorSet::methodName() const
 std::string LastColorSet::principleOfMethodWork() const
 {
 	std::string answ;
-	answ.append("Метод принимает на вход UpdCondReturnParam param, который сообщает классу о том, что\n");
-	answ.append("необходимо все оставшиеся в линии CellType::undefined закрасить в цвет param");
+	answ.append("Если количество закрашенных белых(чёрных) клеток совпадает с общим количеством белых(чёрных) клеток, то\n");
+	answ.append("необходимо все оставшиеся клетки CellType::undefined закрасить в чёрный(белый) цвет");
 	return answ;
-}
-
-void LastColorSet::anotrealization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue
-									, bool isColumn, size_t rowOrColIndex, UpdCondReturnParam param) const
-{
-	if (param == UpdCondReturnParam::lineNotCompleted)
-	{
-		return;
-	}
-
-	const Line* analyzedLine = cond.getLinePtr();
-	for (size_t index = cond.getStart(); index < cond.getEnd(); ++index)
-	{
-		if (analyzedLine->getCellType(index) != CellType::undefined)
-		{
-			continue;
-		}
-
-		setColorAndAddInQueue(pict, queue, isColumn, rowOrColIndex, index, static_cast<CellType>(param));
-	}
 }

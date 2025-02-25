@@ -80,7 +80,7 @@ void Solution::callingMethods()
 	Solution copy = *this;
 
 	// цикл с прогоном всех методов
-	for (const auto& i : methods.get())
+	for (const auto& method : methods.get())
 	{
 		// двойной цикл для прохода по всем строкам/столбцам
 		for (size_t rowOrCol = 0; rowOrCol < conditions.size(); ++rowOrCol)
@@ -95,25 +95,21 @@ void Solution::callingMethods()
 				}
 
 				// вызов определённого метода					
-				i->realization(curentCond, pict, queue, rowOrCol, lineNumber);
+				method->realization(curentCond, pict, queue, rowOrCol, lineNumber);
 
 				// метод по определению числа с края строки
 				StartEndNum().realization(curentCond, pict, queue, rowOrCol, lineNumber);
 
-				// изменение данных о строке после цикла
-				UpdCondReturnParam updPar = curentCond.updateCondition();
+				LastColorSet().realization(curentCond, pict, queue, rowOrCol, lineNumber);
 
-				// если строка закончена, то однозначно закрашиваем оставшиеся поля
-				if (updPar != UpdCondReturnParam::lineNotCompleted)
-				{
-					LastColorSet().anotrealization(curentCond, pict, queue, rowOrCol, lineNumber, updPar);
-				}
+				// изменение данных о строке после цикла
+				curentCond.updateCondition();
 			}
 		}
 
 		// вывод в консоль изменений после работы метода
 
-		std::cout << "\nChanges after " << i->methodName() << " method work:\n\n";
+		std::cout << "\nChanges after " << method->methodName() << " method work:\n\n";
 		this->printToConsoleDifferences(copy, 4);
 
 		copy = *this;

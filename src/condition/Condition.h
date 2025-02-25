@@ -7,14 +7,6 @@
 #include <string>
 #include <list>
 
-// enum для типа возращаемого значения функции updateCondition()
-enum class UpdCondReturnParam
-{
-	lineNotCompleted = -1,
-	setWhite,
-	setBlack
-};
-
 // все данные о строке изменяются только в этом классе и классе NumberAndBorders
 // извне данные поменять невозможно(инкапсуляция)
 
@@ -43,6 +35,8 @@ public:
 
 	// getters & setters
 
+	size_t getAllCountWhiteCell() const;
+	size_t getAllCountBlackCell() const;
 	bool getIsFullFlag() const;
 	const Line* getLinePtr() const;
 	size_t getStart() const;
@@ -51,7 +45,7 @@ public:
 
 	// functions
 
-	UpdCondReturnParam updateCondition();
+	void updateCondition();
 
 	// выводит в консоль this, подсвечивая color различия между this и cond
 	void printToConsoleDifferences(const Condition& cond, int color) const;

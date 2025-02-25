@@ -35,6 +35,16 @@ Condition::Condition(size_t lineSize, const Line* ptr, const std::vector<size_t>
 	this->updateBorders();
 }
 
+size_t Condition::getAllCountWhiteCell() const
+{
+	return allCountWhiteCell;
+}
+
+size_t Condition::getAllCountBlackCell() const
+{
+	return allCountBlackCell;
+}
+
 bool Condition::getIsFullFlag() const
 {
 	return isFull;
@@ -60,11 +70,23 @@ const std::list<NumberAndBorders>& Condition::getNumInfo() const
 	return numInfo;
 }
 
-UpdCondReturnParam Condition::updateCondition()
+void Condition::updateCondition()
 {
 	if (*data == statLine)
 	{
-		return UpdCondReturnParam::lineNotCompleted;
+		return;
+	}
+
+	// проверка на то, что строку можно однозначно определить
+	if (data->getCountTypeCell(CellType::white) == allCountWhiteCell)
+	{
+		isFull = true;
+		return;
+	}
+	if (data->getCountTypeCell(CellType::black) == allCountBlackCell)
+	{
+		isFull = true;
+		return;
 	}
 
 	statLine = *data; // обновляем состояние строки до актуального
@@ -77,20 +99,6 @@ UpdCondReturnParam Condition::updateCondition()
 
 	// обновление диапазонов в numInfo
 	this->updateBorders();
-
-	// проверка на то, что строку можно однозначно определить
-	if (data->getCountTypeCell(CellType::white) == allCountWhiteCell)
-	{
-		isFull = true;
-		return UpdCondReturnParam::setBlack;
-	}
-	if (data->getCountTypeCell(CellType::black) == allCountBlackCell)
-	{
-		isFull = true;
-		return UpdCondReturnParam::setWhite;
-	}
-
-	return UpdCondReturnParam::lineNotCompleted;
 }
 
 void Condition::printToConsoleDifferences(const Condition& cond, int color) const
