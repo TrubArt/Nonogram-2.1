@@ -58,7 +58,7 @@ void NumberAndBorders::printToConsoleDifferences(const NumberAndBorders& data, i
 
 	if (dia.first != data.dia.first)
 	{
-		SetConsoleTextAttribute(console, 4);
+		SetConsoleTextAttribute(console, color);
 	}
 	std::cout << dia.first;
 	SetConsoleTextAttribute(console, 15);
@@ -67,7 +67,7 @@ void NumberAndBorders::printToConsoleDifferences(const NumberAndBorders& data, i
 
 	if (dia.second != data.dia.second)
 	{
-		SetConsoleTextAttribute(console, 4);
+		SetConsoleTextAttribute(console, color);
 	}
 	std::cout << dia.second;
 	SetConsoleTextAttribute(console, 15);
@@ -78,7 +78,7 @@ void NumberAndBorders::printToConsoleDifferences(const NumberAndBorders& data, i
 	{
 		if (realDia.first != data.realDia.first)
 		{
-			SetConsoleTextAttribute(console, 4);
+			SetConsoleTextAttribute(console, color);
 		}
 		std::cout << realDia.first;
 		SetConsoleTextAttribute(console, 15);
@@ -87,7 +87,7 @@ void NumberAndBorders::printToConsoleDifferences(const NumberAndBorders& data, i
 
 		if (realDia.second != data.realDia.second)
 		{
-			SetConsoleTextAttribute(console, 4);
+			SetConsoleTextAttribute(console, color);
 		}
 		std::cout << realDia.second;
 		SetConsoleTextAttribute(console, 15);
@@ -168,7 +168,7 @@ void NumberAndBorders::updateDviaRD(const Line* data)
 	size_t countOfRemainingCells = number - countOfPossibleCells;
 
 	// обязательно int, тк при вычислениях может получиться отрицательное число
-	int possiblyLeftBorder = leftBlack - countOfRemainingCells;
+	int possiblyLeftBorder = leftBlack - static_cast<int>(countOfRemainingCells);
 	if (dia.first < possiblyLeftBorder)
 	{
 		dia.first = possiblyLeftBorder;

@@ -32,7 +32,7 @@ Condition::Condition(size_t lineSize, const Line* ptr, const std::vector<size_t>
 	}
 	allCountWhiteCell = lineSize - allCountBlackCell;
 
-	this->updateBorders();
+	updateBorders();
 }
 
 size_t Condition::getAllCountWhiteCell() const
@@ -78,12 +78,8 @@ void Condition::updateCondition()
 	}
 
 	// проверка на то, что строку можно однозначно определить
-	if (data->getCountTypeCell(CellType::white) == allCountWhiteCell)
-	{
-		isFull = true;
-		return;
-	}
-	if (data->getCountTypeCell(CellType::black) == allCountBlackCell)
+	if (data->getCountTypeCell(CellType::white) == allCountWhiteCell
+		|| data->getCountTypeCell(CellType::black) == allCountBlackCell)
 	{
 		isFull = true;
 		return;
@@ -92,13 +88,13 @@ void Condition::updateCondition()
 	statLine = *data; // обновляем состояние строки до актуального
 
 	// обновление start
-	this->updateStart();
+	updateStart();
 
 	// обновление end
-	this->updateEnd();
+	updateEnd();
 
 	// обновление диапазонов в numInfo
-	this->updateBorders();
+	updateBorders();
 }
 
 void Condition::printToConsoleDifferences(const Condition& cond, int color) const
@@ -108,7 +104,7 @@ void Condition::printToConsoleDifferences(const Condition& cond, int color) cons
 	{
 		if (isFull != cond.isFull)
 		{
-			SetConsoleTextAttribute(console, 4);
+			SetConsoleTextAttribute(console, color);
 		}
 		std::cout << "-\n";
 		SetConsoleTextAttribute(console, 15);
@@ -119,7 +115,7 @@ void Condition::printToConsoleDifferences(const Condition& cond, int color) cons
 
 	if (start != cond.start)
 	{
-		SetConsoleTextAttribute(console, 4);
+		SetConsoleTextAttribute(console, color);
 	}
 	std::cout << start;
 	SetConsoleTextAttribute(console, 15);
@@ -128,7 +124,7 @@ void Condition::printToConsoleDifferences(const Condition& cond, int color) cons
 
 	if (end != cond.end)
 	{
-		SetConsoleTextAttribute(console, 4);
+		SetConsoleTextAttribute(console, color);
 	}
 	std::cout << end;
 	SetConsoleTextAttribute(console, 15);
@@ -223,8 +219,8 @@ void Condition::updateEnd()
 
 void Condition::updateBorders()
 {
-	this->updateDia();
-	this->updateRealDia();
+	updateDia();
+	updateRealDia();
 	for (auto& i : numInfo)
 	{
 		i.updateNumberAndBorders(data);

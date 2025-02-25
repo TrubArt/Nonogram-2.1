@@ -3,7 +3,6 @@
 
 #include "iMethod.h"
 
-// закрашивает все CellType::undefined в цвет param
 class LastColorSet : public IMethod
 {
 public:

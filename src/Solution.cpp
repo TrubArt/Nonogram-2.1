@@ -100,6 +100,7 @@ void Solution::callingMethods()
 				// метод по определению числа с края строки
 				StartEndNum().realization(curentCond, pict, queue, rowOrCol, lineNumber);
 
+				// обязательный метод перед updateCondition()
 				LastColorSet().realization(curentCond, pict, queue, rowOrCol, lineNumber);
 
 				// изменение данных о строке после цикла
@@ -110,7 +111,7 @@ void Solution::callingMethods()
 		// вывод в консоль изменений после работы метода
 
 		std::cout << "\nChanges after " << method->methodName() << " method work:\n\n";
-		this->printToConsoleDifferences(copy, 4);
+		printToConsoleDifferences(copy, 4);
 
 		copy = *this;
 	}

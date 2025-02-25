@@ -95,7 +95,7 @@ size_t Line::getSize() const
 size_t Line::getCountTypeCell(CellType cType) const
 {
 	//return std::count_if(data.begin(), data.end(), [cType](Cell* x) { return x->get() == cType ? true : false; });
-	return this->getCountTypeCell(0, data.size(), cType);
+	return getCountTypeCell(0, data.size(), cType);
 }
 
 size_t Line::getCountTypeCell(size_t startIndex, size_t endIndex, CellType cType) const
