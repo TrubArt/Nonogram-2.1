@@ -40,7 +40,7 @@ public:
 	bool nonogramSolution();
 
 	// выводит в консоль this, подсвечивая color различия между this и copy
-	void printToConsoleDifferences(const Solution& copy, int color) const;
+	void printToConsoleDifferences(const Solution& copy, Color color) const;
 	std::string pictToString() const;
 	std::string conditionsToString() const;
 private:

@@ -1,8 +1,6 @@
 ﻿#include "line.h"
 
 #include <algorithm>
-#define NOMINMAX
-#include <Windows.h>
 
 Line::Line(size_t size)
 {
@@ -159,37 +157,44 @@ int Line::getRightIndexTypeCell(size_t startIndex, size_t endIndex, CellType cTy
 	return answer;
 }
 
-void Line::printToConsoleDifferences(const Line& line, int color) const
+void Line::printToConsoleDifferences(const Line& line, Color color) const
 {
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	WORD lightDifferens = static_cast<WORD>(color);
+	WORD undefinedColor = static_cast<WORD>(Color::white);
+
 	for (size_t index = 0; index < data.size(); ++index)
 	{
 		if (data[index]->get() != line.data[index]->get())
 		{
-			SetConsoleTextAttribute(console, color);
+			SetConsoleTextAttribute(console, lightDifferens);
 		}
 		std::cout << " " << data[index]->toString();
 
-		SetConsoleTextAttribute(console, 15);
+		SetConsoleTextAttribute(console, undefinedColor);
 	}
 }
 
-void Line::printToConsoleColor(int whiteColor, int blackColor) const
+void Line::printToConsoleColor(Color whiteColor, Color blackColor) const
 {
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	WORD undefinedColor = static_cast<WORD>(Color::white);
+	WORD whiteColorw = static_cast<WORD>(whiteColor);
+	WORD blackColorw = static_cast<WORD>(blackColor);
+
 	for (size_t index = 0; index < data.size(); ++index)
 	{
 		if (data[index]->get() == CellType::black)
 		{
-			SetConsoleTextAttribute(console, blackColor);
+			SetConsoleTextAttribute(console, blackColorw);
 		}
 		if (data[index]->get() == CellType::white)
 		{
-			SetConsoleTextAttribute(console, whiteColor);
+			SetConsoleTextAttribute(console, whiteColorw);
 		}
 		std::cout << " " << data[index]->toString();
 
-		SetConsoleTextAttribute(console, 15);
+		SetConsoleTextAttribute(console, undefinedColor);
 	}
 }
 

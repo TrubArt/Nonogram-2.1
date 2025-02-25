@@ -35,7 +35,7 @@ public:
 	void updateNumberAndBorders(const Line* data);
 
 	// выводит в консоль this, подсвечивая color различия между this и data
-	void printToConsoleDifferences(const NumberAndBorders& data, int color) const;
+	void printToConsoleDifferences(const NumberAndBorders& data, Color color) const;
 	std::string toString() const;
 
 private:

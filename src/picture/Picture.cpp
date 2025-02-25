@@ -133,7 +133,7 @@ bool Picture::setColor(size_t rowNumber, size_t index, CellType cType)
 	return true;
 }
 
-void Picture::printToConsoleDifferences(const Picture& pict, int color) const
+void Picture::printToConsoleDifferences(const Picture& pict, Color color) const
 {
 	if (pict.rows.size() != rows.size() || pict.columns.size() != columns.size())
 	{
@@ -148,7 +148,7 @@ void Picture::printToConsoleDifferences(const Picture& pict, int color) const
 	}
 }
 
-void Picture::printToConsoleColor(int whiteColor, int blackColor) const
+void Picture::printToConsoleColor(Color whiteColor, Color blackColor) const
 {
 	for (size_t strNum = 0; strNum < rows.size(); ++strNum)
 	{

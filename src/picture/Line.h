@@ -1,8 +1,9 @@
 ﻿#ifndef LINE_NONOGRAM
 #define LINE_NONOGRAM
 
-#include "cell.h" 
-      
+#include "cell.h"
+#include "../colorEnum.h"
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -45,10 +46,10 @@ public:
 	int getRightIndexTypeCell(size_t startIndex, size_t endIndex, CellType cType) const;
 
 	// выводит в консоль this, подсвечивая цветом color различия между this и line
-	void printToConsoleDifferences(const Line& line, int color) const;
+	void printToConsoleDifferences(const Line& line, Color color) const;
 
 	// выводит в консоль Line, где CellType::white подсвечены цветом whiteColor, а CellType::black подсвечены цветом blackColor
-	void printToConsoleColor(int whiteColor, int blackColor) const;
+	void printToConsoleColor(Color whiteColor, Color blackColor) const;
 	std::string toString() const;
 	friend std::ostream& operator<<(std::ostream& out, const Line& line);
 };

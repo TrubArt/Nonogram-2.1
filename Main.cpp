@@ -2,8 +2,6 @@
 #include "src/picture/picture.h"
 
 #include <iostream>
-#define NOMINMAX
-#include <Windows.h>
 
 int main()
 {
@@ -21,7 +19,7 @@ int main()
 	}
 
 	std::cout << "Finaly picture:\n";
-	maintask.getPicture().printToConsoleColor(0, 1);
+	maintask.getPicture().printToConsoleColor(Color::black, Color::darkBlue);
 	std::cin.get();
 
 	std::vector<PaintCellInfo> cells = maintask.getQueue();

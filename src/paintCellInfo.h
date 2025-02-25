@@ -1,4 +1,4 @@
-#ifndef PAINTCELLINFO_NONOGRAM
+﻿#ifndef PAINTCELLINFO_NONOGRAM
 #define PAINTCELLINFO_NONOGRAM
 
 enum class CellType;

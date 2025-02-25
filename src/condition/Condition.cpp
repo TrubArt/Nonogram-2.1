@@ -1,8 +1,5 @@
 ﻿#include "condition.h"
 
-#define NOMINMAX
-#include <Windows.h>
-
 Condition::Condition()
 	: allCountWhiteCell(0)
 	, allCountBlackCell(0)
@@ -97,17 +94,20 @@ void Condition::updateCondition()
 	updateBorders();
 }
 
-void Condition::printToConsoleDifferences(const Condition& cond, int color) const
+void Condition::printToConsoleDifferences(const Condition& cond, Color color) const
 {
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	WORD lightDifferens = static_cast<WORD>(color);
+	WORD undefinedColor = static_cast<WORD>(Color::white);
+
 	if (isFull)
 	{
 		if (isFull != cond.isFull)
 		{
-			SetConsoleTextAttribute(console, color);
+			SetConsoleTextAttribute(console, lightDifferens);
 		}
 		std::cout << "-\n";
-		SetConsoleTextAttribute(console, 15);
+		SetConsoleTextAttribute(console, undefinedColor);
 		return;
 	}
 
@@ -115,19 +115,19 @@ void Condition::printToConsoleDifferences(const Condition& cond, int color) cons
 
 	if (start != cond.start)
 	{
-		SetConsoleTextAttribute(console, color);
+		SetConsoleTextAttribute(console, lightDifferens);
 	}
 	std::cout << start;
-	SetConsoleTextAttribute(console, 15);
+	SetConsoleTextAttribute(console, undefinedColor);
 
 	std::cout << ", End: ";
 
 	if (end != cond.end)
 	{
-		SetConsoleTextAttribute(console, color);
+		SetConsoleTextAttribute(console, lightDifferens);
 	}
 	std::cout << end;
-	SetConsoleTextAttribute(console, 15);
+	SetConsoleTextAttribute(console, undefinedColor);
 
 	std::cout << "\n\tList:";
 

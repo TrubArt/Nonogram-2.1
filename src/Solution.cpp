@@ -111,7 +111,7 @@ void Solution::callingMethods()
 		// вывод в консоль изменений после работы метода
 
 		std::cout << "\nChanges after " << method->methodName() << " method work:\n\n";
-		printToConsoleDifferences(copy, 4);
+		printToConsoleDifferences(copy, Color::crimson);
 
 		copy = *this;
 	}
@@ -141,7 +141,7 @@ bool Solution::nonogramSolution()
 	return noChangesAfterCycle;
 }
 
-void Solution::printToConsoleDifferences(const Solution& copy, int color) const
+void Solution::printToConsoleDifferences(const Solution& copy, Color color) const
 {
 	pict.printToConsoleDifferences(copy.pict, color);
 	std::cout << "\n";

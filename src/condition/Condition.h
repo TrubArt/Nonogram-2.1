@@ -48,7 +48,7 @@ public:
 	void updateCondition();
 
 	// выводит в консоль this, подсвечивая color различия между this и cond
-	void printToConsoleDifferences(const Condition& cond, int color) const;
+	void printToConsoleDifferences(const Condition& cond, Color color) const;
 	std::string toString() const;
 
 private:

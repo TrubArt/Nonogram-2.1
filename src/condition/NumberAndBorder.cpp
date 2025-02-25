@@ -1,8 +1,5 @@
 ﻿#include "numberAndBorder.h"
 
-#define NOMINMAX
-#include <Windows.h>
-
 NumberAndBorders::NumberAndBorders(size_t number, const myP& dia, const myP& realdia) 
 	: dia(dia), realDia(realdia), number(number), isExistRD(false) 
 {}
@@ -49,28 +46,30 @@ void NumberAndBorders::updateNumberAndBorders(const Line* data)
 	updateDviaRD(data);
 }
 
-void NumberAndBorders::printToConsoleDifferences(const NumberAndBorders& data, int color) const
+void NumberAndBorders::printToConsoleDifferences(const NumberAndBorders& data, Color color) const
 {
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(console, 15);
+	WORD lightDifferens = static_cast<WORD>(color);
+	WORD undefinedColor = static_cast<WORD>(Color::white);
+	SetConsoleTextAttribute(console, undefinedColor);
 
 	std::cout << number << "{D[";
 
 	if (dia.first != data.dia.first)
 	{
-		SetConsoleTextAttribute(console, color);
+		SetConsoleTextAttribute(console, lightDifferens);
 	}
 	std::cout << dia.first;
-	SetConsoleTextAttribute(console, 15);
+	SetConsoleTextAttribute(console, undefinedColor);
 
 	std::cout << ",";
 
 	if (dia.second != data.dia.second)
 	{
-		SetConsoleTextAttribute(console, color);
+		SetConsoleTextAttribute(console, lightDifferens);
 	}
 	std::cout << dia.second;
-	SetConsoleTextAttribute(console, 15);
+	SetConsoleTextAttribute(console, undefinedColor);
 
 	std::cout << "), RD[";
 
@@ -78,19 +77,19 @@ void NumberAndBorders::printToConsoleDifferences(const NumberAndBorders& data, i
 	{
 		if (realDia.first != data.realDia.first)
 		{
-			SetConsoleTextAttribute(console, color);
+			SetConsoleTextAttribute(console, lightDifferens);
 		}
 		std::cout << realDia.first;
-		SetConsoleTextAttribute(console, 15);
+		SetConsoleTextAttribute(console, undefinedColor);
 
 		std::cout << ",";
 
 		if (realDia.second != data.realDia.second)
 		{
-			SetConsoleTextAttribute(console, color);
+			SetConsoleTextAttribute(console, lightDifferens);
 		}
 		std::cout << realDia.second;
-		SetConsoleTextAttribute(console, 15);
+		SetConsoleTextAttribute(console, undefinedColor);
 	}
 	else
 	{
