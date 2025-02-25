@@ -8,7 +8,7 @@
 // класс, хранящий число и его характеристики
 class NumberAndBorders
 {
-	using myP = std::pair<int, int>;
+	using myP = std::pair<size_t, size_t>;
 
 	size_t number;	// число
 	myP dia;		// (D) диапазон, в котором может теоретически находиться число
@@ -23,8 +23,8 @@ public:
 	// getters & setters
 
 	size_t getNum() const;
-	const myP& getD() const;
-	const myP& getRD() const;
+	myP getD() const;
+	myP getRD() const;
 	bool getFlagExistRd() const;
 	void setD(const myP& x);
 	void setFlagExistRd(bool flag);

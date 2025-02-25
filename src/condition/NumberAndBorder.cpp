@@ -12,12 +12,12 @@ size_t NumberAndBorders::getNum() const
 	return number;
 }
 
-const NumberAndBorders::myP& NumberAndBorders::getD() const
+NumberAndBorders::myP NumberAndBorders::getD() const
 {
 	return dia;
 }
 
-const NumberAndBorders::myP& NumberAndBorders::getRD() const
+NumberAndBorders::myP NumberAndBorders::getRD() const
 {
 	return realDia;
 }
@@ -163,13 +163,13 @@ void NumberAndBorders::updateDviaRD(const Line* data)
 		return;
 	}
 
-	int rightBlack = data->getRightIndexTypeCell(realDia.first, realDia.second, CellType::black);
+	size_t rightBlack = data->getRightIndexTypeCell(realDia.first, realDia.second, CellType::black);
 	size_t countOfPossibleCells = rightBlack - leftBlack + 1;
 	size_t countOfRemainingCells = number - countOfPossibleCells;
 
 	// обязательно int, тк при вычислениях может получиться отрицательное число
 	int possiblyLeftBorder = leftBlack - static_cast<int>(countOfRemainingCells);
-	if (dia.first < possiblyLeftBorder)
+	if (possiblyLeftBorder >= 0 && dia.first < possiblyLeftBorder)
 	{
 		dia.first = possiblyLeftBorder;
 	}

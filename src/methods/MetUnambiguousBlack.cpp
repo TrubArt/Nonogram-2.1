@@ -2,7 +2,7 @@
 
 void UnambiguousBlack::realization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex) const
 {
-	const std::list<NumberAndBorders>& list = cond.getNumInfo();
+	auto list = cond.getNumInfo();
 	for(const auto& element : list)
 	{ 
 		for (size_t index = element.getD().second - element.getNum(); index < element.getD().first + element.getNum(); ++index)
