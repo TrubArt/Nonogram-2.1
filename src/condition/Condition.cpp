@@ -262,7 +262,7 @@ void Condition::updateDia()
 void Condition::updateRealDia()
 {
 	size_t leftBorder = start;
-	int rightBorder = -1;
+	size_t rightBorder = 0;
 
 	for (auto it = numInfo.begin(); it != numInfo.end(); ++it)
 	{
