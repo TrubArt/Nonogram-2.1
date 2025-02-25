@@ -145,7 +145,8 @@ int Line::getRightIndexTypeCell(size_t startIndex, size_t endIndex, CellType cTy
 		return answer;
 	}
 
-	for (size_t i = endIndex - 1; i >= startIndex; --i)
+	int iStartIndex = static_cast<int>(startIndex);
+	for (int i = endIndex - 1; i >= iStartIndex; --i)
 	{
 		if (data[i]->get() == cType)
 		{
