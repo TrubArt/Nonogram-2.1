@@ -119,7 +119,7 @@ void Solution::callingMethods()
 
 bool Solution::nonogramSolution()
 {
-	int step = 0;
+	size_t step = 0;
 	bool noChangesAfterCycle = false;
 
 	while (!noChangesAfterCycle && !isEndOfWork())

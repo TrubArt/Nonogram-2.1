@@ -25,10 +25,10 @@ int main()
 	std::vector<PaintCellInfo> cells = maintask.getQueue();
 	std::cout << "Cells queue:\n";
 
-	int index = 1;
+	size_t index = 0;
 	for (const auto& cell : cells)
 	{
-		std::cout << index++ << ": ";
+		std::cout << ++index << ": ";
 		std::cout << cell.rowNumber << " ";
 		std::cout << cell.indexInRow << " ";
 		std::cout << static_cast<int>(cell.color);

@@ -139,14 +139,13 @@ int Line::getLeftIndexTypeCell(size_t startIndex, size_t endIndex, CellType cTyp
 int Line::getRightIndexTypeCell(size_t startIndex, size_t endIndex, CellType cType) const
 {
 	int answer = -1;
-	if (endIndex > data.size())
+	if (endIndex == 0 || endIndex > data.size())
 	{
 		std::cout << "Out of Line\n";
 		return answer;
 	}
 
-	int iStartIndex = static_cast<int>(startIndex);
-	for (int i = endIndex - 1; i >= iStartIndex; --i)
+	for (size_t i = endIndex - 1; i >= startIndex; --i)
 	{
 		if (data[i]->get() == cType)
 		{
