@@ -5,7 +5,7 @@
 
 int main()
 {
-	Solution maintask("Condition", "Additional color condition");
+	Solution maintask("condition", "additional color condition");
 
 	std::cout << "Picture before:\n";
 	std::cout << maintask.getPicture();
