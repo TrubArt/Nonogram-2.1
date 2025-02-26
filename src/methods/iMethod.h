@@ -3,7 +3,7 @@
 
 #include "../picture/picture.h"
 #include "../condition/condition.h"
-#include "../paintCellInfo.h"
+#include "../queueCells/paintCellInfo.h"
 
 #include <string>
 

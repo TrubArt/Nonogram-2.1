@@ -5,7 +5,7 @@
 #include "condition/condition.h"
 #include "methods/iMethod.h"
 #include "methods/methodsVectorShell.h"
-#include "paintCellInfo.h"
+#include "queueCells/cellQueue.h"
 
 #include <array>
 #include <vector>
@@ -18,7 +18,7 @@ class Solution
 	std::array<std::vector<Condition>, 2> conditions;	// массив с условиями для строк и столбцов
 
 	static const MethodsVectorShell methods;			// набор методов для анализа
-	std::vector<PaintCellInfo> queue;					// очередь в которой хранятся данные о закрашенных клетках
+	CellQueue queue;									// очередь в которой хранятся данные о закрашенных клетках
 
 public:
 	// ctors, dctor, operators
@@ -33,7 +33,7 @@ public:
 
 	Picture getPicture() const;
 	bool isEndOfWork() const;
-	std::vector<PaintCellInfo> getQueue() const;
+	CellQueue getQueue() const;
 
 	// functions
 

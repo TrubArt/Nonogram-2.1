@@ -22,7 +22,7 @@ int main()
 	maintask.getPicture().printToConsoleColor(Color::black, Color::darkBlue);
 	std::cin.get();
 
-	std::vector<PaintCellInfo> cells = maintask.getQueue();
+	std::vector<PaintCellInfo> cells = maintask.getQueue().get();
 	std::cout << "Cells queue:\n";
 
 	size_t index = 0;
