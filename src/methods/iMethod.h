@@ -3,7 +3,7 @@
 
 #include "../picture/picture.h"
 #include "../condition/condition.h"
-#include "../queueCells/paintCellInfo.h"
+#include "../queueCells/cellQueue.h"
 
 #include <string>
 
@@ -17,7 +17,7 @@ public:
 	// posit.first - определяет строка или столбец
 	// posit.second - номер строки/столбца
 	// queue - вектор с информацией о закрашенных клетках
-	virtual void realization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex) const = 0;
+	virtual void realization(const Condition& cond, Picture& pict, CellQueue& queue, bool isColumn, size_t rowOrColIndex) const = 0;
 
 	// возвращает название метода
 	virtual std::string methodName() const = 0;
@@ -27,14 +27,14 @@ public:
 
 protected:
 	// совмещает в себе работу setColorWithInformation и addInfoInQueue
-	void setColorAndAddInQueue(Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex, size_t lineIndex, CellType cType) const;
+	void setColorAndAddInQueue(Picture& pict, CellQueue& queue, bool isColumn, size_t rowOrColIndex, size_t lineIndex, CellType cType) const;
 
 private:
 	// закрашивает в Pict posit.first под номером posit.second позицию index цветом cType
 	bool setColorWithInformation(Picture& pict, size_t rowIndex, size_t lineIndex, CellType cType) const;
 
 	// вносит изменения в queue
-	void addInfoInQueue(std::vector<PaintCellInfo>& queue, size_t rowIndex, size_t lineIndex, CellType cType) const;
+	void addInfoInQueue(CellQueue& queue, size_t rowIndex, size_t lineIndex, CellType cType) const;
 };
 
 #endif // !IMETHOD_NONOGRAM

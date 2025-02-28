@@ -1,6 +1,6 @@
 ﻿#include "metStartEndNum.h"
 
-void StartEndNum::realization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex) const
+void StartEndNum::realization(const Condition& cond, Picture& pict, CellQueue& queue, bool isColumn, size_t rowOrColIndex) const
 {
 	const Line* analyzedLine = cond.getLinePtr();
 	size_t start = cond.getStart();

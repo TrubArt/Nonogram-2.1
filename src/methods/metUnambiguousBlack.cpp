@@ -1,6 +1,6 @@
 ﻿#include "metUnambiguousBlack.h"
 
-void UnambiguousBlack::realization(const Condition& cond, Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex) const
+void UnambiguousBlack::realization(const Condition& cond, Picture& pict, CellQueue& queue, bool isColumn, size_t rowOrColIndex) const
 {
 	auto list = cond.getNumInfo();
 	for(const auto& element : list)

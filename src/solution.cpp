@@ -26,7 +26,6 @@ Solution::Solution(const std::string& fileCondition, const std::string& fileAddi
 	// сначала добавление изначально заданных клеток
 	FileLoader f2(fileAdditCondit);
 
-	auto& cellVec = queue.get();
 	while (!f2.isEmpty())
 	{
 		tmp = f2.getNumbersSequence();
@@ -35,7 +34,7 @@ Solution::Solution(const std::string& fileCondition, const std::string& fileAddi
 			PaintCellInfo cellInfo(tmp[0], tmp[1], static_cast<CellType>(tmp[2]));
 			if (pict.setColor(cellInfo.rowNumber, cellInfo.indexInRow, cellInfo.color))
 			{
-				cellVec.push_back(cellInfo);
+				queue.customPush(cellInfo);
 			}
 		}
 	}
@@ -97,13 +96,13 @@ void Solution::callingMethods()
 				}
 
 				// вызов определённого метода					
-				method->realization(curentCond, pict, queue.get(), rowOrCol, lineNumber);
+				method->realization(curentCond, pict, queue, rowOrCol, lineNumber);
 
 				// метод по определению числа с края строки
-				StartEndNum().realization(curentCond, pict, queue.get(), rowOrCol, lineNumber);
+				StartEndNum().realization(curentCond, pict, queue, rowOrCol, lineNumber);
 
 				// обязательный метод перед updateCondition()
-				LastColorSet().realization(curentCond, pict, queue.get(), rowOrCol, lineNumber);
+				LastColorSet().realization(curentCond, pict, queue, rowOrCol, lineNumber);
 
 				// изменение данных о строке после цикла
 				curentCond.updateCondition();

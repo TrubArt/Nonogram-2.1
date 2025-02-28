@@ -1,6 +1,6 @@
 ﻿#include "iMethod.h"
 
-void IMethod::setColorAndAddInQueue(Picture& pict, std::vector<PaintCellInfo>& queue, bool isColumn, size_t rowOrColIndex
+void IMethod::setColorAndAddInQueue(Picture& pict, CellQueue& queue, bool isColumn, size_t rowOrColIndex
 									, size_t lineIndex, CellType cType) const
 {
 	bool isPaint = false;
@@ -29,7 +29,7 @@ bool IMethod::setColorWithInformation(Picture& pict, size_t rowIndex, size_t lin
 	return pict.setColor(rowIndex, lineIndex, cType);
 }
 
-void IMethod::addInfoInQueue(std::vector<PaintCellInfo>& queue, size_t rowIndex, size_t lineIndex, CellType cType) const
+void IMethod::addInfoInQueue(CellQueue& queue, size_t rowIndex, size_t lineIndex, CellType cType) const
 {
-	queue.push_back(PaintCellInfo(rowIndex, lineIndex, cType));
+	queue.customPush(PaintCellInfo(rowIndex, lineIndex, cType));
 }
