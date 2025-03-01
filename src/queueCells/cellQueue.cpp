@@ -1,4 +1,4 @@
-#include "cellQueue.h"
+﻿#include "cellQueue.h"
 
 std::vector<PaintCellInfo>& CellQueue::get()
 {

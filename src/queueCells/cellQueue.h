@@ -1,4 +1,4 @@
-#ifndef CELLQUEUE_NONOGRAM
+п»ї#ifndef CELLQUEUE_NONOGRAM
 #define CELLQUEUE_NONOGRAM
 
 #include "paintCellInfo.h"
@@ -14,8 +14,8 @@ public:
 	std::vector<PaintCellInfo>& get();
 	const std::vector<PaintCellInfo>& get() const;
 
-	// не надо класть с помощью данного метода
-	// элементы из вектора в связи с реалокацией :)
+	// РЅРµ РЅР°РґРѕ РєР»Р°СЃС‚СЊ СЃ РїРѕРјРѕС‰СЊСЋ РґР°РЅРЅРѕРіРѕ РјРµС‚РѕРґР°
+	// СЌР»РµРјРµРЅС‚С‹ РёР· РІРµРєС‚РѕСЂР° РІ СЃРІСЏР·Рё СЃ СЂРµР°Р»РѕРєР°С†РёРµР№ :)
 	void customPush(const PaintCellInfo& el);
 };
 
