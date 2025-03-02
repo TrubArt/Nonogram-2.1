@@ -1,11 +1,16 @@
 ﻿#include "src/solution.h"
-#include "src/picture/picture.h"
+#include "src/filesWork/loadManagerCpp.h"
 
 #include <iostream>
 
 int main()
 {
-	Solution maintask("condition", "additional color condition");
+	// .txt к названию добавляется в FileLoaderCpp
+	std::vector<std::string> files = { "additional color condition", "condition", "size" };
+	std::string directory = "C:\\Users\\user\\source\\repos\\Nonogram 2.1\\level";
+	LoadManagerCpp loadManager(directory, files);
+
+	Solution maintask(loadManager);
 
 	std::cout << "Picture before:\n";
 	std::cout << maintask.getPicture();
