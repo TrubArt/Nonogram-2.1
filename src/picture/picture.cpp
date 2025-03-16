@@ -117,6 +117,16 @@ bool Picture::operator!=(const Picture& x) const
 	return !(*this == x);
 }
 
+size_t Picture::getCountRow() const
+{
+	return rows.size();
+}
+
+size_t Picture::getCountColumn() const
+{
+	return columns.size();
+}
+
 const Line* Picture::getPtr(const std::pair<size_t, size_t>& x) const
 {
 	return x.first == 0 ? rows[x.second] : columns[x.second];

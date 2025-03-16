@@ -26,6 +26,9 @@ public:
 
 	// getters & setters
 
+	size_t getCountRow() const;
+	size_t getCountColumn() const;
+
 	const Line* getPtr(const std::pair<size_t, size_t>&) const;
 
 	// true, если произошла закраска, иначе false

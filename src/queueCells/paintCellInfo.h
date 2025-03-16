@@ -1,6 +1,8 @@
 ﻿#ifndef PAINTCELLINFO_NONOGRAM
 #define PAINTCELLINFO_NONOGRAM
 
+#include <cstddef>
+
 enum class CellType;
 
 struct PaintCellInfo
